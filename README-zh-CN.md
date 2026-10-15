@@ -12,6 +12,8 @@
 
 ## 配置
 
+沿用 `core` 的配置, 各提供商的完整配置见 `core` [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)
+
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
@@ -22,6 +24,7 @@
       "package": "github:Sn0wo2/oc-web-rotate",
       "options": {
         "maxOperationMs": 60000,
+        "maxUrlsPerRequest": 20,
         "search": {
           "prefer": "keyless",
           "providers": {
@@ -50,7 +53,7 @@
           },
         },
         "fetch": {
-          "prefer": "keyed",
+          "prefer": "keyless",
           "providers": {
             "tavily": { "keys": "{env:TAVILY_API_KEY}" }, // 自带 keyless
             "parallel": { "keys": "{env:PARALLEL_API_KEY}" }, // 自带 keyless
@@ -75,5 +78,3 @@
   ],
 }
 ```
-
-沿用 `core` 的配置, 各提供商的完整配置见 `core` [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)

@@ -14,11 +14,12 @@ import type {
   URLList,
 } from "web-rotate-core";
 
-
 export default Plugin.define({
   id: "oc-web-rotate",
   setup: async (ctx) => {
-    type PluginProviderEntry = ProviderEntry & { enabled?: boolean | undefined };
+    type PluginProviderEntry = ProviderEntry & {
+      enabled?: boolean | undefined;
+    };
 
     function mergeProviders(
       base: Readonly<Record<string, ProviderEntry | undefined>>,
@@ -59,38 +60,48 @@ export default Plugin.define({
       ),
     } as SearchProviderConfig);
 
-    const SEARCH_PROVIDER_ID = "websearch-rotate";
-    const MAX_TIMEOUT_SECONDS = 120;
-    const MAX_URLS_PER_REQUEST = 20;
-    
+    const SEARCH_PROVIDER_ID = "Websearch Rotate Core";
+    const MAX_OPERATION_MS = Number(ctx.options.maxOperationMs) || 100_000;
+    const MAX_URLS_PER_REQUEST = Math.max(
+      1,
+      Math.floor(Number(ctx.options.maxUrlsPerRequest) || 20),
+    );
+
     const [webfetch, websearch] = await Promise.all([
       ctx.tool.transform((tools) => {
         tools.add({
           name: "webfetch",
+
           description:
-            "Fetch one or more URLs and return their content as markdown (default), text, or html; " +
-            "image URLs may be returned as a media attachment. Read-only; " +
-            "prefer a more targeted tool when one is available. " +
-            "Cite the source URL when a statement relies on fetched content.",
+            "Fetch one or more HTTP(S) URLs as Markdown (default), plain text, or HTML. " +
+            "Images may be returned as attachments. Read-only.",
           input: {
             type: "object",
             properties: {
               url: {
                 type: ["string", "array"],
-                items: { type: "string" },
+                items: { type: "string", minLength: 1 },
+                minLength: 1,
+                minItems: 1,
                 maxItems: MAX_URLS_PER_REQUEST,
-                description: "http(s) URL, or an array of URLs",
+                description: "URL or array of URLs to fetch.",
               },
-              format: { type: "string", enum: ["text", "markdown", "html"] },
+              format: {
+                type: "string",
+                enum: ["markdown", "text", "html"],
+                description: "Output format (default: markdown).",
+              },
               timeout: {
                 type: "number",
                 minimum: 1,
-                maximum: MAX_TIMEOUT_SECONDS,
-                description: "seconds",
+                maximum: Math.floor(MAX_OPERATION_MS / 1000),
+                description: "Timeout in seconds (default: 30).",
               },
             },
             required: ["url"],
+            additionalProperties: false,
           } as const,
+
           options: { permission: "webfetch", codemode: false },
           execute: async (input) => {
             const raw = input as {
@@ -136,7 +147,10 @@ export default Plugin.define({
                   .toLowerCase()
               ] ?? "markdown";
             const signal = AbortSignal.timeout(
-              (Math.min(Number(raw.timeout), MAX_TIMEOUT_SECONDS) || 30) * 1000,
+              (Math.min(
+                Number(raw.timeout),
+                Math.floor(MAX_OPERATION_MS / 1000),
+              ) || 30) * 1000,
             );
             try {
               const outcome = await fetcher.fetch({ urls, format, signal });
@@ -175,11 +189,19 @@ export default Plugin.define({
             }
           },
         });
+
         tools.update("websearch", (tool) => {
+          tool.input = Schema.Struct({
+            query: Schema.String.annotate({
+              description:
+                "Search query; include dates or versions when relevant.",
+            }),
+          });
           tool.output = Schema.Any;
           tool.description =
-            `${tool.description}\n\n` +
-            "Results are numbered [1], [2], ...; when a statement relies on a result, cite it as [n] together with its URL.";
+            "Search the web for current information and facts requiring verification. " +
+            `Current date (UTC): ${new Date().toISOString().slice(0, 10)}. ` +
+            "Use relevant dates in time-sensitive queries and cite source URLs.";
         });
       }),
       ctx.websearch.transform((draft) => {
@@ -192,9 +214,7 @@ export default Plugin.define({
                 queries: [input.query.trim()] as URLList,
                 signal: AbortSignal.any([
                   signal,
-                  AbortSignal.timeout(
-                    Number(ctx.options.maxOperationMs) || 60_000,
-                  ),
+                  AbortSignal.timeout(MAX_OPERATION_MS),
                 ]),
               });
               return results.map((item, index): WebSearch.Result => ({

@@ -12,6 +12,8 @@ See [`web-rotate-core`](https://github.com/Sn0wo2/web-rotate-core) (hereinafter 
 
 ## Configuration
 
+Options follow `core`'s config; each provider's full settings are documented in `core`'s [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)
+
 ```jsonc
 {
   "$schema": "https://opencode.ai/config.json",
@@ -22,6 +24,7 @@ See [`web-rotate-core`](https://github.com/Sn0wo2/web-rotate-core) (hereinafter 
       "package": "github:Sn0wo2/oc-web-rotate",
       "options": {
         "maxOperationMs": 60000,
+        "maxUrlsPerRequest": 20,
         "search": {
           "prefer": "keyless",
           "providers": {
@@ -50,7 +53,7 @@ See [`web-rotate-core`](https://github.com/Sn0wo2/web-rotate-core) (hereinafter 
           },
         },
         "fetch": {
-          "prefer": "keyed",
+          "prefer": "keyless",
           "providers": {
             "tavily": { "keys": "{env:TAVILY_API_KEY}" }, // also keyless
             "parallel": { "keys": "{env:PARALLEL_API_KEY}" }, // also keyless
@@ -75,5 +78,3 @@ See [`web-rotate-core`](https://github.com/Sn0wo2/web-rotate-core) (hereinafter 
   ],
 }
 ```
-
-Options follow `core`'s config; each provider's full settings are documented in `core`'s [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)
