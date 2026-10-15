@@ -1,29 +1,68 @@
 import { Plugin, WebSearch } from "@opencode/plugin";
 import { Schema } from "effect";
 import {
+  DEFAULT_FETCH_PROVIDER_CONFIG,
+  DEFAULT_SEARCH_PROVIDER_CONFIG,
   RotateConfigError,
   createWebFetcher,
   createWebSearcher,
 } from "web-rotate-core";
 import type {
   FetchProviderConfig,
+  ProviderEntry,
   SearchProviderConfig,
   URLList,
 } from "web-rotate-core";
 
-const SEARCH_PROVIDER_ID = "websearch-rotate";
-const MAX_TIMEOUT_SECONDS = 120;
-const MAX_URLS_PER_REQUEST = 20;
 
 export default Plugin.define({
   id: "oc-web-rotate",
   setup: async (ctx) => {
-    const fetcher = createWebFetcher(
-      (ctx.options.fetch ?? {}) as FetchProviderConfig,
-    );
-    const searcher = createWebSearcher(
-      (ctx.options.search ?? {}) as SearchProviderConfig,
-    );
+    type PluginProviderEntry = ProviderEntry & { enabled?: boolean | undefined };
+
+    function mergeProviders(
+      base: Readonly<Record<string, ProviderEntry | undefined>>,
+      entries: Record<string, PluginProviderEntry> | undefined,
+    ): Record<string, ProviderEntry> {
+      const merged: Record<string, ProviderEntry> = {};
+      for (const [id, entry] of Object.entries(base))
+        if (entry) merged[id] = entry;
+      for (const [id, raw] of Object.entries(entries ?? {})) {
+        const { enabled, ...entry } = raw;
+        if (enabled === false) {
+          delete merged[id];
+          continue;
+        }
+        merged[id] = { ...merged[id], ...entry };
+      }
+      return merged;
+    }
+
+    const fetchOptions = (ctx.options.fetch ?? {}) as FetchProviderConfig & {
+      providers?: Record<string, PluginProviderEntry>;
+    };
+    const searchOptions = (ctx.options.search ?? {}) as SearchProviderConfig & {
+      providers?: Record<string, PluginProviderEntry>;
+    };
+    const fetcher = createWebFetcher({
+      ...fetchOptions,
+      providers: mergeProviders(
+        DEFAULT_FETCH_PROVIDER_CONFIG,
+        fetchOptions.providers,
+      ),
+    } as FetchProviderConfig);
+    const searcher = createWebSearcher({
+      ...searchOptions,
+      providers: mergeProviders(
+        DEFAULT_SEARCH_PROVIDER_CONFIG,
+        searchOptions.providers,
+      ),
+    } as SearchProviderConfig);
+
+    const SEARCH_PROVIDER_ID = "websearch-rotate";
+    const MAX_TIMEOUT_SECONDS = 120;
+    const MAX_URLS_PER_REQUEST = 20;
+    
     const [webfetch, websearch] = await Promise.all([
       ctx.tool.transform((tools) => {
         tools.add({
