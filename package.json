@@ -20,9 +20,6 @@
     "effect": "^4.0.5",
     "web-rotate-core": "github:Sn0wo2/web-rotate-core"
   },
-  "overrides": {
-    "effect": "4.0.5"
-  },
   "devDependencies": {
     "@types/bun": "^1.4.3",
     "@types/html-to-text": "^9.0.4",
