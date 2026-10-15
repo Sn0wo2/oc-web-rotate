@@ -21,14 +21,17 @@ export default Plugin.define({
       enabled?: boolean | undefined;
     };
 
-    function mergeProviders(
-      base: Readonly<Record<string, ProviderEntry | undefined>>,
-      entries: Record<string, PluginProviderEntry> | undefined,
-    ): Record<string, ProviderEntry> {
+    function resolveProviderConfig<T extends object>(
+      options: unknown,
+      defaults: Readonly<Record<string, ProviderEntry | undefined>>,
+    ): T {
+      const { providers, ...rest } = (options ?? {}) as {
+        providers?: Record<string, PluginProviderEntry>;
+      };
       const merged: Record<string, ProviderEntry> = {};
-      for (const [id, entry] of Object.entries(base))
+      for (const [id, entry] of Object.entries(defaults))
         if (entry) merged[id] = entry;
-      for (const [id, raw] of Object.entries(entries ?? {})) {
+      for (const [id, raw] of Object.entries(providers ?? {})) {
         const { enabled, ...entry } = raw;
         if (enabled === false) {
           delete merged[id];
@@ -36,29 +39,21 @@ export default Plugin.define({
         }
         merged[id] = { ...merged[id], ...entry };
       }
-      return merged;
+      return { ...rest, providers: merged } as T;
     }
 
-    const fetchOptions = (ctx.options.fetch ?? {}) as FetchProviderConfig & {
-      providers?: Record<string, PluginProviderEntry>;
-    };
-    const searchOptions = (ctx.options.search ?? {}) as SearchProviderConfig & {
-      providers?: Record<string, PluginProviderEntry>;
-    };
-    const fetcher = createWebFetcher({
-      ...fetchOptions,
-      providers: mergeProviders(
+    const fetcher = createWebFetcher(
+      resolveProviderConfig<FetchProviderConfig>(
+        ctx.options.fetch,
         DEFAULT_FETCH_PROVIDER_CONFIG,
-        fetchOptions.providers,
       ),
-    } as FetchProviderConfig);
-    const searcher = createWebSearcher({
-      ...searchOptions,
-      providers: mergeProviders(
+    );
+    const searcher = createWebSearcher(
+      resolveProviderConfig<SearchProviderConfig>(
+        ctx.options.search,
         DEFAULT_SEARCH_PROVIDER_CONFIG,
-        searchOptions.providers,
       ),
-    } as SearchProviderConfig);
+    );
 
     const SEARCH_PROVIDER_ID = "Websearch Rotate Core";
     const MAX_OPERATION_MS = Number(ctx.options.maxOperationMs) || 100_000;
@@ -84,7 +79,8 @@ export default Plugin.define({
                 minLength: 1,
                 minItems: 1,
                 maxItems: MAX_URLS_PER_REQUEST,
-                description: "URL or array of URLs to fetch.",
+                description:
+                  "URL, array of URLs, or comma-separated URLs to fetch.",
               },
               format: {
                 type: "string",
@@ -109,8 +105,20 @@ export default Plugin.define({
               format?: unknown;
               timeout?: unknown;
             };
-            const urlList = (Array.isArray(raw.url) ? raw.url : [raw.url ?? ""])
-              .map((value) => String(value).replace(/^[\s"'<]+|[\s"'>]+$/g, ""))
+            const urlList = (
+              Array.isArray(raw.url) ? raw.url.flat(Infinity) : [raw.url ?? ""]
+            )
+              .flatMap((value) => {
+                const text = String(value).replace(/^[\s"'<]+|[\s"'>]+$/g, "");
+                if (text.startsWith("[")) {
+                  try {
+                    const parsed: unknown = JSON.parse(text);
+                    if (Array.isArray(parsed)) return parsed.map(String);
+                  } catch {}
+                }
+                return text.split(/[\r\n,;]+/);
+              })
+              .map((value) => value.replace(/^[\s"'<]+|[\s"'>]+$/g, ""))
               .filter(Boolean);
             if (!urlList.length)
               throw new Error("webfetch-rotate: url is required");
@@ -119,13 +127,18 @@ export default Plugin.define({
                 `webfetch-rotate: no more than ${MAX_URLS_PER_REQUEST} URLs are allowed`,
               );
             const urls = urlList.map((value) => {
-              const parsed = new URL(
-                value.startsWith("//")
-                  ? `https:${value}`
-                  : /^[a-zA-Z][a-zA-Z\d+.-]*:\/\//.test(value)
-                    ? value
-                    : `https://${value}`,
-              );
+              let parsed: URL;
+              try {
+                parsed = new URL(
+                  value.startsWith("//")
+                    ? `https:${value}`
+                    : /^[a-zA-Z][a-zA-Z\d+.-]*:\/\//.test(value)
+                      ? value
+                      : `https://${value}`,
+                );
+              } catch {
+                throw new Error(`webfetch-rotate: invalid URL: ${value}`);
+              }
               if (parsed.protocol !== "http:" && parsed.protocol !== "https:")
                 throw new Error(
                   "webfetch-rotate: only HTTP(S) URLs are supported",
