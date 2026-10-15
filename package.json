@@ -16,12 +16,12 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@opencode/plugin": "^2.0.18",
-    "effect": "^4.0.0-rc.112",
+    "@opencode/plugin": "^2.0.29",
+    "effect": "^4.0.5",
     "web-rotate-core": "github:Sn0wo2/web-rotate-core"
   },
   "devDependencies": {
-    "@types/bun": "^1.4.2",
+    "@types/bun": "^1.4.3",
     "@types/html-to-text": "^9.0.4",
     "prettier": "^3.9.10",
     "typescript": "^7.0.2"
