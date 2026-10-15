@@ -1,0 +1,29 @@
+{
+  "name": "opencode-web-rotate",
+  "version": "0.1.0",
+  "description": "OpenCode 2 web search and fetch provider rotation",
+  "type": "module",
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@opencode/plugin": "^2.0.18",
+    "effect": "^4.0.0-rc.112",
+    "web-rotate-core": "github:Sn0wo2/web-rotate-core"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "@types/html-to-text": "^9.0.4",
+    "prettier": "^3.9.10",
+    "typescript": "^7.0.2"
+  }
+}
