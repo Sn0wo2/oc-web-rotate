@@ -4,8 +4,8 @@ import {
   DEFAULT_FETCH_PROVIDER_CONFIG,
   DEFAULT_SEARCH_PROVIDER_CONFIG,
   RotateConfigError,
-  createWebFetcher,
-  createWebSearcher,
+  fetchWeb,
+  searchWeb,
 } from "web-rotate-core";
 import type {
   FetchProviderConfig,
@@ -42,17 +42,13 @@ export default Plugin.define({
       return { ...rest, providers: merged } as T;
     }
 
-    const fetcher = createWebFetcher(
-      resolveProviderConfig<FetchProviderConfig>(
-        ctx.options.fetch,
-        DEFAULT_FETCH_PROVIDER_CONFIG,
-      ),
+    const fetchConfig = resolveProviderConfig<FetchProviderConfig>(
+      ctx.options.fetch,
+      DEFAULT_FETCH_PROVIDER_CONFIG.providers ?? {},
     );
-    const searcher = createWebSearcher(
-      resolveProviderConfig<SearchProviderConfig>(
-        ctx.options.search,
-        DEFAULT_SEARCH_PROVIDER_CONFIG,
-      ),
+    const searchConfig = resolveProviderConfig<SearchProviderConfig>(
+      ctx.options.search,
+      DEFAULT_SEARCH_PROVIDER_CONFIG.providers ?? {},
     );
 
     const SEARCH_PROVIDER_ID = "Websearch Rotate Core";
@@ -166,7 +162,12 @@ export default Plugin.define({
               ) || 30) * 1000,
             );
             try {
-              const outcome = await fetcher.fetch({ urls, format, signal });
+              const outcome = await fetchWeb({
+                urls,
+                format,
+                signal,
+                config: fetchConfig,
+              });
               if (outcome.type === "image")
                 return {
                   content: [
@@ -223,12 +224,13 @@ export default Plugin.define({
           name: "Multi-Key Rotating Web Search",
           execute: async (input, { signal }) => {
             try {
-              const { results } = await searcher.search({
+              const { results } = await searchWeb({
                 queries: [input.query.trim()] as URLList,
                 signal: AbortSignal.any([
                   signal,
                   AbortSignal.timeout(MAX_OPERATION_MS),
                 ]),
+                config: searchConfig,
               });
               return results.map((item, index): WebSearch.Result => ({
                 url: item.url,

@@ -12,7 +12,7 @@ See [`web-rotate-core`](https://github.com/Sn0wo2/web-rotate-core) (hereinafter 
 
 ## Configuration
 
-Options follow `core`'s config; each provider's full settings are documented in `core`'s [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)
+Options follow `core`'s config; each provider's full settings are documented in `core`'s [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core). `cacheWindowSeconds` can be set independently under `search` and `fetch` (default: `0`).
 
 ```jsonc
 {
@@ -48,6 +48,7 @@ Options follow `core`'s config; each provider's full settings are documented in 
             "brightdata": { "keys": "{env:BRIGHTDATA_API_KEY}" },
             "linkup": { "keys": "{env:LINKUP_API_KEY}" },
             "doubao": { "keys": "{env:DOUBAO_API_KEY}" },
+            "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
             "openai": { "keys": "{env:OPENAI_API_KEY}" },
             "native": {}, // keyless Google-scraping fallback
           },
@@ -70,6 +71,7 @@ Options follow `core`'s config; each provider's full settings are documented in 
             "brightdata": { "keys": "{env:BRIGHTDATA_API_KEY}" },
             "apify": { "keys": "{env:APIFY_API_KEY}" },
             "linkup": { "keys": "{env:LINKUP_API_KEY}" },
+            "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
             "native": {}, // keyless direct-HTTP fallback
           },
         },

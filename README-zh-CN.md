@@ -12,7 +12,7 @@
 
 ## 配置
 
-沿用 `core` 的配置, 各提供商的完整配置见 `core` [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)
+沿用 `core` 的配置, 各提供商的完整配置见 `core` [DeepWiki](https://deepwiki.com/Sn0wo2/web-rotate-core)。`search` 和 `fetch` 均可独立设置 `cacheWindowSeconds` (默认 `0`)
 
 ```jsonc
 {
@@ -48,6 +48,7 @@
             "brightdata": { "keys": "{env:BRIGHTDATA_API_KEY}" },
             "linkup": { "keys": "{env:LINKUP_API_KEY}" },
             "doubao": { "keys": "{env:DOUBAO_API_KEY}" },
+            "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
             "openai": { "keys": "{env:OPENAI_API_KEY}" },
             "native": {}, // keyless Google 抓取兜底
           },
@@ -70,6 +71,7 @@
             "brightdata": { "keys": "{env:BRIGHTDATA_API_KEY}" },
             "apify": { "keys": "{env:APIFY_API_KEY}" },
             "linkup": { "keys": "{env:LINKUP_API_KEY}" },
+            "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
             "native": {}, // keyless 直连 HTTP 兜底
           },
         },
