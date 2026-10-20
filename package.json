@@ -16,7 +16,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
-    "@opencode/plugin": "^2.1.0",
+    "@opencode/plugin": "^2.1.1",
     "effect": "4.0.1",
     "web-rotate-core": "github:Sn0wo2/web-rotate-core"
   },
