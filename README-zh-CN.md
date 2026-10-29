@@ -50,8 +50,8 @@
             "doubao": { "keys": "{env:DOUBAO_API_KEY}" },
             "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
             "openai": { "keys": "{env:OPENAI_API_KEY}" },
-            "native": {}, // keyless Google 抓取兜底
-          },
+            "native": {} // keyless Google 抓取兜底
+          }
         },
         "fetch": {
           "prefer": "keyless",
@@ -72,11 +72,11 @@
             "apify": { "keys": "{env:APIFY_API_KEY}" },
             "linkup": { "keys": "{env:LINKUP_API_KEY}" },
             "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
-            "native": {}, // keyless 直连 HTTP 兜底
-          },
-        },
-      },
-    },
-  ],
+            "native": {} // keyless 直连 HTTP 兜底
+          }
+        }
+      }
+    }
+  ]
 }
 ```

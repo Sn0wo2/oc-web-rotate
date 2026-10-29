@@ -50,8 +50,8 @@ Options follow `core`'s config; each provider's full settings are documented in 
             "doubao": { "keys": "{env:DOUBAO_API_KEY}" },
             "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
             "openai": { "keys": "{env:OPENAI_API_KEY}" },
-            "native": {}, // keyless Google-scraping fallback
-          },
+            "native": {} // keyless Google-scraping fallback
+          }
         },
         "fetch": {
           "prefer": "keyless",
@@ -72,11 +72,11 @@ Options follow `core`'s config; each provider's full settings are documented in 
             "apify": { "keys": "{env:APIFY_API_KEY}" },
             "linkup": { "keys": "{env:LINKUP_API_KEY}" },
             "deepseek": { "keys": "{env:DEEPSEEK_API_KEY}" },
-            "native": {}, // keyless direct-HTTP fallback
-          },
-        },
-      },
-    },
-  ],
+            "native": {} // keyless direct-HTTP fallback
+          }
+        }
+      }
+    }
+  ]
 }
 ```

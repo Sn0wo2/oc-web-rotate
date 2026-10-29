@@ -50,6 +50,9 @@ build/Release
 node_modules/
 jspm_packages/
 
+# Snowpack dependency directory (https://snowpack.dev/)
+web_modules/
+
 # TypeScript v1 declaration files
 typings/
 
@@ -79,6 +82,8 @@ typings/
 
 # dotenv environment variables file
 .env
+.env.*
+!.env.example
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -111,5 +116,34 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Stores Visual Studio Code versions used for testing Visual Studio Code extensions
+.vscode-test
+
+# pnpm
+.pnpm-store
+
+# yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Vite files
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.vite/
+
+# Astro generated types
+.astro/
+
+# Turbo Repo
+.turbo
+
+# Output directories
+/build/
 
 nul

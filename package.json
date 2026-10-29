@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "OpenCode 2 web search and fetch provider rotation",
   "type": "module",
+  "packageManager": "bun@1.4.4",
   "files": [
     "src",
     "README.md"
@@ -12,8 +13,10 @@
   },
   "scripts": {
     "check": "tsc --noEmit",
-    "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "lint": "biome check --error-on-warnings .",
+    "lint:fix": "biome check --write --error-on-warnings .",
+    "security": "bun audit --registry=https://registry.npmjs.org",
+    "ci": "bun run lint && bun run check && bun run security"
   },
   "dependencies": {
     "@opencode/plugin": "^2.1.1",
@@ -23,7 +26,7 @@
   "devDependencies": {
     "@types/bun": "^1.4.3",
     "@types/html-to-text": "^9.0.4",
-    "prettier": "^3.9.10",
+    "@biomejs/biome": "^2.6.4",
     "typescript": "^7.0.2"
   }
 }
