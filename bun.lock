@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "opencode-web-rotate",
+      "name": "oc-web-rotate",
       "dependencies": {
         "@opencode/plugin": "^2.1.1",
         "effect": "4.0.1",

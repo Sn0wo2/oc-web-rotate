@@ -1,8 +1,12 @@
 {
-  "name": "opencode-web-rotate",
+  "name": "oc-web-rotate",
   "version": "0.1.0",
   "description": "OpenCode 2 web search and fetch provider rotation",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sn0wo2/oc-web-rotate.git"
+  },
   "packageManager": "bun@1.4.4",
   "files": [
     "src",
