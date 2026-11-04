@@ -1,6 +1,6 @@
 {
   "name": "oc-web-rotate",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "OpenCode 2 web search and fetch provider rotation",
   "type": "module",
   "repository": {
@@ -31,9 +31,9 @@
     "zod": "^4.6.7"
   },
   "devDependencies": {
+    "@biomejs/biome": "^2.6.4",
     "@types/bun": "^1.4.3",
     "@types/html-to-text": "^9.0.4",
-    "@biomejs/biome": "^2.6.4",
     "typescript": "^7.0.2"
   }
 }
