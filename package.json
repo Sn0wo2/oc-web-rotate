@@ -23,8 +23,7 @@
     "ci": "bun run lint && bun run check && bun run security"
   },
   "dependencies": {
-    "@opencode/plugin": "^2.1.1",
-    "effect": "4.0.1",
+    "@opencode/plugin": "^2.2.5",
     "web-rotate-core": "github:Sn0wo2/web-rotate-core"
   },
   "overrides": {
@@ -33,8 +32,8 @@
     "minimatch": "11.0.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.6.4",
-    "@types/bun": "^1.4.3",
+    "@biomejs/biome": "^2.6.5",
+    "@types/bun": "^1.4.4",
     "@types/html-to-text": "^9.0.4",
     "typescript": "^7.0.2"
   }

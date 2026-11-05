@@ -1,5 +1,4 @@
 import { Plugin, type WebSearch } from "@opencode/plugin"
-import { Schema } from "effect"
 import type { FetchProviderConfig, ProviderEntry, SearchProviderConfig, URLList } from "web-rotate-core"
 import {
   DEFAULT_FETCH_PROVIDER_CONFIG,
@@ -12,6 +11,7 @@ import {
 const URL_SEPARATOR_PATTERN = /[\r\n,;]+/
 const URL_PROTOCOL_PATTERN = /^[a-zA-Z][a-zA-Z\d+.-]*:\/\//
 const ATTEMPT_ERROR_PREFIX_PATTERN = /^all \d+ attempt\(s\) failed\. Last error: /
+const SEARCH_RESULT_PREFIX_PATTERN = /^\[\d+\] /
 
 export default Plugin.define({
   id: "oc-web-rotate",
@@ -53,14 +53,73 @@ export default Plugin.define({
     const MAX_OPERATION_MS = Number(ctx.options.maxOperationMs) || 100_000
     const MAX_URLS_PER_REQUEST = Math.max(1, Math.floor(Number(ctx.options.maxUrlsPerRequest) || 20))
 
+    const runSearch = async (query: string, signal: AbortSignal) => {
+      try {
+        return await searchWeb({
+          queries: [query.trim()] as URLList,
+          signal: AbortSignal.any([signal, AbortSignal.timeout(MAX_OPERATION_MS)]),
+          config: searchConfig,
+        })
+      } catch (error) {
+        if (signal.aborted) throw error
+        throw new Error(`websearch-rotate: ${error instanceof Error ? error.message : String(error)}`, {
+          cause: error,
+        })
+      }
+    }
+
+    const mapSearchResults = (outcome: Awaited<ReturnType<typeof runSearch>>): WebSearch.Result[] => {
+      const results: WebSearch.Result[] = []
+      const indexes = new Map<string, number>()
+      const addResult = (url: string, title?: string, content?: string, published?: number) => {
+        const sourceUrl = url.trim()
+        try {
+          const protocol = new URL(sourceUrl).protocol
+          if (protocol !== "http:" && protocol !== "https:") return
+        } catch {
+          return
+        }
+        const existingIndex = indexes.get(sourceUrl)
+        if (existingIndex !== undefined) {
+          const existing = results[existingIndex]
+          if (existing)
+            results[existingIndex] = {
+              ...existing,
+              ...(!existing.title && title ? { title } : {}),
+              ...(!existing.content && content ? { content: `[${existingIndex + 1}] ${content}` } : {}),
+              ...(existing.time.published === undefined && published !== undefined ? { time: { published } } : {}),
+            }
+          return
+        }
+        indexes.set(sourceUrl, results.length)
+        results.push({
+          url: sourceUrl,
+          ...(title ? { title } : {}),
+          ...(content ? { content: `[${results.length + 1}] ${content}` } : {}),
+          time: published === undefined ? {} : { published },
+        })
+      }
+
+      for (const item of outcome.results) {
+        const content =
+          item.content?.trim() ||
+          item.snippets
+            ?.map((snippet) => snippet.trim())
+            .filter(Boolean)
+            .join("\n")
+        addResult(item.url, item.title, content, item.published)
+      }
+      for (const response of outcome.responses)
+        for (const citation of response.citations ?? []) addResult(citation.url, citation.title)
+      return results
+    }
+
     const [webfetch, websearch] = await Promise.all([
       ctx.tool.transform((tools) => {
         tools.add({
           name: "webfetch",
 
-          description:
-            "Fetch one or more HTTP(S) URLs as Markdown (default), plain text, or HTML. " +
-            "Images may be returned as attachments. Read-only.",
+          description: "Read HTTP(S) URLs as Markdown, text, HTML, or image attachments.",
           input: {
             type: "object",
             properties: {
@@ -70,18 +129,18 @@ export default Plugin.define({
                 minLength: 1,
                 minItems: 1,
                 maxItems: MAX_URLS_PER_REQUEST,
-                description: "URL, array of URLs, or comma-separated URLs to fetch.",
+                description: "URL(s): string, array, or comma-separated list.",
               },
               format: {
                 type: "string",
                 enum: ["markdown", "text", "html"],
-                description: "Output format (default: markdown).",
+                description: "Default: markdown.",
               },
               timeout: {
                 type: "number",
                 minimum: 1,
                 maximum: Math.floor(MAX_OPERATION_MS / 1000),
-                description: "Timeout in seconds (default: 30).",
+                description: "Seconds (default: 30).",
               },
             },
             required: ["url"],
@@ -188,44 +247,48 @@ export default Plugin.define({
         })
 
         tools.update("websearch", (tool) => {
-          tool.input = Schema.Struct({
-            query: Schema.String.annotate({
-              description: "Search query; include dates or versions when relevant.",
-            }),
-          })
-          tool.output = Schema.Any
-          tool.description =
-            "Search the web for current information and facts requiring verification. " +
-            `Current date (UTC): ${new Date().toISOString().slice(0, 10)}. ` +
-            "Use relevant dates in time-sensitive queries and cite source URLs."
+          tool.input = {
+            type: "object",
+            properties: {
+              query: { type: "string", description: "Include relevant dates or versions." },
+            },
+            required: ["query"],
+            additionalProperties: true,
+          }
+          tool.output = {}
+          tool.description = "Search the web with a natural-language question or research request. Cite source URLs."
+          tool.execute = async (input, { signal }) => {
+            const outcome = await runSearch((input as { query: string }).query, signal)
+            const results = mapSearchResults(outcome)
+            const answer = outcome.responses
+              .map((response) => response.answer?.trim())
+              .filter(Boolean)
+              .join("\n\n")
+
+            const sources = results
+              .map((result, index) =>
+                [
+                  `[${index + 1}] ${result.title ?? result.url}`,
+                  result.url,
+                  result.content?.replace(SEARCH_RESULT_PREFIX_PATTERN, ""),
+                ]
+                  .filter(Boolean)
+                  .join("\n"),
+              )
+              .join("\n\n")
+            const content = []
+            if (answer) content.push({ type: "text" as const, text: answer })
+            if (sources) content.push({ type: "text" as const, text: `Sources:\n${sources}` })
+            if (!content.length) content.push({ type: "text" as const, text: "No search results found." })
+            return { content }
+          }
         })
       }),
       ctx.websearch.transform((draft) => {
         draft.add({
           id: SEARCH_PROVIDER_ID,
           name: "Multi-Key Rotating Web Search",
-          execute: async (input, { signal }) => {
-            try {
-              const { results } = await searchWeb({
-                queries: [input.query.trim()] as URLList,
-                signal: AbortSignal.any([signal, AbortSignal.timeout(MAX_OPERATION_MS)]),
-                config: searchConfig,
-              })
-              return results.map((item, index): WebSearch.Result => {
-                return {
-                  url: item.url,
-                  ...(item.title ? { title: item.title } : {}),
-                  ...(item.content ? { content: `[${index + 1}] ${item.content}` } : {}),
-                  time: item.published === undefined ? {} : { published: item.published },
-                }
-              })
-            } catch (error) {
-              if (signal.aborted) throw error
-              throw new Error(`websearch-rotate: ${error instanceof Error ? error.message : String(error)}`, {
-                cause: error,
-              })
-            }
-          },
+          execute: async (input, { signal }) => mapSearchResults(await runSearch(input.query, signal)),
         })
         draft.default.set(SEARCH_PROVIDER_ID)
       }),
