@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@opencode/plugin": "^2.2.5",
-    "web-rotate-core": "github:Sn0wo2/web-rotate-core"
+    "web-rotate-core": "^0.0.2"
   },
   "overrides": {
     "zod": "^4.6.7",
