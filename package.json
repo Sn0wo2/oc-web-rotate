@@ -13,7 +13,8 @@
     "README.md"
   ],
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./tui": "./src/tui.ts"
   },
   "scripts": {
     "check": "tsc --noEmit",
@@ -24,7 +25,19 @@
   },
   "dependencies": {
     "@opencode/plugin": "^2.2.5",
-    "web-rotate-core": "^0.0.2"
+    "web-rotate-core": "0.1.0"
+  },
+  "peerDependencies": {
+    "@opentui/core": ">=0.8.0",
+    "solid-js": ">=1.9.0"
+  },
+  "peerDependenciesMeta": {
+    "@opentui/core": {
+      "optional": true
+    },
+    "solid-js": {
+      "optional": true
+    }
   },
   "overrides": {
     "zod": "^4.6.7",
@@ -32,9 +45,12 @@
     "minimatch": "11.0.4"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.6.5",
+    "@biomejs/biome": "^2.6.6",
+    "@opencode/theme": "^2.2.5",
+    "@opentui/core": "^0.8.2",
     "@types/bun": "^1.4.4",
     "@types/html-to-text": "^9.0.4",
+    "solid-js": "^1.9.18",
     "typescript": "^7.0.2"
   }
 }
