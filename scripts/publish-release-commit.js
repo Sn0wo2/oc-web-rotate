@@ -54,6 +54,7 @@ function main() {
       push("origin", `HEAD:refs/heads/${defaultBranch}`)
       console.log(`Cherry-picked the version bump for ${tag} onto ${defaultBranch}.`)
     }
+    git(["checkout", "--detach", releaseSha])
   } else {
     git(["tag", tag])
     push("--atomic", "origin", `HEAD:refs/heads/${defaultBranch}`, `refs/tags/${tag}`)
