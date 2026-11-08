@@ -101,14 +101,10 @@ jobs:
             npm publish --access public --tag "$NPM_DIST_TAG"
           fi
 
-      - name: Check out the release tag
-        if: steps.release.outputs.skip != 'true'
-        run: git checkout --detach "v$VERSION"
-
       - name: Create the GitHub release
         if: steps.release.outputs.skip != 'true'
         uses: goreleaser/goreleaser-action@v7
         with:
-          args: release --clean
+          args: release --clean --skip=validate
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -38,7 +38,7 @@ function main() {
   }
 
   if (staged) git(["commit", "-m", `chore(release): bump version to ${version}`])
-  const releaseSha = git(["rev-parse", "HEAD"])
+  let releaseSha = git(["rev-parse", "HEAD"])
 
   if (tagExists) {
     git(["fetch", "origin", defaultBranch])
@@ -54,7 +54,7 @@ function main() {
       push("origin", `HEAD:refs/heads/${defaultBranch}`)
       console.log(`Cherry-picked the version bump for ${tag} onto ${defaultBranch}.`)
     }
-    git(["checkout", "--detach", releaseSha])
+    releaseSha = git(["rev-parse", "HEAD"])
   } else {
     git(["tag", tag])
     push("--atomic", "origin", `HEAD:refs/heads/${defaultBranch}`, `refs/tags/${tag}`)
