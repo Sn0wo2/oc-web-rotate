@@ -1,12 +1,6 @@
 import { Plugin } from "@opencode/plugin"
 import { type ToolContext, Error as ToolError } from "@opencode/plugin/promise/tool"
-import type {
-  FetchProviderConfig,
-  LRUCacheOptions,
-  ProviderEntry,
-  SearchProviderConfig,
-  URLList,
-} from "web-rotate-core"
+import type { FetchProviderConfig, ProviderEntry, SearchProviderConfig, URLList } from "web-rotate-core"
 import {
   DEFAULT_FETCH_PROVIDER_CONFIG,
   DEFAULT_SEARCH_PROVIDER_CONFIG,
@@ -32,7 +26,9 @@ export default Plugin.define({
       throw new RotateConfigError("maxOperationMs must be an integer between 1000 and 2147483647")
     if (!Number.isSafeInteger(maxUrlsPerRequest) || maxUrlsPerRequest < 1)
       throw new RotateConfigError("maxUrlsPerRequest must be a positive integer")
-    const cacheOptions = (ctx.options.cache ?? {}) as LRUCacheOptions | false
+    const cacheOptions = (ctx.options.cache ?? {}) as
+      | { enabled?: boolean | undefined; cap?: number | undefined }
+      | false
     if (cacheOptions !== false && (typeof cacheOptions !== "object" || Array.isArray(cacheOptions)))
       throw new RotateConfigError("cache must be false or an object with enabled and cap options")
     if (cacheOptions !== false && cacheOptions.enabled !== undefined && typeof cacheOptions.enabled !== "boolean")
@@ -40,7 +36,10 @@ export default Plugin.define({
     const cacheCap = Number(cacheOptions === false ? 256 : (cacheOptions.cap ?? 256))
     if (!Number.isSafeInteger(cacheCap) || cacheCap < 0)
       throw new RotateConfigError("cache.cap must be a non-negative integer")
-    const cache = new LRUCache({ enabled: cacheOptions !== false && cacheOptions.enabled !== false, cap: cacheCap })
+    const cache =
+      cacheOptions === false || cacheOptions.enabled === false || cacheCap === 0
+        ? undefined
+        : new LRUCache<string, NonNullable<unknown>>({ max: cacheCap })
     const lifetime = new AbortController()
 
     type PluginProviderEntry = ProviderEntry & {
@@ -64,7 +63,7 @@ export default Plugin.define({
         }
         merged[id] = { ...merged[id], ...entry }
       }
-      return { ...defaults, ...rest, providers: merged, cache } as T
+      return { ...defaults, ...rest, providers: merged, ...(cache ? { cache } : {}) } as T
     }
 
     const fetchConfig = resolveProviderConfig<FetchProviderConfig>(ctx.options.fetch, DEFAULT_FETCH_PROVIDER_CONFIG)
@@ -328,8 +327,7 @@ export default Plugin.define({
     const dispose = async () => {
       if (lifetime.signal.aborted) return
       lifetime.abort(new DOMException("oc-web-rotate disposed", "AbortError"))
-      cache.enabled = false
-      cache.clear()
+      cache?.clear()
       await Promise.all(
         registrations.flatMap((registration) =>
           registration.status === "fulfilled" ? [registration.value.dispose()] : [],

@@ -11,5 +11,5 @@
     "verbatimModuleSyntax": true,
     "allowImportingTsExtensions": true
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "node_modules/web-rotate-core/src/types/*.d.ts"]
 }

@@ -1,19 +1,50 @@
 {
-  "lockfileVersion": 2,
+  "lockfileVersion": 3,
   "configVersion": 1,
   "workspaces": {
     "": {
       "name": "oc-web-rotate",
       "dependencies": {
-        "@opencode/plugin": "^2.2.5",
-        "web-rotate-core": "0.1.0",
+        "@ai-sdk/anthropic": "^4.0.99",
+        "@ai-sdk/google": "^4.0.114",
+        "@ai-sdk/openai": "^4.0.111",
+        "@ai-sdk/xai": "^5.0.40",
+        "@extractus/article-extractor": "^9.0.1",
+        "@firecrawl/html-extractor": "^0.1.2",
+        "@hyperbrowser/sdk": "^1.4.1",
+        "@jocmp/mercury-parser": "^3.1.2",
+        "@modelcontextprotocol/sdk": "^1.32.2",
+        "@mozilla/readability": "^0.6.0",
+        "@opencode/plugin": "^2.2.6",
+        "@truto/turndown-plugin-gfm": "^1.0.7",
+        "ai": "^7.0.165",
+        "defuddle": "~0.19.6",
+        "duck-duck-scrape": "^2.2.7",
+        "es-toolkit": "^1.53.2",
+        "eventsource-parser": "^4.1.3",
+        "exa-js": "^2.28.0",
+        "fast-xml-parser": "^5.12.0",
+        "file-type": "^22.3.0",
+        "google-sr": "^6.0.0",
+        "html-to-text": "^10.0.1",
+        "keenable": "~0.1.4",
+        "linkedom": "~0.18.15",
+        "lru-cache": "^11.5.3",
+        "marked": "^18.1.3",
+        "p-map": "^7.1.1",
+        "scrapfly-sdk": "~0.12.0",
+        "trafilatura": "^0.2.0",
+        "turndown": "^7.2.5",
+        "web-rotate-core": "0.2.0",
+        "zod": "^4.6.7",
       },
       "devDependencies": {
         "@biomejs/biome": "^2.6.6",
-        "@opencode/theme": "^2.2.5",
-        "@opentui/core": "^0.8.2",
+        "@opencode/theme": "^2.2.6",
+        "@opentui/core": "^0.8.3",
         "@types/bun": "^1.4.4",
         "@types/html-to-text": "^9.0.4",
+        "@types/turndown": "^5.0.6",
         "solid-js": "^1.9.18",
         "typescript": "^7.0.2",
       },
@@ -28,24 +59,29 @@
     },
   },
   "overrides": {
-    "glob": "14.0.3",
-    "minimatch": "11.0.4",
+    "glob": "14.0.4",
+    "minimatch": "11.0.5",
+    "postman-request": {
+      "form-data": "2.5.6",
+    },
+    "qs": "^6.17.1",
+    "tough-cookie": "^4.1.3",
     "zod": "^4.6.7",
   },
   "packages": {
-    "@ai-sdk/anthropic": ["@ai-sdk/anthropic@4.0.97", "http://repo.nju.edu.cn/npm/@ai-sdk/anthropic/-/anthropic-4.0.97.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.36", "@ai-sdk/provider-utils": "5.0.75" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-LqCxnaKd4FsKChgBiS26Dgu1kC35jVeuH9OclhRJ6/Hg56kmJSbKlwu6Om6cfCmLgDUiIbn2r3w4um6bz7BivQ=="],
+    "@ai-sdk/anthropic": ["@ai-sdk/anthropic@4.0.99", "http://repo.nju.edu.cn/npm/@ai-sdk/anthropic/-/anthropic-4.0.99.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.37", "@ai-sdk/provider-utils": "5.0.76" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-N5VA8soxdvb+eX5jKs7g+a0RahCXNnvnzT96/Hiqm+LxoLFO2U8dSYhWKrQjG1i04LM/itp8vCVl7RCn6Kvohg=="],
 
-    "@ai-sdk/gateway": ["@ai-sdk/gateway@4.0.136", "http://repo.nju.edu.cn/npm/@ai-sdk/gateway/-/gateway-4.0.136.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.36", "@ai-sdk/provider-utils": "5.0.75", "@vercel/oidc": "3.2.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-P851NL80P85Ee6MhblRuuCzNlQdOYU5rKmdt/Wuo5dMtkzvIHhyVZY9wtfKG3wBJUUoxHxWKsI2aR6O75o8diA=="],
+    "@ai-sdk/gateway": ["@ai-sdk/gateway@4.0.138", "http://repo.nju.edu.cn/npm/@ai-sdk/gateway/-/gateway-4.0.138.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.37", "@ai-sdk/provider-utils": "5.0.76", "@vercel/oidc": "3.2.0" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-7a/LGqioUyU2CmjRjMwnX4WR5V4vP3+YdPZEAbh7CH9OXf1GcPSsiySsHxNbqiDlDnL+KdqPvWeipIR7u/VFHA=="],
 
-    "@ai-sdk/google": ["@ai-sdk/google@4.0.112", "http://repo.nju.edu.cn/npm/@ai-sdk/google/-/google-4.0.112.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.36", "@ai-sdk/provider-utils": "5.0.75" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-z6w+Nlbwrc4/gQ9SDdUc26aFh4/L4DsFrtF3vycOaAd5SpZkbvq07E9aFe5KNMJVXM01VD+uiz6Hrm8G8wfghw=="],
+    "@ai-sdk/google": ["@ai-sdk/google@4.0.114", "http://repo.nju.edu.cn/npm/@ai-sdk/google/-/google-4.0.114.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.37", "@ai-sdk/provider-utils": "5.0.76" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-8LHlrbu7FFYjQAXCmg60dfc619zu7GhPTTMSs+tLjGh+aFHAFp3HqxGuCQ9zqgLywu+h1bDOrZgizCkExGecjA=="],
 
-    "@ai-sdk/openai": ["@ai-sdk/openai@4.0.109", "http://repo.nju.edu.cn/npm/@ai-sdk/openai/-/openai-4.0.109.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.36", "@ai-sdk/provider-utils": "5.0.75" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-N20L44ztSicqEWpB0LfV54Ee1iq6IjGfOFTcRfeTD/bRH0v/VDI1uHve7RFOhP2oi1eAluliBhgmurplaOBuVw=="],
+    "@ai-sdk/openai": ["@ai-sdk/openai@4.0.111", "http://repo.nju.edu.cn/npm/@ai-sdk/openai/-/openai-4.0.111.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.37", "@ai-sdk/provider-utils": "5.0.76" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-r6aLB/7MlBlD4c/Ep7oAam7NbEDzShFXAmz68DyFj+JTIPvWR6Il8mPI2yw82kCtxeXLbL48dW+8p/IQANKoWQ=="],
 
-    "@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-3.0.8.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
+    "@ai-sdk/provider": ["@ai-sdk/provider@4.0.37", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.37.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-4uPgZ3qiX/JaQFr0dQoibUzHImZit9u05ro2BxGUnJwU4fV28BOAbKUa2OjQvqtM1tMac3bTKkaXdyzGovQXqg=="],
 
-    "@ai-sdk/provider-utils": ["@ai-sdk/provider-utils@5.0.75", "http://repo.nju.edu.cn/npm/@ai-sdk/provider-utils/-/provider-utils-5.0.75.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.36", "@standard-schema/spec": "^1.1.0", "@workflow/serde": "4.1.0", "eventsource-parser": "^3.0.8", "undici": "^7.29.1" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-k4yAsFliGZwoTpyTpm3ptxwIeaPvRh5vGh/UWoqDiLLXKoyz4zuBGS7p3ygf8to5Bh4fAOHynotLBsWLIYdu2A=="],
+    "@ai-sdk/provider-utils": ["@ai-sdk/provider-utils@5.0.76", "http://repo.nju.edu.cn/npm/@ai-sdk/provider-utils/-/provider-utils-5.0.76.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.37", "@standard-schema/spec": "^1.1.0", "@workflow/serde": "4.1.0", "eventsource-parser": "^3.0.8", "undici": "^7.29.1" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-76QcCmVtSunSAbQBJtgQTTE8e+Yaz4rJJe1MRWnJ3GAQYUvNPHJejKx4jZTbhGGTdSSLaYcMBT62SISNgnGq9w=="],
 
-    "@ai-sdk/xai": ["@ai-sdk/xai@5.0.39", "http://repo.nju.edu.cn/npm/@ai-sdk/xai/-/xai-5.0.39.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.36", "@ai-sdk/provider-utils": "5.0.75" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-kFsK7HgeYdCXK6fmlZa0u7ERS43tKX9+/K+w9vID1uxbbBL4EiS6+7lm8X3fZRdvKESGEDJcHv9t46oyMqcyig=="],
+    "@ai-sdk/xai": ["@ai-sdk/xai@5.0.40", "http://repo.nju.edu.cn/npm/@ai-sdk/xai/-/xai-5.0.40.tgz", { "dependencies": { "@ai-sdk/provider": "4.0.37", "@ai-sdk/provider-utils": "5.0.76" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-Qbvoen0jqa5NnQdBJOy+57Wu4PVUck0KratXDFrsdM06gyeeKqGUstU+wzytsD8dqe2lH3wXG9D6ZNQmb+AcMw=="],
 
     "@aws-crypto/crc32": ["@aws-crypto/crc32@5.2.0", "http://repo.nju.edu.cn/npm/@aws-crypto/crc32/-/crc32-5.2.0.tgz", { "dependencies": { "@aws-crypto/util": "^5.2.0", "@aws-sdk/types": "^3.222.0", "tslib": "^2.6.2" } }, "sha512-nLbCWqQNgUiwwtFsen1AdzAtvuLRsQS8rYgMuxCrdKf9kOssamGLuPwyTY9wyYblNr9+1XM8v6zoDTPPSIeANg=="],
 
@@ -59,33 +95,33 @@
 
     "@aws-sdk/client-cognito-identity": ["@aws-sdk/client-cognito-identity@3.1057.0", "http://repo.nju.edu.cn/npm/@aws-sdk/client-cognito-identity/-/client-cognito-identity-3.1057.0.tgz", { "dependencies": { "@aws-crypto/sha256-browser": "5.2.0", "@aws-crypto/sha256-js": "5.2.0", "@aws-sdk/core": "^3.974.15", "@aws-sdk/credential-provider-node": "^3.972.47", "@aws-sdk/types": "^3.973.9", "@smithy/core": "^3.24.5", "@smithy/fetch-http-handler": "^5.4.5", "@smithy/node-http-handler": "^4.7.5", "@smithy/types": "^4.14.2", "tslib": "^2.6.2" } }, "sha512-5MliYkp2u0+2arTp5fZIaxl+xmm90LEKv/VeSxhfNQW4t0fvWJrNO429/jchWQenNoDRrOGE59VfbuZUfwFujg=="],
 
-    "@aws-sdk/core": ["@aws-sdk/core@3.980.0", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/core/-/core-3.980.0.tgz", { "dependencies": { "@aws-sdk/types": "^3.975.0", "@aws-sdk/xml-builder": "^3.972.42", "@aws/lambda-invoke-store": "^0.3.0", "@smithy/core": "^3.38.0", "@smithy/signature-v4": "^5.7.5", "@smithy/types": "^4.19.0", "bowser": "^2.11.0", "tslib": "^2.6.2" } }, "sha512-2RVSP/SsPS8HSPPzIPWNYFnSmlOdxx8VDlt5gDOuMaq9UiIi35pUyo6ZEuJcysjVCu0L8Lv5dJevLLpEkyF0/Q=="],
+    "@aws-sdk/core": ["@aws-sdk/core@3.980.1", "http://repo.nju.edu.cn/npm/@aws-sdk/core/-/core-3.980.1.tgz", { "dependencies": { "@aws-sdk/types": "^3.975.0", "@aws-sdk/xml-builder": "^3.972.42", "@aws/lambda-invoke-store": "^0.3.0", "@smithy/core": "^3.38.0", "@smithy/signature-v4": "^5.7.5", "@smithy/types": "^4.19.0", "bowser": "^2.11.0", "tslib": "^2.6.2" } }, "sha512-W7jDWUPucezIUjFZpr8MudQQtz/m6yPMyAFrOyyQcHjuF4UrZdcCdP8eV1js06U9sH3dxp0AbhN+s9uHwQyXzQ=="],
 
-    "@aws-sdk/credential-provider-cognito-identity": ["@aws-sdk/credential-provider-cognito-identity@3.972.80", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-cognito-identity/-/credential-provider-cognito-identity-3.972.80.tgz", { "dependencies": { "@aws-sdk/nested-clients": "^3.998.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-2RtgpNQ5Sg9sqip70sPh1RuF8aNH2H6VDZiqMLas5Qvts++u0veEN1BjMUYKPu6jxs5VfcddoIdXCWwCuaYHcA=="],
+    "@aws-sdk/credential-provider-cognito-identity": ["@aws-sdk/credential-provider-cognito-identity@3.972.81", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-cognito-identity/-/credential-provider-cognito-identity-3.972.81.tgz", { "dependencies": { "@aws-sdk/nested-clients": "^3.998.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-WS8AKP5qS6SzDN7bNZBd3ECmjeHkBbHgBmZjtFvHo7zdnSn5v+U9hSRuQLDQ9aueU2/ToH0x56mC7UgtLueBiA=="],
 
-    "@aws-sdk/credential-provider-env": ["@aws-sdk/credential-provider-env@3.972.81", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-env/-/credential-provider-env-3.972.81.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-VD+EVZ9UHNZhSm4KtakXZAPzgfOw4mRx66dAXNUtHcdJUisbsE7kpi1PRZFMquvuqVfx52fCDBgJgYyOFT/4hQ=="],
+    "@aws-sdk/credential-provider-env": ["@aws-sdk/credential-provider-env@3.972.82", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-env/-/credential-provider-env-3.972.82.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-sAfysgoFWKg/CJvufYM7lhvMUfJpTsuwjCLzp843Vtw8NlQh2PW9/+upUFrsoQK46pJcv3u1a+st7qJ4jfSODw=="],
 
-    "@aws-sdk/credential-provider-http": ["@aws-sdk/credential-provider-http@3.972.83", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-http/-/credential-provider-http-3.972.83.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/fetch-http-handler": "^5.8.0", "@smithy/node-http-handler": "^4.14.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-NsLT02HXcWAQAgpuDJznoJDPIDH/Hh2LiQVlYc+1bVGsksEUZuYCMKa1E1L5qvzc5LLTphp7BP9LYVIhf+MbQA=="],
+    "@aws-sdk/credential-provider-http": ["@aws-sdk/credential-provider-http@3.972.84", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-http/-/credential-provider-http-3.972.84.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/fetch-http-handler": "^5.8.0", "@smithy/node-http-handler": "^4.14.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-6xFe7tGPZedfak01TLUxuExU2Xhqw0VtoVvcS/+1OLjPB8If5vulTpCaR0TKTA/J6sAhTOjZHb6+4R1e1KRMKg=="],
 
-    "@aws-sdk/credential-provider-ini": ["@aws-sdk/credential-provider-ini@3.973.26", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-ini/-/credential-provider-ini-3.973.26.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/credential-provider-env": "^3.972.81", "@aws-sdk/credential-provider-http": "^3.972.83", "@aws-sdk/credential-provider-login": "^3.972.88", "@aws-sdk/credential-provider-process": "^3.972.81", "@aws-sdk/credential-provider-sso": "^3.973.25", "@aws-sdk/credential-provider-web-identity": "^3.972.87", "@aws-sdk/nested-clients": "^3.998.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/credential-provider-imds": "^4.5.2", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-vRydnN8wPqh5APe5R+/y4/UOts7QQQQP1UTczJq3fLcLzkQblbkYpLn+Srr8w9S/gzXU1pbiPKTv479unRawAA=="],
+    "@aws-sdk/credential-provider-ini": ["@aws-sdk/credential-provider-ini@3.973.27", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-ini/-/credential-provider-ini-3.973.27.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/credential-provider-env": "^3.972.82", "@aws-sdk/credential-provider-http": "^3.972.84", "@aws-sdk/credential-provider-login": "^3.972.89", "@aws-sdk/credential-provider-process": "^3.972.82", "@aws-sdk/credential-provider-sso": "^3.973.26", "@aws-sdk/credential-provider-web-identity": "^3.972.88", "@aws-sdk/nested-clients": "^3.998.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/credential-provider-imds": "^4.5.2", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-geyao3+s46HIo8C0vyLz7cQ1qaOM1H6wrP/nNWTr5SoR4r97qlWrubi+a7Sg128KmvRZIFbwXTvkbKawBeysqg=="],
 
-    "@aws-sdk/credential-provider-login": ["@aws-sdk/credential-provider-login@3.972.88", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-login/-/credential-provider-login-3.972.88.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/nested-clients": "^3.998.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-J8IcBpuFj3j3RImHq/dVO5HtnUbFgvzg7JQvzLt5A42VmzLLgPLM+CUWN68jpIMdIPayu1bb1T+mJjDv9Sq1aA=="],
+    "@aws-sdk/credential-provider-login": ["@aws-sdk/credential-provider-login@3.972.89", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-login/-/credential-provider-login-3.972.89.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/nested-clients": "^3.998.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-5kcIZkMMs6eYvU6psqZkmeWsS3EGES53S6xUJFCC6eoJak3BQCCaF8yLU1bN6LTAOr2a9RWw+m1XBGen7Jcq+Q=="],
 
-    "@aws-sdk/credential-provider-node": ["@aws-sdk/credential-provider-node@3.972.93", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-node/-/credential-provider-node-3.972.93.tgz", { "dependencies": { "@aws-sdk/credential-provider-env": "^3.972.81", "@aws-sdk/credential-provider-http": "^3.972.83", "@aws-sdk/credential-provider-ini": "^3.973.26", "@aws-sdk/credential-provider-process": "^3.972.81", "@aws-sdk/credential-provider-sso": "^3.973.25", "@aws-sdk/credential-provider-web-identity": "^3.972.87", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/credential-provider-imds": "^4.5.2", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-f5Grg1sgckk11ojxZ7NUYG1ZCOvcNhuuPngKWVxOKGuZokj8eOmo/75+GyR6qAQx4wAGytglZ53r4a3UPleAPQ=="],
+    "@aws-sdk/credential-provider-node": ["@aws-sdk/credential-provider-node@3.972.94", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-node/-/credential-provider-node-3.972.94.tgz", { "dependencies": { "@aws-sdk/credential-provider-env": "^3.972.82", "@aws-sdk/credential-provider-http": "^3.972.84", "@aws-sdk/credential-provider-ini": "^3.973.27", "@aws-sdk/credential-provider-process": "^3.972.82", "@aws-sdk/credential-provider-sso": "^3.973.26", "@aws-sdk/credential-provider-web-identity": "^3.972.88", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/credential-provider-imds": "^4.5.2", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-qZzjRq45j0S0rI4XjHKGL63gGSFGPDYRe18Crp7l4Zk3Yr6PG4PjIixZEtsGIliOjtZ/h+ATExgjE54JQJeZMQ=="],
 
-    "@aws-sdk/credential-provider-process": ["@aws-sdk/credential-provider-process@3.972.81", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-process/-/credential-provider-process-3.972.81.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-6NBoFaNJbHB0YjcKW4WfrYIDmaMjtwbxlRreAf3MnXkD9WJX8XYu62pa78M0AQGgEt2TJmcNxqL3btAAjV67bA=="],
+    "@aws-sdk/credential-provider-process": ["@aws-sdk/credential-provider-process@3.972.82", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-process/-/credential-provider-process-3.972.82.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-VsFOXU7gYDWqYwRis7Rif3CrE+c7xMNxp0L3XqGPuvF6JO2K93FYjhLlEphW5uEMpHEXkOOutZ5USGErgfKaog=="],
 
-    "@aws-sdk/credential-provider-sso": ["@aws-sdk/credential-provider-sso@3.973.25", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-sso/-/credential-provider-sso-3.973.25.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/nested-clients": "^3.998.0", "@aws-sdk/token-providers": "3.1162.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-p1fNaa3as6S2L0wrWqe1cEz1r4iGQa7GbW23KJE3rJy+ZZxhPr6pr9cyCAJ7fAnzoMELvQGZZAuv/rG1ogRuOQ=="],
+    "@aws-sdk/credential-provider-sso": ["@aws-sdk/credential-provider-sso@3.973.26", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-sso/-/credential-provider-sso-3.973.26.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/nested-clients": "^3.998.1", "@aws-sdk/token-providers": "3.1164.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-IIrqv0iFNwO8Cd5EigbwILsnsvmprCAw5/BPfRvP/EiLQtBfv3PI9KpyUj2+qsJhYcpmKad+ugaS0+izle8OqQ=="],
 
-    "@aws-sdk/credential-provider-web-identity": ["@aws-sdk/credential-provider-web-identity@3.972.87", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.972.87.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/nested-clients": "^3.998.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-O2P6CUfMP2qi8vgYB6UHYj/NYTEAAdTr2geEVdVchr3JBofK4Q6W917FiVr2sleA72R59YAXMEhrpzPwkX/xdA=="],
+    "@aws-sdk/credential-provider-web-identity": ["@aws-sdk/credential-provider-web-identity@3.972.88", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.972.88.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/nested-clients": "^3.998.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-RmeE04naP7gWzux9l1vqNQPzuo2OkH0Ca9WDtX5Zf4NERoBLeWZNU2g1ka7aJ4Fc9fqBxBLtGL89vYEfFP1LHw=="],
 
     "@aws-sdk/credential-providers": ["@aws-sdk/credential-providers@3.1057.0", "http://repo.nju.edu.cn/npm/@aws-sdk/credential-providers/-/credential-providers-3.1057.0.tgz", { "dependencies": { "@aws-sdk/client-cognito-identity": "3.1057.0", "@aws-sdk/core": "^3.974.15", "@aws-sdk/credential-provider-cognito-identity": "^3.972.38", "@aws-sdk/credential-provider-env": "^3.972.41", "@aws-sdk/credential-provider-http": "^3.972.43", "@aws-sdk/credential-provider-ini": "^3.972.46", "@aws-sdk/credential-provider-login": "^3.972.45", "@aws-sdk/credential-provider-node": "^3.972.47", "@aws-sdk/credential-provider-process": "^3.972.41", "@aws-sdk/credential-provider-sso": "^3.972.45", "@aws-sdk/credential-provider-web-identity": "^3.972.45", "@aws-sdk/nested-clients": "^3.997.13", "@aws-sdk/types": "^3.973.9", "@smithy/core": "^3.24.5", "@smithy/credential-provider-imds": "^4.3.6", "@smithy/types": "^4.14.2", "tslib": "^2.6.2" } }, "sha512-rbrEHtz11g0kxsSkYr3fx2HABNNblp4AhB2MgPvJHgYOWfJ2eBviU7Mvoaef0PW8QH6lbZDfJcnM7eKvtvz3sw=="],
 
-    "@aws-sdk/nested-clients": ["@aws-sdk/nested-clients@3.998.0", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/nested-clients/-/nested-clients-3.998.0.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/signature-v4-multi-region": "^3.996.51", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/fetch-http-handler": "^5.8.0", "@smithy/node-http-handler": "^4.14.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-aOD1oQVWG6UjOOEdp0MsrWE93vG8pPbvtymmeNtglGxAARplh1wzhHs4npqtY5JN5GBSrTaLbn1hQQ3W2Lk8ow=="],
+    "@aws-sdk/nested-clients": ["@aws-sdk/nested-clients@3.998.1", "http://repo.nju.edu.cn/npm/@aws-sdk/nested-clients/-/nested-clients-3.998.1.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/signature-v4-multi-region": "^3.996.51", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/fetch-http-handler": "^5.8.0", "@smithy/node-http-handler": "^4.14.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-KPw5W6LN3waUskfDCRXRcyBEHAev5PVlMOjMq74OIivFYbgPvq39QeFege7IOFPncO425/AQK0qxdfaoeGejYQ=="],
 
     "@aws-sdk/signature-v4-multi-region": ["@aws-sdk/signature-v4-multi-region@3.996.51", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/signature-v4-multi-region/-/signature-v4-multi-region-3.996.51.tgz", { "dependencies": { "@aws-sdk/types": "^3.975.0", "@smithy/signature-v4": "^5.7.5", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-+aHvUugVBuMPXxgkPfWnTMyGdE/yWS8GHi5+qQ37HowS0YqzrbuaDLznj+Dtmtu5jgCdqz36gXmujOToUhNNWw=="],
 
-    "@aws-sdk/token-providers": ["@aws-sdk/token-providers@3.1162.0", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/token-providers/-/token-providers-3.1162.0.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.0", "@aws-sdk/nested-clients": "^3.998.0", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-vOD6Ac0M43LtXaPu+/+wUMQCd27zIpKt/Le/a645qhx7T1MZeEK71PDhtIHGHgnQjGyNSfC6Z5RNud/hQb3veg=="],
+    "@aws-sdk/token-providers": ["@aws-sdk/token-providers@3.1164.0", "http://repo.nju.edu.cn/npm/@aws-sdk/token-providers/-/token-providers-3.1164.0.tgz", { "dependencies": { "@aws-sdk/core": "^3.980.1", "@aws-sdk/nested-clients": "^3.998.1", "@aws-sdk/types": "^3.975.0", "@smithy/core": "^3.38.0", "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-9LPRWfev5QZH1EnNn9O/Y++iCRpfxrJs4EIsJuOAKYZ0DY/kZ3aOx0qWzmN1OUOd8JlUk6Mjy1tJ8b7ul5tuVw=="],
 
     "@aws-sdk/types": ["@aws-sdk/types@3.975.0", "https://repo.nju.edu.cn/repository/npm/@aws-sdk/types/-/types-3.975.0.tgz", { "dependencies": { "@smithy/types": "^4.19.0", "tslib": "^2.6.2" } }, "sha512-WQlhs6juByzWOzj5fwxOx0mPJaEqMcG/sDpl3Id61B3XhKE63xY+0QWcnG+sWR/sCfprmreyUo1lM7IKZmHMzw=="],
 
@@ -102,6 +138,7 @@
     "@biomejs/cli-android-x64": ["@biomejs/cli-android-x64@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-android-x64/-/cli-android-x64-2.6.6.tgz", { "os": "android", "cpu": "x64" }, "sha512-N443kDSElF4kDMKjarsL+ymj/ewLA5R9VAdawA7fJ7pwgN3JVDZp0K+xhKBglH8EwsKi2+K8xC6WxXSkgziFfw=="],
 
     "@biomejs/cli-darwin-arm64": ["@biomejs/cli-darwin-arm64@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-darwin-arm64/-/cli-darwin-arm64-2.6.6.tgz", { "os": "darwin", "cpu": "arm64" }, "sha512-/vSAqWx3by3p8w5ew+HVJDgguuaTK3U6Fb5gk/oDUH21iWOopm3gOlhT6tZfy5mTaM5R4CVc3uFWkxBtEDrKyw=="],
+
     "@biomejs/cli-darwin-x64": ["@biomejs/cli-darwin-x64@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-darwin-x64/-/cli-darwin-x64-2.6.6.tgz", { "os": "darwin", "cpu": "x64" }, "sha512-lLdOAJKbrAoDs+3GvTyVmMW345D9IhrIE3GgoL2eeHwO1boN4VhrSlALtFYsP0p+Jy4udUp4bTguij0qjKrH8w=="],
 
     "@biomejs/cli-linux-arm64": ["@biomejs/cli-linux-arm64@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-linux-arm64/-/cli-linux-arm64-2.6.6.tgz", { "os": "linux", "cpu": "arm64", "libc": "glibc" }, "sha512-UzJdUCg9dbEGpZOuZRyehEPrnwKjx9z4Um7sWLG5x6txu7UjeWdJZuBXVGlyAdD39w2Hx0nZeK1jKC4NFUTCNQ=="],
@@ -113,6 +150,7 @@
     "@biomejs/cli-linux-x64-musl": ["@biomejs/cli-linux-x64-musl@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-linux-x64-musl/-/cli-linux-x64-musl-2.6.6.tgz", { "os": "linux", "cpu": "x64", "libc": "musl" }, "sha512-DiKejs+GnFbOVQsBnukUpiB+T13tqUDFGwwjsTq51vatAsaflzFzVD0BOgjVUGRrqKgE0K0Xf+wNtkcmdN2chw=="],
 
     "@biomejs/cli-win32-arm64": ["@biomejs/cli-win32-arm64@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-win32-arm64/-/cli-win32-arm64-2.6.6.tgz", { "os": "win32", "cpu": "arm64" }, "sha512-DjVXwQAQeHrO1JEZAEus54k40Tnh4glyU3VFLcDBKwoz0xnxCEnqw6TCMXoujcQMQynWd3AY8bLrbR1o0XNqow=="],
+
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.6.6", "http://repo.nju.edu.cn/npm/@biomejs/cli-win32-x64/-/cli-win32-x64-2.6.6.tgz", { "os": "win32", "cpu": "x64" }, "sha512-B7KMG26A4I9lAuxwBGMmiVcjMGAeJRoz+pzFt9brRvOAsIrgOu8ptJld5rUWui6tM1uiJwxeJhhDPuAiZtxXdw=="],
 
     "@borewit/text-codec": ["@borewit/text-codec@0.2.3", "https://repo.nju.edu.cn/repository/npm/@borewit/text-codec/-/text-codec-0.2.3.tgz", {}, "sha512-49CycTz1aAZmvFcwkeFyhud1HUmRIB5Tabf7ALV+VA4Iu85MTfz2cUwzPagMFAdVBvrWdkCxG67I30tUwwpKsw=="],
@@ -121,11 +159,15 @@
 
     "@deno/shim-deno-test": ["@deno/shim-deno-test@0.5.0", "http://repo.nju.edu.cn/npm/@deno/shim-deno-test/-/shim-deno-test-0.5.0.tgz", {}, "sha512-4nMhecpGlPi0cSzT67L+Tm+GOJqvuk8gqHBziqcUQOarnuIax1z96/gJHCSIz2Z0zhxE6Rzwb3IZXPtFh51j+w=="],
 
-    "@effect/opentelemetry": ["@effect/opentelemetry@4.0.6", "https://repo.nju.edu.cn/repository/npm/@effect/opentelemetry/-/opentelemetry-4.0.6.tgz", { "peerDependencies": { "@opentelemetry/api": ">=1.9.0 <2.0.0", "@opentelemetry/api-logs": ">=0.203.0 <0.300.0", "@opentelemetry/resources": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-logs": ">=0.203.0 <0.300.0", "@opentelemetry/sdk-metrics": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-trace-base": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-trace-node": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-trace-web": ">=2.0.0 <3.0.0", "@opentelemetry/semantic-conventions": ">=1.33.0 <2.0.0", "effect": "^4.0.6" }, "optionalPeers": ["@opentelemetry/api", "@opentelemetry/api-logs", "@opentelemetry/resources", "@opentelemetry/sdk-logs", "@opentelemetry/sdk-metrics", "@opentelemetry/sdk-trace-base", "@opentelemetry/sdk-trace-node", "@opentelemetry/sdk-trace-web"] }, "sha512-xhLR1EN4ZNaKM7Bx59SCFiRNduFzgH8LZXDrCpPN8MpQ93V0GQcFHTBah5T3EXO2v+5HTEacdTgetIA0Creqvw=="],
+    "@effect/opentelemetry": ["@effect/opentelemetry@4.1.0", "http://repo.nju.edu.cn/npm/@effect/opentelemetry/-/opentelemetry-4.1.0.tgz", { "peerDependencies": { "@opentelemetry/api": ">=1.9.0 <2.0.0", "@opentelemetry/api-logs": ">=0.203.0 <0.300.0", "@opentelemetry/resources": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-logs": ">=0.203.0 <0.300.0", "@opentelemetry/sdk-metrics": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-trace-base": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-trace-node": ">=2.0.0 <3.0.0", "@opentelemetry/sdk-trace-web": ">=2.0.0 <3.0.0", "@opentelemetry/semantic-conventions": ">=1.33.0 <2.0.0", "effect": "^4.1.0" }, "optionalPeers": ["@opentelemetry/api", "@opentelemetry/api-logs", "@opentelemetry/resources", "@opentelemetry/sdk-logs", "@opentelemetry/sdk-metrics", "@opentelemetry/sdk-trace-base", "@opentelemetry/sdk-trace-node", "@opentelemetry/sdk-trace-web"] }, "sha512-j9bNzQaoQvcnimBFMG0i3piEW20E8HjkXAQHTJN/XqG2e4uJ9zCv53/HCNzD7+ooFn5S4nwQy/BOXeNReMIe+A=="],
 
-    "@effect/platform-node": ["@effect/platform-node@4.0.6", "https://repo.nju.edu.cn/repository/npm/@effect/platform-node/-/platform-node-4.0.6.tgz", { "dependencies": { "@effect/platform-node-shared": "^4.0.6", "undici": "^8.12.2" }, "peerDependencies": { "effect": "^4.0.6", "redis": ">=5.0.0 <7.0.0" } }, "sha512-gXvGHAy0/8PZbWvMMguloDUyeSP+rzYEo3FSEqUuGduxo9ORcGioDxPI+GOLCIFfam7VuNkmSUxBOiRMIrMrBw=="],
+    "@effect/platform-node": ["@effect/platform-node@4.1.0", "http://repo.nju.edu.cn/npm/@effect/platform-node/-/platform-node-4.1.0.tgz", { "dependencies": { "@effect/platform-node-shared": "^4.1.0", "undici": "^8.12.2" }, "peerDependencies": { "effect": "^4.1.0", "redis": ">=5.0.0 <7.0.0" } }, "sha512-v+X7moGVF9k5oMVvz0slA+NgtEod+W+oygeI285MDJgSlUCW3JcqElj+cD3rlijFZtpKhC7RLkU1GuCxjGHTpA=="],
 
-    "@effect/platform-node-shared": ["@effect/platform-node-shared@4.0.6", "https://repo.nju.edu.cn/repository/npm/@effect/platform-node-shared/-/platform-node-shared-4.0.6.tgz", { "dependencies": { "@types/ws": "^8.18.2", "ws": "^8.22.0" }, "peerDependencies": { "effect": "^4.0.6" } }, "sha512-0PhyC4uG30xGtsajnxjkcBWfTjNRzUh4ZKl1Kvo/MNyCTb+W2O+fBzf7wCRCoqt+nLudiq4V7vX40Q8XIBuMaQ=="],
+    "@effect/platform-node-shared": ["@effect/platform-node-shared@4.1.0", "http://repo.nju.edu.cn/npm/@effect/platform-node-shared/-/platform-node-shared-4.1.0.tgz", { "dependencies": { "@types/ws": "^8.18.2", "ws": "^8.22.0" }, "peerDependencies": { "effect": "^4.1.0" } }, "sha512-uYQfFRoxWLo8fIhiSeBcmz/R1ooOfE3HF3cWHFgxz82tZMk2Wn02BGABcdLmaAch9VpDLbtWnuhSxNyBsGMUFg=="],
+
+    "@extractus/article-extractor": ["@extractus/article-extractor@9.0.1", "http://repo.nju.edu.cn/npm/@extractus/article-extractor/-/article-extractor-9.0.1.tgz", { "dependencies": { "@mozilla/readability": "^0.6.0", "linkedom": "^0.18.13" } }, "sha512-tI6tVthdtv3diHKg7SwiHrhwmP4AERKSa/0Cv/MT8cP7vFFMk74M1IgegZLf6pWtq4tdCxPdiDQ/77DVa0yTpQ=="],
+
+    "@firecrawl/html-extractor": ["@firecrawl/html-extractor@0.1.2", "http://repo.nju.edu.cn/npm/@firecrawl/html-extractor/-/html-extractor-0.1.2.tgz", {}, "sha512-6DbFo7AW+kXykDPED2/53VWqW/gc99YOOzPjG2bc0h3RpmAvab1Qz10SEDk6zsmpSWXbWCUA1EFfUz7yrSEAfw=="],
 
     "@gar/promise-retry": ["@gar/promise-retry@1.0.3", "http://repo.nju.edu.cn/npm/@gar/promise-retry/-/promise-retry-1.0.3.tgz", {}, "sha512-GmzA9ckNokPypTg10pgpeHNQe7ph+iIKKmhKu3Ob9ANkswreCx7R3cKmY781K8QK3AqVL3xVh9A42JvIAbkkSA=="],
 
@@ -139,9 +181,13 @@
 
     "@isaacs/string-locale-compare": ["@isaacs/string-locale-compare@1.1.0", "http://repo.nju.edu.cn/npm/@isaacs/string-locale-compare/-/string-locale-compare-1.1.0.tgz", {}, "sha512-SQ7Kzhh9+D+ZW9MA0zkYv3VXhIDNx+LzM6EJ+/65I3QY+enU6Itte7E5XX7EWrqLW2FN4n06GWzBnPoC3th2aQ=="],
 
+    "@jocmp/mercury-parser": ["@jocmp/mercury-parser@3.1.2", "http://repo.nju.edu.cn/npm/@jocmp/mercury-parser/-/mercury-parser-3.1.2.tgz", { "dependencies": { "browser-request": "github:postlight/browser-request#feat-add-headers-to-response", "cheerio": "^1.1.2", "dayjs": "^1.11.19", "difflib": "github:postlight/difflib.js", "iconv-lite": "0.7.3", "postman-request": "^2.88.1-postman.31", "string-direction": "^0.1.2", "turndown": "^7.1.1", "wuzzy": "^0.1.4", "yargs-parser": "^22.0.0" }, "bin": { "mercury-parser": "cli.js" } }, "sha512-Skyci0LlSpoyLJW2xl/q+2L4QO0UxYntE+kZANh/DtLvOSoeo9eYdviP/ne+Uxy43F7TvvLGXBJv58LWGBY0BA=="],
+
     "@mixmark-io/domino": ["@mixmark-io/domino@2.2.0", "http://repo.nju.edu.cn/npm/@mixmark-io/domino/-/domino-2.2.0.tgz", {}, "sha512-Y28PR25bHXUg88kCV7nivXrP2Nj2RueZ3/l/jdx6J9f8J4nsEGcgX0Qe6lt7Pa+J79+kPiJU3LguR6O/6zrLOw=="],
 
     "@modelcontextprotocol/sdk": ["@modelcontextprotocol/sdk@1.32.2", "https://repo.nju.edu.cn/repository/npm/@modelcontextprotocol/sdk/-/sdk-1.32.2.tgz", { "dependencies": { "@hono/node-server": "^1.19.9 || ^2.0.5", "ajv": "^8.17.1", "ajv-formats": "^3.0.1", "content-type": "^1.0.5", "cors": "^2.8.5", "cross-spawn": "^7.0.5", "eventsource": "^3.0.2", "eventsource-parser": "^3.0.0", "express": "^5.2.1", "express-rate-limit": "^8.2.1", "hono": "^4.11.4", "jose": "^6.1.3", "json-schema-typed": "^8.0.2", "pkce-challenge": "^5.0.0", "raw-body": "^3.0.0", "zod": "^3.25 || ^4.0", "zod-to-json-schema": "^3.25.1" }, "peerDependencies": { "@cfworker/json-schema": "^4.1.1" }, "optionalPeers": ["@cfworker/json-schema"] }, "sha512-SWsVtH/0vULSQStoZ6xxH2K09Li8fXYTMC64ZeogCdpZ3XSi1eCPOByV1OpuJxuI3OcmHhosDWYyii07tpPsLw=="],
+
+    "@mozilla/readability": ["@mozilla/readability@0.6.0", "http://repo.nju.edu.cn/npm/@mozilla/readability/-/readability-0.6.0.tgz", {}, "sha512-juG5VWh4qAivzTAeMzvY9xs9HY5rAcr2E4I7tiSSCokRFi7XIZCAu92ZkSTsIj1OPceCifL3cpfteP3pDT9/QQ=="],
 
     "@msgpack/msgpack": ["@msgpack/msgpack@3.0.0", "http://repo.nju.edu.cn/npm/@msgpack/msgpack/-/msgpack-3.0.0.tgz", {}, "sha512-s/OZQ1QUtSYr9tgFZh4HSFLvTR2o81r0zfQj7pClC7oFUqZaAgkQ+vADV9JBioJLK9lJoAjBEhuPhVuOIJnbhg=="],
 
@@ -177,19 +223,19 @@
 
     "@npmcli/run-script": ["@npmcli/run-script@10.0.4", "http://repo.nju.edu.cn/npm/@npmcli/run-script/-/run-script-10.0.4.tgz", { "dependencies": { "@npmcli/node-gyp": "^5.0.0", "@npmcli/package-json": "^7.0.0", "@npmcli/promise-spawn": "^9.0.0", "node-gyp": "^12.1.0", "proc-log": "^6.0.0" } }, "sha512-mGUWr1uMnf0le2TwfOZY4SFxZGXGfm4Jtay/nwAa2FLNAKXUoUwaGwBMNH36UHPtinWfTSJ3nqFQr0091CxVGg=="],
 
-    "@opencode/ai": ["@opencode/ai@2.2.5", "https://repo.nju.edu.cn/repository/npm/@opencode/ai/-/ai-2.2.5.tgz", { "dependencies": { "@aws-sdk/credential-providers": "3.1057.0", "@opencode/schema": "2.2.5", "@smithy/eventstream-codec": "4.2.14", "@smithy/util-utf8": "4.2.2", "aws4fetch": "1.0.20", "effect": "4.0.6", "google-auth-library": "10.5.0" } }, "sha512-TolUvNR615vpkc6FPf2np5PbAbO7k1gaVlrtZ5Wx5tN7Y8K2uSer0BZEiajJ2uBsF6RXJFfjjX1GZbcf85GtGQ=="],
+    "@opencode/ai": ["@opencode/ai@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/ai/-/ai-2.2.6.tgz", { "dependencies": { "@aws-sdk/credential-providers": "3.1057.0", "@opencode/schema": "2.2.6", "@smithy/eventstream-codec": "4.2.14", "@smithy/util-utf8": "4.2.2", "aws4fetch": "1.0.20", "effect": "4.1.0", "google-auth-library": "10.5.0" } }, "sha512-VRes4ACJj1Lw8tpAgWwOy8+QPeXTko/KkJA8NDGVgVtl+MmzV/J5tlrpnpAI6zAgUARYV3GDFYj6EHn1V5ndLQ=="],
 
-    "@opencode/client": ["@opencode/client@2.2.5", "https://repo.nju.edu.cn/repository/npm/@opencode/client/-/client-2.2.5.tgz", { "dependencies": { "@opencode/protocol": "2.2.5", "@opencode/schema": "2.2.5" }, "peerDependencies": { "effect": "4.0.6", "solid-js": ">=1.9.0" }, "optionalPeers": ["effect", "solid-js"] }, "sha512-EjYrFGWHURsIbjtmQdIsGSPmYZGaulxqwEfYxQH5t9838508BCIvDX9f7/ZsgNGHYXM0punA3W8hTt6GjxIEaw=="],
+    "@opencode/client": ["@opencode/client@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/client/-/client-2.2.6.tgz", { "dependencies": { "@opencode/protocol": "2.2.6", "@opencode/schema": "2.2.6" }, "peerDependencies": { "effect": "4.1.0", "solid-js": ">=1.9.0" }, "optionalPeers": ["effect", "solid-js"] }, "sha512-o90b8Z6tk62U3MiRK1g6r7WmNWLzHzIHme75/MCWa9/XmOREMzY4W1N01wAuHwU3J6UH/PlUDNKvLkeX5qCyeA=="],
 
-    "@opencode/plugin": ["@opencode/plugin@2.2.5", "https://repo.nju.edu.cn/repository/npm/@opencode/plugin/-/plugin-2.2.5.tgz", { "dependencies": { "@ai-sdk/provider": "3.0.8", "@opencode/ai": "2.2.5", "@opencode/client": "2.2.5", "@opencode/protocol": "2.2.5", "@opencode/schema": "2.2.5", "@opencode/util": "2.2.5", "effect": "4.0.6" }, "peerDependencies": { "@opencode/theme": "2.2.5", "@opentui/core": ">=0.8.0", "@opentui/solid": ">=0.8.0", "electron": "*", "solid-js": ">=1.9.0", "vite": ">=6", "vite-plugin-solid": ">=2.11" }, "optionalPeers": ["@opencode/theme", "@opentui/core", "@opentui/solid", "electron", "solid-js", "vite", "vite-plugin-solid"] }, "sha512-DHtmC55UM5NbtZwyayLxI/ygTMt3n+6xXYYBkOdNxmZ+rLcIbpjmeJvySqdxFmT3K7Pk/2pHsuocxhquu6sysA=="],
+    "@opencode/plugin": ["@opencode/plugin@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/plugin/-/plugin-2.2.6.tgz", { "dependencies": { "@ai-sdk/provider": "3.0.8", "@opencode/ai": "2.2.6", "@opencode/client": "2.2.6", "@opencode/protocol": "2.2.6", "@opencode/schema": "2.2.6", "@opencode/util": "2.2.6", "effect": "4.1.0" }, "peerDependencies": { "@opencode/theme": "2.2.6", "@opentui/core": ">=0.8.1", "@opentui/solid": ">=0.8.1", "electron": "*", "solid-js": ">=1.9.0", "vite": ">=6", "vite-plugin-solid": ">=2.11" }, "optionalPeers": ["@opencode/theme", "@opentui/core", "@opentui/solid", "electron", "solid-js", "vite", "vite-plugin-solid"] }, "sha512-PbQD4aN8YJ8w3gM5L9h2msXppxEAUVj8Ejbaj6MMNb+99jPm7/XM+g2ugZomSNs1XXuab2IlrIKDgbiI49VfLw=="],
 
-    "@opencode/protocol": ["@opencode/protocol@2.2.5", "https://repo.nju.edu.cn/repository/npm/@opencode/protocol/-/protocol-2.2.5.tgz", { "dependencies": { "@opencode/schema": "2.2.5", "effect": "4.0.6" } }, "sha512-T3ET0kS1kj8sv7/d+c1T2he7TXoZ4Rki7zTqHuv8b0kWhg3Vk6o0t+T9KsEQdEat7PFksgH5haC2iSSdJOB7/w=="],
+    "@opencode/protocol": ["@opencode/protocol@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/protocol/-/protocol-2.2.6.tgz", { "dependencies": { "@opencode/schema": "2.2.6", "effect": "4.1.0" } }, "sha512-XBAgz2qnhFS/EI4P3pgC9A6HJTHnFiaQXkqux3liXwE7hZh5wEzRZ551nQZD95rkrH00EnryUSaKI2y/O2Bt6w=="],
 
-    "@opencode/schema": ["@opencode/schema@2.2.5", "https://repo.nju.edu.cn/repository/npm/@opencode/schema/-/schema-2.2.5.tgz", { "dependencies": { "@standard-schema/spec": "1.1.0", "effect": "4.0.6" } }, "sha512-hlKk6cX28BwvOMOVG3Mtt4tEHxwY68Z6Gz5/cL32N8qfZexykCKsZai49Jms4/2gD8BzvVuBERnnlLDbdLstUA=="],
+    "@opencode/schema": ["@opencode/schema@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/schema/-/schema-2.2.6.tgz", { "dependencies": { "@standard-schema/spec": "1.1.0", "effect": "4.1.0" } }, "sha512-TaLr30ktFFVsuReorFNbqYvybTVxV/4M44qm5XzRjUqq6deR0jH4h4Wt1gB0NTkXDFL0LMH+Ul1oVBnp5w9TRg=="],
 
-    "@opencode/theme": ["@opencode/theme@2.2.5", "http://repo.nju.edu.cn/npm/@opencode/theme/-/theme-2.2.5.tgz", { "dependencies": { "@opentui/core": "0.8.0", "effect": "4.0.6" } }, "sha512-mUW5YKCxJQHnhrCepsyMoEqWZrQFipF5WrRmos9WB/iehZiUL6ix6OXjUmv5W5gctKzgQd8tYVi7x90H5/grHQ=="],
+    "@opencode/theme": ["@opencode/theme@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/theme/-/theme-2.2.6.tgz", { "dependencies": { "@opentui/core": "0.8.1", "effect": "4.1.0" } }, "sha512-Ml9BkjNF38b8iyBtT/niNluDtOOXqtfWNPNz5vK0W5mczt2hKNbiZ89WW4v9fDxxYE+AX0yVdC7x04y4lQC8yw=="],
 
-    "@opencode/util": ["@opencode/util@2.2.5", "https://repo.nju.edu.cn/repository/npm/@opencode/util/-/util-2.2.5.tgz", { "dependencies": { "@effect/opentelemetry": "4.0.6", "@effect/platform-node": "4.0.6", "@effect/platform-node-shared": "4.0.6", "@npmcli/arborist": "9.4.0", "@npmcli/config": "10.8.1", "@opentelemetry/api": "1.9.0", "@opentelemetry/api-logs": "0.219.0", "@opentelemetry/context-async-hooks": "2.8.0", "@opentelemetry/exporter-trace-otlp-http": "0.219.0", "@opentelemetry/resources": "2.8.0", "@opentelemetry/sdk-logs": "0.219.0", "@opentelemetry/sdk-metrics": "2.8.0", "@opentelemetry/sdk-trace-base": "2.8.0", "@opentelemetry/sdk-trace-node": "2.8.0", "cross-spawn": "7.0.6", "effect": "4.0.6", "glob": "13.0.5", "mime-types": "3.0.2", "minimatch": "10.2.5", "npm-package-arg": "13.0.2", "open": "11.0.4", "pacote": "21.5.1" } }, "sha512-RqbJ2EwxOs6oQMH1P4Yenkejit0oiAyxBTPXhzx4n6j4SOV0+Duz6lhftlJkAjTbq7Rw2b0Mzx4duOJUdw6s5A=="],
+    "@opencode/util": ["@opencode/util@2.2.6", "http://repo.nju.edu.cn/npm/@opencode/util/-/util-2.2.6.tgz", { "dependencies": { "@effect/opentelemetry": "4.1.0", "@effect/platform-node": "4.1.0", "@effect/platform-node-shared": "4.1.0", "@npmcli/arborist": "9.4.0", "@npmcli/config": "10.8.1", "@opentelemetry/api": "1.9.0", "@opentelemetry/api-logs": "0.219.0", "@opentelemetry/context-async-hooks": "2.8.0", "@opentelemetry/exporter-trace-otlp-http": "0.219.0", "@opentelemetry/resources": "2.8.0", "@opentelemetry/sdk-logs": "0.219.0", "@opentelemetry/sdk-metrics": "2.8.0", "@opentelemetry/sdk-trace-base": "2.8.0", "@opentelemetry/sdk-trace-node": "2.8.0", "cross-spawn": "7.0.6", "effect": "4.1.0", "glob": "13.0.5", "mime-types": "3.0.2", "minimatch": "10.2.5", "npm-package-arg": "13.0.2", "open": "11.0.4", "pacote": "21.5.1" } }, "sha512-mOj2x3Aqw66sYzXq8MrypJVksFiO7GmFoSi5zi65TLtePbZCxvS/2TMbjgfa5MfWQp8YOl2327iv4W2rg6QQag=="],
 
     "@opentelemetry/api": ["@opentelemetry/api@1.9.0", "http://repo.nju.edu.cn/npm/@opentelemetry/api/-/api-1.9.0.tgz", {}, "sha512-3giAOQvZiH5F9bMlMiv8+GSPMeqg0dbaeo58/0SlA9sxSqZhnUtxzX9/2FzyhS9sWQf5S0GJE0AKBrFqjpeYcg=="],
 
@@ -215,25 +261,25 @@
 
     "@opentelemetry/sdk-trace-node": ["@opentelemetry/sdk-trace-node@2.8.0", "http://repo.nju.edu.cn/npm/@opentelemetry/sdk-trace-node/-/sdk-trace-node-2.8.0.tgz", { "dependencies": { "@opentelemetry/context-async-hooks": "2.8.0", "@opentelemetry/core": "2.8.0", "@opentelemetry/sdk-trace-base": "2.8.0" }, "peerDependencies": { "@opentelemetry/api": ">=1.0.0 <1.10.0" } }, "sha512-nZt9OGufioAc3AfoLTqA9bsAeaMJAictYDdI2VcNQ+PmT+3rfKjAZDZvgPfd8VPX0O5Bw1hdQF6kDK8VSpZiWg=="],
 
-    "@opentelemetry/semantic-conventions": ["@opentelemetry/semantic-conventions@1.44.0", "https://repo.nju.edu.cn/repository/npm/@opentelemetry/semantic-conventions/-/semantic-conventions-1.44.0.tgz", {}, "sha512-E3JkOlMBi3N8OGGkbl7tFyqk2MAS6/lySRZBK3Mu7AzjF1fT8oIChH9ChE48SUWzDn9Kdwta+G/p5LJ4xW4CLQ=="],
+    "@opentelemetry/semantic-conventions": ["@opentelemetry/semantic-conventions@1.45.0", "http://repo.nju.edu.cn/npm/@opentelemetry/semantic-conventions/-/semantic-conventions-1.45.0.tgz", {}, "sha512-aOP45mbcOKbQVvFWfQmgoOPT8R2iwbbbgl83k4CujGV9BrJhFr3qG55MFpwFs4YLabpuW3HhzUY9eQxPlDqaZw=="],
 
-    "@opentui/core": ["@opentui/core@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core/-/core-0.8.2.tgz", { "dependencies": { "bun-ffi-structs": "0.3.1", "diff": "9.0.0", "marked": "17.0.1", "string-width": "7.2.0" }, "optionalDependencies": { "@opentui/core-darwin-arm64": "0.8.2", "@opentui/core-darwin-x64": "0.8.2", "@opentui/core-linux-arm64": "0.8.2", "@opentui/core-linux-arm64-musl": "0.8.2", "@opentui/core-linux-x64": "0.8.2", "@opentui/core-linux-x64-musl": "0.8.2", "@opentui/core-win32-arm64": "0.8.2", "@opentui/core-win32-x64": "0.8.2" }, "peerDependencies": { "web-tree-sitter": "0.25.10" } }, "sha512-Ko6BfyIiCWjm/15nfgBW7aWS+jkZ+Lh16PaEecawWRnhKo7H0BsJGhnpOe/BVcrnBI7bzLgMIP5cWyDffWEP7w=="],
+    "@opentui/core": ["@opentui/core@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core/-/core-0.8.3.tgz", { "dependencies": { "bun-ffi-structs": "0.3.1", "diff": "9.0.0", "marked": "17.0.1", "string-width": "7.2.0" }, "optionalDependencies": { "@opentui/core-darwin-arm64": "0.8.3", "@opentui/core-darwin-x64": "0.8.3", "@opentui/core-linux-arm64": "0.8.3", "@opentui/core-linux-arm64-musl": "0.8.3", "@opentui/core-linux-x64": "0.8.3", "@opentui/core-linux-x64-musl": "0.8.3", "@opentui/core-win32-arm64": "0.8.3", "@opentui/core-win32-x64": "0.8.3" }, "peerDependencies": { "web-tree-sitter": "0.25.10" } }, "sha512-6Ng2jyiZZhGUTNbF8wXmjztihdGdx7uZq8O5bBgG/2XaCANw/BJgSxYb/nVFtorzShE9JcjszRhzh8XNxQ3yuA=="],
 
-    "@opentui/core-darwin-arm64": ["@opentui/core-darwin-arm64@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-arm64/-/core-darwin-arm64-0.8.2.tgz", { "os": "darwin", "cpu": "arm64" }, "sha512-/8pFK289hi+jtoUgJYZJEABTreLoQ3tNVQuMFLF0xDBkREJaR9xvh2RHKzhVLut9bhKf9oY2bgD37pMgYNqwqA=="],
+    "@opentui/core-darwin-arm64": ["@opentui/core-darwin-arm64@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-arm64/-/core-darwin-arm64-0.8.3.tgz", { "os": "darwin", "cpu": "arm64" }, "sha512-9YaOiVlld+J/POWW0TnUe9kX5+/9B0iEszdTAfgHFqSkVz4ndnYnFJTCC9fnwLrS+WOCked+7M9sS2DXiPpFQw=="],
 
-    "@opentui/core-darwin-x64": ["@opentui/core-darwin-x64@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-x64/-/core-darwin-x64-0.8.2.tgz", { "os": "darwin", "cpu": "x64" }, "sha512-AN3QB5yIGQyKs4XKgGuA1vSLA++jonTB6NR2fNLbw4+wizgETlQ77ur30175yEVysaN2tQNO2dJasvHMx05WQg=="],
+    "@opentui/core-darwin-x64": ["@opentui/core-darwin-x64@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-x64/-/core-darwin-x64-0.8.3.tgz", { "os": "darwin", "cpu": "x64" }, "sha512-rHW+b4mnUgdy7cs1jxFOQqd/C0n+sumjJaNVKIPKvk+EuVr+HM2pIdhFvOThnKWTyp2GlNZtIJNKCaAf+QxvkA=="],
 
-    "@opentui/core-linux-arm64": ["@opentui/core-linux-arm64@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64/-/core-linux-arm64-0.8.2.tgz", { "os": "linux", "cpu": "arm64" }, "sha512-Inkhg/P5UBNPySqeh0+4K8NbqUIolJ3WNgvX9I25x2nT/DFA8kUN1Y7fbQAaX2CrHa7rWu54xOmJYbYfOPsX8A=="],
+    "@opentui/core-linux-arm64": ["@opentui/core-linux-arm64@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64/-/core-linux-arm64-0.8.3.tgz", { "os": "linux", "cpu": "arm64" }, "sha512-1GeV1UZqzMTfOUKuymGUhCHD5XTJC4w2eA+zPDs/jBVgv2NqPL7sofoBHLzkyhlxZpuptQR+vVPs4sW4T+7YVg=="],
 
-    "@opentui/core-linux-arm64-musl": ["@opentui/core-linux-arm64-musl@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64-musl/-/core-linux-arm64-musl-0.8.2.tgz", { "os": "linux", "cpu": "arm64", "libc": "musl" }, "sha512-nB/RtlowKo9mlybfL1iHr0Wr4ZF/n4bQ8i7UaphUPNopXSq6YoWT7D4lyjubLBqjJ4KPkaXXHAiReSZ0e1V7ZA=="],
+    "@opentui/core-linux-arm64-musl": ["@opentui/core-linux-arm64-musl@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64-musl/-/core-linux-arm64-musl-0.8.3.tgz", { "os": "linux", "cpu": "arm64", "libc": "musl" }, "sha512-U2IbCGI7sjUZoO8h8UizREHRDWk0u/bOAmJ0L46xB3uyMWKfNU9f8x5jQF4v6apMMmb56/TPl/PUoVR1sQg15A=="],
 
-    "@opentui/core-linux-x64": ["@opentui/core-linux-x64@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64/-/core-linux-x64-0.8.2.tgz", { "os": "linux", "cpu": "x64" }, "sha512-R6SUsvcQdeVuVSdGIOYcAFrCdGGeAxzT2pJ7KT9LK6Tg0pELszpnC+FmRDiofMUz88VSjXP95NygBZx+SAvnuA=="],
+    "@opentui/core-linux-x64": ["@opentui/core-linux-x64@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64/-/core-linux-x64-0.8.3.tgz", { "os": "linux", "cpu": "x64" }, "sha512-DIhEmsACFqucaqSMYZqQKXi10WmGuO0TpmqEz9hScqktcRlNAPpsB5qmO6qCEyXxTIbfaVxxlABcq1Xn3eB0aQ=="],
 
-    "@opentui/core-linux-x64-musl": ["@opentui/core-linux-x64-musl@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64-musl/-/core-linux-x64-musl-0.8.2.tgz", { "os": "linux", "cpu": "x64", "libc": "musl" }, "sha512-vicHTwx+jUFNcI39e6pK+hkjAhv33ebqmm0YpHHek9t3tY1PoWY6YfgI4jZVqVzcckJ7i3r3Nnl3x2YB94UUhw=="],
+    "@opentui/core-linux-x64-musl": ["@opentui/core-linux-x64-musl@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64-musl/-/core-linux-x64-musl-0.8.3.tgz", { "os": "linux", "cpu": "x64", "libc": "musl" }, "sha512-MJoGBVxNtmaQSu8rvzHrJKjS0Fd/ER/Sf9NKD+ep8nPanlffJPhRbX0cT0gvkKhK3G2Od+RXUr/tlUqy0U69ow=="],
 
-    "@opentui/core-win32-arm64": ["@opentui/core-win32-arm64@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-win32-arm64/-/core-win32-arm64-0.8.2.tgz", { "os": "win32", "cpu": "arm64" }, "sha512-pGXmxoPcoNMRVm5DGX0+U7kwtm21Ubh+qJ5tz+kVk5LnuBiBhpkWDp2L+OjYmu9D57NrQbKhj0Tvrtu/SzdXaA=="],
+    "@opentui/core-win32-arm64": ["@opentui/core-win32-arm64@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-win32-arm64/-/core-win32-arm64-0.8.3.tgz", { "os": "win32", "cpu": "arm64" }, "sha512-g0R4PrOI93z7KaWXFw/PdA6DGWDcaK9aH88ECmnsI9At1KZoEb+Jik137qEz7bGWKGOXtn+JaHsne3vipB3vwQ=="],
 
-    "@opentui/core-win32-x64": ["@opentui/core-win32-x64@0.8.2", "http://repo.nju.edu.cn/npm/@opentui/core-win32-x64/-/core-win32-x64-0.8.2.tgz", { "os": "win32", "cpu": "x64" }, "sha512-Tc7eNcNSlkHPB1p/9NBqQkexq/vznOPzB6V7G/kGq08y5LtOXPL0zLMJoIMNV/l52gNvv/YEi6mcBLLnpkD9Rg=="],
+    "@opentui/core-win32-x64": ["@opentui/core-win32-x64@0.8.3", "http://repo.nju.edu.cn/npm/@opentui/core-win32-x64/-/core-win32-x64-0.8.3.tgz", { "os": "win32", "cpu": "x64" }, "sha512-yjpxLUXeBc1eMW3pr4Fl9tpNuA7a4JdcGNVved9zFD3HZ07mM2YVfreLJeDn4n61jXUJKM8XtXVWBZM8RHF4gg=="],
 
     "@redis/bloom": ["@redis/bloom@6.3.1", "https://repo.nju.edu.cn/repository/npm/@redis/bloom/-/bloom-6.3.1.tgz", { "peerDependencies": { "@redis/client": "^6.3.1" } }, "sha512-dpF9j2yJDoPzSCaZn0MSB3xzmnXQVJeTSAWJcQVcgbmluwhpFeemmII0cF1t+WYfoVS+shEFq79+MmUItgzJLg=="],
 
@@ -359,7 +405,7 @@
 
     "agent-base": ["agent-base@7.1.4", "http://repo.nju.edu.cn/npm/agent-base/-/agent-base-7.1.4.tgz", {}, "sha512-MnA+YT8fwfJPgBx3m60MNqakm30XOkyIoH1y6huTQvC0PwZG7ki8NacLBcrPbNoo8vEZy7Jpuk7+jMO+CUovTQ=="],
 
-    "ai": ["ai@7.0.163", "http://repo.nju.edu.cn/npm/ai/-/ai-7.0.163.tgz", { "dependencies": { "@ai-sdk/gateway": "4.0.136", "@ai-sdk/provider": "4.0.36", "@ai-sdk/provider-utils": "5.0.75" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-nm8+qn36NQXO4Hjfj7SlbcNRhUyNXKtdoS9xhXr/z92lvdGFuPkzHmA2tFzhaUQy13IitNYrcw2QSNpEJC/iSA=="],
+    "ai": ["ai@7.0.165", "http://repo.nju.edu.cn/npm/ai/-/ai-7.0.165.tgz", { "dependencies": { "@ai-sdk/gateway": "4.0.138", "@ai-sdk/provider": "4.0.37", "@ai-sdk/provider-utils": "5.0.76" }, "peerDependencies": { "zod": "^3.25.76 || ^4.1.8" } }, "sha512-cEeORsLF+9+fNzvo4nQo9hxgQoEfupjc9Xmq6OM2NGUwQQQdkHxByBdFoqnNfBE0H+qwhGQaZejvbCFFD84tBA=="],
 
     "ajv": ["ajv@8.20.0", "http://repo.nju.edu.cn/npm/ajv/-/ajv-8.20.0.tgz", { "dependencies": { "fast-deep-equal": "^3.1.3", "fast-uri": "^3.0.1", "json-schema-traverse": "^1.0.0", "require-from-string": "^2.0.2" } }, "sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA=="],
 
@@ -369,7 +415,15 @@
 
     "anynum": ["anynum@1.0.1", "http://repo.nju.edu.cn/npm/anynum/-/anynum-1.0.1.tgz", {}, "sha512-N6//FLET/tXYNM/F6ABca1oH6fWB+KlTt909Le28WMDBk8oaT4vY17DCrwg2MvmuqUKt3Ni4N5dGJ/EoBgcO6A=="],
 
+    "asn1": ["asn1@0.2.6", "http://repo.nju.edu.cn/npm/asn1/-/asn1-0.2.6.tgz", { "dependencies": { "safer-buffer": "~2.1.0" } }, "sha512-ix/FxPn0MDjeyJ7i/yoHGFt/EX6LyNbxSEhPPXODPL+KB0VPk86UYfL0lMdy+KCnv+fmvIzySwaK5COwqVbWTQ=="],
+
+    "assert-plus": ["assert-plus@1.0.0", "http://repo.nju.edu.cn/npm/assert-plus/-/assert-plus-1.0.0.tgz", {}, "sha512-NfJ4UzBCcQGLDlQq7nHxH+tv3kyZ0hHQqF5BO6J7tNJeP5do1llPr8dZ8zHonfhAu0PHAdMkSo+8o0wxg9lZWw=="],
+
     "asynckit": ["asynckit@0.4.0", "http://repo.nju.edu.cn/npm/asynckit/-/asynckit-0.4.0.tgz", {}, "sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q=="],
+
+    "aws-sign2": ["aws-sign2@0.7.0", "http://repo.nju.edu.cn/npm/aws-sign2/-/aws-sign2-0.7.0.tgz", {}, "sha512-08kcGqnYf/YmjoRhfxyu+CLxBjUtHLXLXX/vUfx9l2LYzG3c1m61nrpyFUZI6zeS+Li/wWMMidD9KgrqtGq3mA=="],
+
+    "aws4": ["aws4@1.13.2", "http://repo.nju.edu.cn/npm/aws4/-/aws4-1.13.2.tgz", {}, "sha512-lHe62zvbTB5eEABUVi/AwVh0ZKY9rMMDhmm+eeyuuUQbQ3+J+fONVQOZyj+DdrvD4BY33uYniyRJ4UJIaSKAfw=="],
 
     "aws4fetch": ["aws4fetch@1.0.20", "http://repo.nju.edu.cn/npm/aws4fetch/-/aws4fetch-1.0.20.tgz", {}, "sha512-/djoAN709iY65ETD6LKCtyyEI04XIBP5xVvfmNxsEP0uJB5tyaGBztSryRr4HqMStr9R06PisQE7m9zDTXKu6g=="],
 
@@ -377,9 +431,13 @@
 
     "base64-js": ["base64-js@1.5.1", "http://repo.nju.edu.cn/npm/base64-js/-/base64-js-1.5.1.tgz", {}, "sha512-AKpaYlHn8t4SVbOHCy+b5+KKgvR4vrsD8vbvrbiQJps7fKDTkjkDry6ji0rUJjC0kzbNePLwzxq8iypo41qeWA=="],
 
+    "bcrypt-pbkdf": ["bcrypt-pbkdf@1.0.2", "http://repo.nju.edu.cn/npm/bcrypt-pbkdf/-/bcrypt-pbkdf-1.0.2.tgz", { "dependencies": { "tweetnacl": "^0.14.3" } }, "sha512-qeFIXtP4MSoi6NLqO12WfqARWWuCKi2Rn/9hJLEmtB5yTNr9DqFWkJRCf2qShWzPeAMRnOgCrq0sg/KLv5ES9w=="],
+
     "bignumber.js": ["bignumber.js@9.3.1", "http://repo.nju.edu.cn/npm/bignumber.js/-/bignumber.js-9.3.1.tgz", {}, "sha512-Ko0uX15oIUS7wJ3Rb30Fs6SkVbLmPBAKdlm7q9+ak9bbIeFf0MwuBsQV6z7+X768/cHsfg+WlysDWJcmthjsjQ=="],
 
     "bin-links": ["bin-links@6.0.3", "https://repo.nju.edu.cn/repository/npm/bin-links/-/bin-links-6.0.3.tgz", { "dependencies": { "cmd-shim": "^8.0.0", "npm-normalize-package-bin": "^5.0.0", "proc-log": "^6.0.0", "read-cmd-shim": "^6.0.0", "write-file-atomic": "^7.0.0" } }, "sha512-Qg5FD7/YSReWJB1zaM8VIi1l4O637JKK/WPaF/JzJGy/9FcMDWtSklF0dOX5S9X2OMrPGhifIHIKuwtHG0IGFg=="],
+
+    "bluebird": ["bluebird@2.11.0", "http://repo.nju.edu.cn/npm/bluebird/-/bluebird-2.11.0.tgz", {}, "sha512-UfFSr22dmHPQqPP9XWHRhq+gWnHCYguQGkXQlbyPtW5qTnhFWA8/iXg765tH0cAjy7l/zPJ1aBTO0g5XgA7kvQ=="],
 
     "body-parser": ["body-parser@2.4.0", "https://repo.nju.edu.cn/repository/npm/body-parser/-/body-parser-2.4.0.tgz", { "dependencies": { "bytes": "^3.1.2", "content-type": "^2.1.0", "debug": "^4.4.3", "http-errors": "^2.0.1", "iconv-lite": "^0.7.3", "on-finished": "^2.4.1", "qs": "^6.16.1", "raw-body": "^3.0.2", "type-is": "^2.1.0" } }, "sha512-Ifk1KcLrxaGt1occQagQNFNNOqRt1LFuehEnHHzB8Z6cRgIxRU1TBaiIsUiCdA+gy5PL7Y1IX31DNKkRmxtXjQ=="],
 
@@ -405,7 +463,9 @@
 
     "call-bound": ["call-bound@1.0.4", "http://repo.nju.edu.cn/npm/call-bound/-/call-bound-1.0.4.tgz", { "dependencies": { "call-bind-apply-helpers": "^1.0.2", "get-intrinsic": "^1.3.0" } }, "sha512-+ys997U96po4Kx/ABpBCqhA9EuxJaQWDQg7295H4hBphv3IZg0boBKuwYpt4YXp6MZ5AmZQnU/tyMTlRpaSejg=="],
 
-    "cheerio": ["cheerio@1.1.0", "http://repo.nju.edu.cn/npm/cheerio/-/cheerio-1.1.0.tgz", { "dependencies": { "cheerio-select": "^2.1.0", "dom-serializer": "^2.0.0", "domhandler": "^5.0.3", "domutils": "^3.2.2", "encoding-sniffer": "^0.2.0", "htmlparser2": "^10.0.0", "parse5": "^7.3.0", "parse5-htmlparser2-tree-adapter": "^7.1.0", "parse5-parser-stream": "^7.1.2", "undici": "^7.10.0", "whatwg-mimetype": "^4.0.0" } }, "sha512-+0hMx9eYhJvWbgpKV9hN7jg0JcwydpopZE4hgi+KvQtByZXPp04NiCWU0LzcAbP63abZckIHkTQaXVF52mX3xQ=="],
+    "caseless": ["caseless@0.12.0", "http://repo.nju.edu.cn/npm/caseless/-/caseless-0.12.0.tgz", {}, "sha512-4tYFyifaFfGacoiObjJegolkwSU4xQNGbVgUiNYVUxbQ2x2lUsFvY4hVgVzGiIe6WLOPqycWXA40l+PWsxthUw=="],
+
+    "cheerio": ["cheerio@1.2.0", "http://repo.nju.edu.cn/npm/cheerio/-/cheerio-1.2.0.tgz", { "dependencies": { "cheerio-select": "^2.1.0", "dom-serializer": "^2.0.0", "domhandler": "^5.0.3", "domutils": "^3.2.2", "encoding-sniffer": "^0.2.1", "htmlparser2": "^10.1.0", "parse5": "^7.3.0", "parse5-htmlparser2-tree-adapter": "^7.1.0", "parse5-parser-stream": "^7.1.2", "undici": "^7.19.0", "whatwg-mimetype": "^4.0.0" } }, "sha512-WDrybc/gKFpTYQutKIK6UvfcuxijIZfMfXaYm8NMsPQxSYvf+13fXUJ4rztGGbJcBQ/GF55gvrZ0Bc0bj/mqvg=="],
 
     "cheerio-select": ["cheerio-select@2.1.0", "http://repo.nju.edu.cn/npm/cheerio-select/-/cheerio-select-2.1.0.tgz", { "dependencies": { "boolbase": "^1.0.0", "css-select": "^5.1.0", "css-what": "^6.1.0", "domelementtype": "^2.3.0", "domhandler": "^5.0.3", "domutils": "^3.0.1" } }, "sha512-9v9kG0LvzrlcungtnJtpGNxY+fzECQKhK4EGJX2vByejiMX84MFNQw4UxPJl3bFbTMw+Dfs37XaIkCwTZfLh4g=="],
 
@@ -429,6 +489,8 @@
 
     "cookie-signature": ["cookie-signature@1.2.2", "http://repo.nju.edu.cn/npm/cookie-signature/-/cookie-signature-1.2.2.tgz", {}, "sha512-D76uU73ulSXrD1UXF4KE2TMxVVwhsnCgfAyTg9k8P6KGZjlXKrOLe4dJQKI3Bxi5wjesZoFXJWElNWBjPZMbhg=="],
 
+    "core-util-is": ["core-util-is@1.0.2", "http://repo.nju.edu.cn/npm/core-util-is/-/core-util-is-1.0.2.tgz", {}, "sha512-3lqz5YjWTYnW6dlDa5TLaTCcShfar1e40rmcJVwCBJC6mWlFuj0eCHIElmG1g5kyuJ/GD+8Wn4FFCcz4gJPfaQ=="],
+
     "cors": ["cors@2.8.6", "http://repo.nju.edu.cn/npm/cors/-/cors-2.8.6.tgz", { "dependencies": { "object-assign": "^4", "vary": "^1" } }, "sha512-tJtZBBHA6vjIAaF6EnIaq6laBBP9aq/Y3ouVJjEfoHbRBcHBAHYcMh/w8LDrk2PvIMMq8gmopa5D4V8RmbrxGw=="],
 
     "cross-fetch": ["cross-fetch@4.1.0", "http://repo.nju.edu.cn/npm/cross-fetch/-/cross-fetch-4.1.0.tgz", { "dependencies": { "node-fetch": "^2.7.0" } }, "sha512-uKm5PU+MHTootlWEY+mZ4vvXoCn4fLQxT9dSc1sXVMSFkINTJVN8cAQROpwcKm8bJ/c7rgZVIBWzH5T78sNZZw=="],
@@ -445,7 +507,11 @@
 
     "csstype": ["csstype@3.2.3", "http://repo.nju.edu.cn/npm/csstype/-/csstype-3.2.3.tgz", {}, "sha512-z1HGKcYy2xA8AGQfwrn0PAy+PB7X/GSj3UVJW9qKyn43xWa+gl5nXmU4qqLMRzWVLFC8KusUX8T/0kCiOYpAIQ=="],
 
+    "dashdash": ["dashdash@1.14.1", "http://repo.nju.edu.cn/npm/dashdash/-/dashdash-1.14.1.tgz", { "dependencies": { "assert-plus": "^1.0.0" } }, "sha512-jRFi8UDGo6j+odZiEpjazZaWqEal3w/basFjQHQEwVtZJGDpxbH1MeYluwCS8Xq5wmLJooDlMgvVarmWfGM44g=="],
+
     "data-uri-to-buffer": ["data-uri-to-buffer@4.0.1", "http://repo.nju.edu.cn/npm/data-uri-to-buffer/-/data-uri-to-buffer-4.0.1.tgz", {}, "sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A=="],
+
+    "dayjs": ["dayjs@1.11.23", "http://repo.nju.edu.cn/npm/dayjs/-/dayjs-1.11.23.tgz", {}, "sha512-QDTCU0M0MxR3hQfnlDJfwekQiaanm1ubOD231u73WBckQ/fsamwRLiE2GBz6D3a/xF1NgfiDLJjXBa1hYOYTtQ=="],
 
     "debug": ["debug@4.4.3", "http://repo.nju.edu.cn/npm/debug/-/debug-4.4.3.tgz", { "dependencies": { "ms": "^2.1.3" }, "peerDependencies": { "supports-color": "*" }, "optionalPeers": ["supports-color"] }, "sha512-RGwwWnwQvkVfavKVt22FGLw+xYSdzARwm0ru6DhTVA3umU5hZc28V3kO4stgYryrTlLpuvgI9GiijltAjNbcqA=="],
 
@@ -465,6 +531,8 @@
 
     "diff": ["diff@9.0.0", "http://repo.nju.edu.cn/npm/diff/-/diff-9.0.0.tgz", {}, "sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw=="],
 
+    "difflib": ["difflib@github:postlight/difflib.js#32e8e38", { "dependencies": { "heap": ">= 0.2.0" } }, "postlight-difflib.js-32e8e38", "sha512-F3O42rYPL5YUUVF6fsjC/cqYNFndWlzlruKQm4+hRGlcqb0oN6vgEKyLVSR8gr1azheYOEvrZwYo/LmBlaKxbQ=="],
+
     "dom-serializer": ["dom-serializer@2.0.0", "http://repo.nju.edu.cn/npm/dom-serializer/-/dom-serializer-2.0.0.tgz", { "dependencies": { "domelementtype": "^2.3.0", "domhandler": "^5.0.2", "entities": "^4.2.0" } }, "sha512-wIkAryiqt/nV5EQKqQpo3SToSOV9J0DnbJqwK7Wv/Trc92zIAYZ4FlMu+JPFW1DfGFt81ZTCGgDEabffXeLyJg=="],
 
     "domelementtype": ["domelementtype@2.3.0", "http://repo.nju.edu.cn/npm/domelementtype/-/domelementtype-2.3.0.tgz", {}, "sha512-OLETBj6w0OsagBwdXnPdN0cnMfF9opN69co+7ZrbfPGrdpPVNBUj02spi6B1N7wChLQiPn4CSH/zJvXw56gmHw=="],
@@ -473,17 +541,17 @@
 
     "domutils": ["domutils@3.2.2", "http://repo.nju.edu.cn/npm/domutils/-/domutils-3.2.2.tgz", { "dependencies": { "dom-serializer": "^2.0.0", "domelementtype": "^2.3.0", "domhandler": "^5.0.3" } }, "sha512-6kZKyUajlDuqlHKVX1w7gyslj9MPIXzIFiz/rGu35uC1wMi+kMhQwGhl4lt9unC9Vb9INnY9Z3/ZA3+FhASLaw=="],
 
-    "dotenv": ["dotenv@16.4.7", "http://repo.nju.edu.cn/npm/dotenv/-/dotenv-16.4.7.tgz", {}, "sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ=="],
-
     "duck-duck-scrape": ["duck-duck-scrape@2.2.7", "http://repo.nju.edu.cn/npm/duck-duck-scrape/-/duck-duck-scrape-2.2.7.tgz", { "dependencies": { "html-entities": "^2.3.3", "needle": "^3.2.0" } }, "sha512-BEcglwnfx5puJl90KQfX+Q2q5vCguqyMpZcSRPBWk8OY55qWwV93+E+7DbIkrGDW4qkqPfUvtOUdi0lXz6lEMQ=="],
 
     "dunder-proto": ["dunder-proto@1.0.1", "http://repo.nju.edu.cn/npm/dunder-proto/-/dunder-proto-1.0.1.tgz", { "dependencies": { "call-bind-apply-helpers": "^1.0.1", "es-errors": "^1.3.0", "gopd": "^1.2.0" } }, "sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A=="],
+
+    "ecc-jsbn": ["ecc-jsbn@0.1.2", "http://repo.nju.edu.cn/npm/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz", { "dependencies": { "jsbn": "~0.1.0", "safer-buffer": "^2.1.0" } }, "sha512-eh9O+hwRHNbG4BLTjEl3nw044CkGm5X6LoaCf7LPp7UU8Qrt47JYNi6nPX8xjW97TKGKm1ouctg0QSpZe9qrnw=="],
 
     "ecdsa-sig-formatter": ["ecdsa-sig-formatter@1.0.11", "http://repo.nju.edu.cn/npm/ecdsa-sig-formatter/-/ecdsa-sig-formatter-1.0.11.tgz", { "dependencies": { "safe-buffer": "^5.0.1" } }, "sha512-nagl3RYrbNv6kQkeJIpt6NJZy8twLB/2vtz6yN9Z4vRKHN4/QZJIEbqohALSgwKdnksuY3k5Addp5lg8sVoVcQ=="],
 
     "ee-first": ["ee-first@1.1.1", "http://repo.nju.edu.cn/npm/ee-first/-/ee-first-1.1.1.tgz", {}, "sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow=="],
 
-    "effect": ["effect@4.0.6", "https://repo.nju.edu.cn/repository/npm/effect/-/effect-4.0.6.tgz", {}, "sha512-Tc3mkzuLR6t6P9dhLt0D2GrxYtmU5td4XEJEiXCmILz53IRIfJyHsKZWjTA3xEjiwpNTtXBgI4iqYPxMztBDrw=="],
+    "effect": ["effect@4.1.0", "http://repo.nju.edu.cn/npm/effect/-/effect-4.1.0.tgz", {}, "sha512-lGx2MJJyrXA8RZb2UpQ/0Nkb5Utaimby7oD92+18noBxLPE85IFOvptdzau8dvcxAOwfwHo9iqapbKeFzqQM/Q=="],
 
     "emoji-regex": ["emoji-regex@10.6.0", "http://repo.nju.edu.cn/npm/emoji-regex/-/emoji-regex-10.6.0.tgz", {}, "sha512-toUI84YS5YmxW219erniWD0CIVOo46xGKColeNQRgOzDorgBi1v4D71/OFzgD9GO2UGKIv1C3Sp8DAn0+j5w7A=="],
 
@@ -511,9 +579,9 @@
 
     "eventsource": ["eventsource@3.0.7", "http://repo.nju.edu.cn/npm/eventsource/-/eventsource-3.0.7.tgz", { "dependencies": { "eventsource-parser": "^3.0.1" } }, "sha512-CRT1WTyuQoD771GW56XEZFQ/ZoSfWid1alKGDYMmkt2yl8UXrVR4pspqWNEcqKvVIzg6PAltWjxcSSPrboA4iA=="],
 
-    "eventsource-parser": ["eventsource-parser@3.1.1", "http://repo.nju.edu.cn/npm/eventsource-parser/-/eventsource-parser-3.1.1.tgz", {}, "sha512-EKN1vKAMcZ8MlYMpaNuxN6R9yakzH6uajHcHVTqWJzvu5pWw9DyhbP35HH8MVBQ+dZjAfDxk+A8NiR9KWaXiyQ=="],
+    "eventsource-parser": ["eventsource-parser@4.1.3", "http://repo.nju.edu.cn/npm/eventsource-parser/-/eventsource-parser-4.1.3.tgz", {}, "sha512-jZVIVilXZfAx6H20ZKKEj5dabbpD9ETmMj3uHsjMmgBzBHB6tsHrmdWB4mAiy3amtN6MOoVkfXRQu4wf1n88Rw=="],
 
-    "exa-js": ["exa-js@2.27.0", "https://repo.nju.edu.cn/repository/npm/exa-js/-/exa-js-2.27.0.tgz", { "dependencies": { "cross-fetch": "~4.1.0", "dotenv": "~16.4.7", "openai": "^5.0.1", "zod": "^3.22.0", "zod-to-json-schema": "^3.20.0" } }, "sha512-ZNXtune0tzXaNpppWZDeEyN5qHc1vQ8GHKY5cNo/0zATYv0yQuEIQDv11HvqbG6ww3fYChPXXxJODerD+Nz39A=="],
+    "exa-js": ["exa-js@2.28.0", "http://repo.nju.edu.cn/npm/exa-js/-/exa-js-2.28.0.tgz", { "dependencies": { "cross-fetch": "~4.1.0", "zod": "^3.25.28 || ^4.6.6", "zod-to-json-schema": "^3.25.2" } }, "sha512-GS6tCvHo9WPe5IsZNF+WR2ZPyepK+Z5i81LQBosA+9dDqslNhp3G3zceAze5ql76vT1uhQjnsi4ae5V7JTTOMA=="],
 
     "exponential-backoff": ["exponential-backoff@3.1.3", "http://repo.nju.edu.cn/npm/exponential-backoff/-/exponential-backoff-3.1.3.tgz", {}, "sha512-ZgEeZXj30q+I0EN+CbSSpIyPaJ5HVQD18Z1m+u1FXbAeT94mr1zw50q4q6jiiC447Nl/YTcIYSAftiGqetwXCA=="],
 
@@ -523,7 +591,11 @@
 
     "extend": ["extend@3.0.2", "http://repo.nju.edu.cn/npm/extend/-/extend-3.0.2.tgz", {}, "sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g=="],
 
+    "extsprintf": ["extsprintf@1.3.0", "http://repo.nju.edu.cn/npm/extsprintf/-/extsprintf-1.3.0.tgz", {}, "sha512-11Ndz7Nv+mvAC1j0ktTa7fAb0vLyGGX+rMHNBYQviQDGU0Hw7lhctJANqbPhu9nV9/izT/IntTgZ7Im/9LJs9g=="],
+
     "fast-deep-equal": ["fast-deep-equal@3.1.3", "http://repo.nju.edu.cn/npm/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz", {}, "sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q=="],
+
+    "fast-json-stable-stringify": ["fast-json-stable-stringify@2.1.0", "http://repo.nju.edu.cn/npm/fast-json-stable-stringify/-/fast-json-stable-stringify-2.1.0.tgz", {}, "sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw=="],
 
     "fast-uri": ["fast-uri@3.1.9", "http://repo.nju.edu.cn/npm/fast-uri/-/fast-uri-3.1.9.tgz", {}, "sha512-hS/0Wt3Ya043oKXs0sIxrMpKQITXhMLIrVAKKXi4gozGC9v7YRWVnXIZzjNPTO02M9BdxLCWqK1yRXgNziVyJQ=="],
 
@@ -538,6 +610,8 @@
     "file-type": ["file-type@22.3.0", "https://repo.nju.edu.cn/repository/npm/file-type/-/file-type-22.3.0.tgz", { "dependencies": { "@tokenizer/inflate": "^0.6.0", "strtok3": "^10.6.3", "token-types": "^6.1.2", "uint8array-extras": "^1.6.0" } }, "sha512-PrPedgnnWl5bWz3JHgar0QSzRvzeyFh7dZ9JpYOgcPZu4KALS9zw4MMa6qXRYyjeBsAlpaWB2boLuG991+0HIQ=="],
 
     "finalhandler": ["finalhandler@2.1.1", "http://repo.nju.edu.cn/npm/finalhandler/-/finalhandler-2.1.1.tgz", { "dependencies": { "debug": "^4.4.0", "encodeurl": "^2.0.0", "escape-html": "^1.0.3", "on-finished": "^2.4.1", "parseurl": "^1.3.3", "statuses": "^2.0.1" } }, "sha512-S8KoZgRZN+a5rNwqTxlZZePjT/4cnm0ROV70LedRHZ0p8u9fRID0hJUZQpkKLzro8LfmC8sx23bY6tVNxv8pQA=="],
+
+    "forever-agent": ["forever-agent@0.6.1", "http://repo.nju.edu.cn/npm/forever-agent/-/forever-agent-0.6.1.tgz", {}, "sha512-j0KLYPhm6zeac4lz3oJ3o65qvgQCcPubiyotZrXqEaG4hNagNYO8qdlUrX5vwqv9ohqeT/Z3j6+yW067yWWdUw=="],
 
     "form-data": ["form-data@4.0.6", "http://repo.nju.edu.cn/npm/form-data/-/form-data-4.0.6.tgz", { "dependencies": { "asynckit": "^0.4.0", "combined-stream": "^1.0.8", "es-set-tostringtag": "^2.1.0", "hasown": "^2.0.4", "mime-types": "^2.1.35" } }, "sha512-vKatAh4SlVfgbv+YtmhiRjhEMJsYpsG1Y2rMQtR+SVSbytsSD1YGzDIcrAJmdFec88u/+VoGmxnl+80gL1tRCQ=="],
 
@@ -561,7 +635,9 @@
 
     "get-proto": ["get-proto@1.0.1", "http://repo.nju.edu.cn/npm/get-proto/-/get-proto-1.0.1.tgz", { "dependencies": { "dunder-proto": "^1.0.1", "es-object-atoms": "^1.0.0" } }, "sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g=="],
 
-    "glob": ["glob@14.0.3", "http://repo.nju.edu.cn/npm/glob/-/glob-14.0.3.tgz", { "dependencies": { "minimatch": "^11.0.2", "minipass": "^7.1.3", "path-scurry": "^3.0.0" } }, "sha512-A1vjIwC3qpdCso45Iw127gnp7sPhqgY8lUQhDrArIs+GbmfaaVPFuoyy7WyLT9EPZCRZ7j7aLdwUhQmHWesEow=="],
+    "getpass": ["getpass@0.1.7", "http://repo.nju.edu.cn/npm/getpass/-/getpass-0.1.7.tgz", { "dependencies": { "assert-plus": "^1.0.0" } }, "sha512-0fzj9JxOLfJ+XGLhR8ze3unN0KZCgZwiSSDz168VERjK8Wl8kVSdcu2kspd4s4wtAa1y/qrVRiAA0WclVsu0ng=="],
+
+    "glob": ["glob@14.0.4", "http://repo.nju.edu.cn/npm/glob/-/glob-14.0.4.tgz", { "dependencies": { "minimatch": "^11.0.5", "minipass": "^7.1.3", "path-scurry": "^3.0.0" } }, "sha512-mMiwNKoJZ4HAIRVJxotO6LsNRReA30gQwP9E2/p94tfLv+jygCNpKDjhhSL6OLY6LE371EZm5EAf7RpYuUqlsw=="],
 
     "google-auth-library": ["google-auth-library@10.5.0", "http://repo.nju.edu.cn/npm/google-auth-library/-/google-auth-library-10.5.0.tgz", { "dependencies": { "base64-js": "^1.3.0", "ecdsa-sig-formatter": "^1.0.11", "gaxios": "^7.0.0", "gcp-metadata": "^8.0.0", "google-logging-utils": "^1.0.0", "gtoken": "^8.0.0", "jws": "^4.0.0" } }, "sha512-7ABviyMOlX5hIVD60YOfHw4/CxOfBhyduaYB+wbFWCWoni4N7SLcV46hrVRktuBbZjFC9ONyqamZITN7q3n32w=="],
 
@@ -577,13 +653,19 @@
 
     "gtoken": ["gtoken@8.0.0", "http://repo.nju.edu.cn/npm/gtoken/-/gtoken-8.0.0.tgz", { "dependencies": { "gaxios": "^7.0.0", "jws": "^4.0.0" } }, "sha512-+CqsMbHPiSTdtSO14O51eMNlrp9N79gmeqmXeouJOhfucAedHw9noVe/n5uJk3tbKE6a+6ZCQg3RPhVhHByAIw=="],
 
+    "har-schema": ["har-schema@2.0.0", "http://repo.nju.edu.cn/npm/har-schema/-/har-schema-2.0.0.tgz", {}, "sha512-Oqluz6zhGX8cyRaTQlFMPw80bSJVG2x/cFb8ZPhUILGgHka9SsokCCOQgpveePerqidZOrT14ipqfJb7ILcW5Q=="],
+
+    "har-validator": ["har-validator@5.1.5", "http://repo.nju.edu.cn/npm/har-validator/-/har-validator-5.1.5.tgz", { "dependencies": { "ajv": "^6.12.3", "har-schema": "^2.0.0" } }, "sha512-nmT2T0lljbxdQZfspsno9hgrG3Uir6Ks5afism62poxqBM6sDnMEuPmzTq8XN0OEwqKLLdh1jQI3qyE66Nzb3w=="],
+
     "has-symbols": ["has-symbols@1.1.0", "http://repo.nju.edu.cn/npm/has-symbols/-/has-symbols-1.1.0.tgz", {}, "sha512-1cDNdwJ2Jaohmb3sg4OmKaMBwuC48sYni5HUw2DvsC8LjGTLK9h+eb1X6RyuOHe4hT0ULCW68iomhjUoKUqlPQ=="],
 
     "has-tostringtag": ["has-tostringtag@1.0.2", "http://repo.nju.edu.cn/npm/has-tostringtag/-/has-tostringtag-1.0.2.tgz", { "dependencies": { "has-symbols": "^1.0.3" } }, "sha512-NqADB8VjPFLM2V0VvHUewwwsw0ZWBaIdgo+ieHtK3hasLz4qeCRjYcqfB6AQrBggRKppKF8L52/VqdVsO47Dlw=="],
 
     "hasown": ["hasown@2.0.4", "http://repo.nju.edu.cn/npm/hasown/-/hasown-2.0.4.tgz", { "dependencies": { "function-bind": "^1.1.2" } }, "sha512-T2UbfbBEF32wiepXIsMlTW9+dDYC6wMh/t/vYA4tuOMKqWz/n3vr1NFSxQiyP+zk2mXsoMA/i/7qV6LKut1t1A=="],
 
-    "hono": ["hono@4.13.16", "https://repo.nju.edu.cn/repository/npm/hono/-/hono-4.13.16.tgz", {}, "sha512-AOLOEhvrV+iH92xXCnFr/5+3KjPKcI3xP63XJtX5spAnkznPdHijlIsUTpi7/9EhWqrTCekw5c5zh1K+YsVw7A=="],
+    "heap": ["heap@0.2.7", "http://repo.nju.edu.cn/npm/heap/-/heap-0.2.7.tgz", {}, "sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg=="],
+
+    "hono": ["hono@4.13.17", "http://repo.nju.edu.cn/npm/hono/-/hono-4.13.17.tgz", {}, "sha512-vZIcbkvjOR5hHRWERbGkr8fGfF0GGM1ooYkuH448iO3b2AdVEr3AXZSw4Z3Kn+1L5z0CVoVeyV29VGYmFh05kQ=="],
 
     "hosted-git-info": ["hosted-git-info@9.0.3", "http://repo.nju.edu.cn/npm/hosted-git-info/-/hosted-git-info-9.0.3.tgz", { "dependencies": { "lru-cache": "^11.1.0" } }, "sha512-Hc+ghLoSt6QaYZUv0WBiIvmMDZuZZ7oaDvdH8MbfOO4lOsxdXLEvuC6ePoGs9H1X9oCLyq6+NVN0MKqD+ydxyg=="],
 
@@ -600,6 +682,8 @@
     "http-errors": ["http-errors@2.0.1", "http://repo.nju.edu.cn/npm/http-errors/-/http-errors-2.0.1.tgz", { "dependencies": { "depd": "~2.0.0", "inherits": "~2.0.4", "setprototypeof": "~1.2.0", "statuses": "~2.0.2", "toidentifier": "~1.0.1" } }, "sha512-4FbRdAX+bSdmo4AUFuS0WNiPz8NgFt+r8ThgNWmlrjQjt1Q7ZR9+zTlce2859x4KSXrwIsaeTqDoKQmtP8pLmQ=="],
 
     "http-proxy-agent": ["http-proxy-agent@7.0.2", "http://repo.nju.edu.cn/npm/http-proxy-agent/-/http-proxy-agent-7.0.2.tgz", { "dependencies": { "agent-base": "^7.1.0", "debug": "^4.3.4" } }, "sha512-T1gkAiYYDWYx3V5Bmyu7HcfcvL7mUrTWiM6yOfa3PIphViJ/gFPbvidQ+veqSOHci/PxBcDabeUNCzpOODJZig=="],
+
+    "http-signature": ["http-signature@1.2.0", "http://repo.nju.edu.cn/npm/http-signature/-/http-signature-1.2.0.tgz", { "dependencies": { "assert-plus": "^1.0.0", "jsprim": "^1.2.2", "sshpk": "^1.7.0" } }, "sha512-CAbnr6Rz4CYQkLYUtSNXxQPUH2gK8f3iWexVlsnMeD+GjlsQ0Xsy1cOX+mN3dtxYomRy21CiOzU8Uhw6OwncEQ=="],
 
     "https-proxy-agent": ["https-proxy-agent@7.0.6", "http://repo.nju.edu.cn/npm/https-proxy-agent/-/https-proxy-agent-7.0.6.tgz", { "dependencies": { "agent-base": "^7.1.2", "debug": "4" } }, "sha512-vK9P5/iUfdl95AI+JVyUuIcVtd4ofvtrOr3HNtM2yxC9bnMbEdp3x01OhQNnjb8IJYi38VlTE3mBXwcfvywuSw=="],
 
@@ -625,13 +709,19 @@
 
     "is-promise": ["is-promise@4.0.0", "http://repo.nju.edu.cn/npm/is-promise/-/is-promise-4.0.0.tgz", {}, "sha512-hvpoI6korhJMnej285dSg6nu1+e6uxs7zG3BYAm5byqDsgJNWwxzM6z6iZiAgQR4TJ30JmBTOwqZUw3WlyH3AQ=="],
 
+    "is-typedarray": ["is-typedarray@1.0.0", "http://repo.nju.edu.cn/npm/is-typedarray/-/is-typedarray-1.0.0.tgz", {}, "sha512-cyA56iCMHAh5CdzjJIa4aohJyeO1YbwLi3Jc35MmRU6poroFjIGZzUzupGiRPOjgHg9TLu43xbpwXk523fMxKA=="],
+
     "is-unsafe": ["is-unsafe@2.0.3", "https://repo.nju.edu.cn/repository/npm/is-unsafe/-/is-unsafe-2.0.3.tgz", {}, "sha512-ZBllczCCO267vgdFb6Tq3pv+LhHaCiGMdr+ZsuL+OopruAg7S+3ZDs1vD0RPC0uSrkjzbraxaGjtX1YBxjPeFQ=="],
 
     "is-wsl": ["is-wsl@3.1.1", "http://repo.nju.edu.cn/npm/is-wsl/-/is-wsl-3.1.1.tgz", { "dependencies": { "is-inside-container": "^1.0.0" } }, "sha512-e6rvdUCiQCAuumZslxRJWR/Doq4VpPR82kqclvcS0efgt430SlGIk05vdCN58+VrzgtIcfNODjozVielycD4Sw=="],
 
     "isexe": ["isexe@2.0.0", "http://repo.nju.edu.cn/npm/isexe/-/isexe-2.0.0.tgz", {}, "sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw=="],
 
+    "isstream": ["isstream@0.1.2", "http://repo.nju.edu.cn/npm/isstream/-/isstream-0.1.2.tgz", {}, "sha512-Yljz7ffyPbrLpLngrMtZ7NduUgVvi6wG9RJ9IUcyCd59YQ911PBJphODUcbOVbqYfxe1wuYf/LJ8PauMRwsM/g=="],
+
     "jose": ["jose@6.2.15", "https://repo.nju.edu.cn/repository/npm/jose/-/jose-6.2.15.tgz", {}, "sha512-qdF6ewcZARtef63fJ9AKKZPgxw+t7USH6HLXYcD4CrdmSvDp79rpJSPFEKc90QBeGS63u1KQtN2MZQHC0yDIzA=="],
+
+    "jsbn": ["jsbn@0.1.1", "http://repo.nju.edu.cn/npm/jsbn/-/jsbn-0.1.1.tgz", {}, "sha512-UVU9dibq2JcFWxQPA6KCqj5O42VOmAY3zQUfEKxU0KpTGXwNoCjkX1e13eHNvw/xPynt6pU0rZ1htjWTNTSXsg=="],
 
     "json-bigint": ["json-bigint@1.0.0", "http://repo.nju.edu.cn/npm/json-bigint/-/json-bigint-1.0.0.tgz", { "dependencies": { "bignumber.js": "^9.0.0" } }, "sha512-SiPv/8VpZuWbvLSMtTDU8hEfrZWg/mH/nV/b4o0CYbSxu1UIQPLdwKOCIyLQX+VIPO5vrLX3i8qtqFyhdPSUSQ=="],
 
@@ -645,7 +735,11 @@
 
     "json-stringify-nice": ["json-stringify-nice@1.1.4", "http://repo.nju.edu.cn/npm/json-stringify-nice/-/json-stringify-nice-1.1.4.tgz", {}, "sha512-5Z5RFW63yxReJ7vANgW6eZFGWaQvnPE3WNmZoOJrSkGju2etKA2L5rrOa1sm877TVTFt57A80BH1bArcmlLfPw=="],
 
+    "json-stringify-safe": ["json-stringify-safe@5.0.1", "http://repo.nju.edu.cn/npm/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz", {}, "sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA=="],
+
     "jsonparse": ["jsonparse@1.3.1", "http://repo.nju.edu.cn/npm/jsonparse/-/jsonparse-1.3.1.tgz", {}, "sha512-POQXvpdL69+CluYsillJ7SUhKvytYjW9vG/GKpnf+xP8UWgYEM/RaMzHHofbALDiKbbP1W8UEYmgGl39WkPZsg=="],
+
+    "jsprim": ["jsprim@1.4.2", "http://repo.nju.edu.cn/npm/jsprim/-/jsprim-1.4.2.tgz", { "dependencies": { "assert-plus": "1.0.0", "extsprintf": "1.3.0", "json-schema": "0.4.0", "verror": "1.10.0" } }, "sha512-P2bSOMAc/ciLz6DzgjVlGJP9+BrJWu5UDGK70C2iweC5QBIeFf0ZXRvGjEj2uYgrY2MkAAhsSWHDWlFtEroZWw=="],
 
     "just-diff": ["just-diff@6.0.2", "http://repo.nju.edu.cn/npm/just-diff/-/just-diff-6.0.2.tgz", {}, "sha512-S59eriX5u3/QhMNq3v/gm8Kd0w8OS6Tz2FS1NG4blv+z0MuQcBRJyFWjdovM0Rad4/P4aUPFtnkNjMjyMlMSYA=="],
 
@@ -661,11 +755,13 @@
 
     "linkedom": ["linkedom@0.18.15", "https://repo.nju.edu.cn/repository/npm/linkedom/-/linkedom-0.18.15.tgz", { "dependencies": { "css-select": "^7.0.0", "cssomnom": "^0.1.11", "html-escaper": "^3.0.3", "htmlparser2": "^10.1.0", "uhyphen": "^0.2.0" }, "peerDependencies": { "canvas": ">= 2" }, "optionalPeers": ["canvas"] }, "sha512-o0w7eD/SvoCao+pUi6dzocCLuMR11g4Tv/et0W2OUzwWmUcewntSzyl+Ua/K+0yKym0Y/Mav3nFAaI5Av5jvZg=="],
 
+    "lodash": ["lodash@4.18.1", "http://repo.nju.edu.cn/npm/lodash/-/lodash-4.18.1.tgz", {}, "sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q=="],
+
     "lru-cache": ["lru-cache@11.5.3", "http://repo.nju.edu.cn/npm/lru-cache/-/lru-cache-11.5.3.tgz", {}, "sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg=="],
 
     "make-fetch-happen": ["make-fetch-happen@15.0.6", "http://repo.nju.edu.cn/npm/make-fetch-happen/-/make-fetch-happen-15.0.6.tgz", { "dependencies": { "@gar/promise-retry": "^1.0.0", "@npmcli/agent": "^4.0.0", "@npmcli/redact": "^4.0.0", "cacache": "^20.0.1", "http-cache-semantics": "^4.1.1", "minipass": "^7.0.2", "minipass-fetch": "^5.0.0", "minipass-flush": "^1.0.5", "minipass-pipeline": "^1.2.4", "negotiator": "^1.0.0", "proc-log": "^6.0.0", "ssri": "^13.0.0" } }, "sha512-Je0fLJ0F5atA7F+eIlLzk+Wkcl57JDf4kf+EW8xiP5E31xOQxkIxTbgf1Oi1Lw9tRI9UEMRdI5Vz2xTzoNU1Jw=="],
 
-    "marked": ["marked@17.0.1", "http://repo.nju.edu.cn/npm/marked/-/marked-17.0.1.tgz", { "bin": { "marked": "bin/marked.js" } }, "sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg=="],
+    "marked": ["marked@18.1.3", "http://repo.nju.edu.cn/npm/marked/-/marked-18.1.3.tgz", { "bin": { "marked": "bin/marked.js" } }, "sha512-9ChMH8EVVgjgID49nsL6IWxWk5c6GtAsq/xw7U1ggkjkU5AGuv68oLTVlFRtvcUYZtpbNyjyvGo3YDu0fGapiw=="],
 
     "math-intrinsics": ["math-intrinsics@1.1.0", "http://repo.nju.edu.cn/npm/math-intrinsics/-/math-intrinsics-1.1.0.tgz", {}, "sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g=="],
 
@@ -675,11 +771,11 @@
 
     "merge-descriptors": ["merge-descriptors@2.0.0", "http://repo.nju.edu.cn/npm/merge-descriptors/-/merge-descriptors-2.0.0.tgz", {}, "sha512-Snk314V5ayFLhp3fkUREub6WtjBfPdCPY1Ln8/8munuLuiYhsABgBVWsozAG+MWMbVEvcdcpbi9R7ww22l9Q3g=="],
 
-    "mime-db": ["mime-db@1.54.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.54.0.tgz", {}, "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="],
+    "mime-db": ["mime-db@1.52.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.52.0.tgz", {}, "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="],
 
-    "mime-types": ["mime-types@3.0.2", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-3.0.2.tgz", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A=="],
+    "mime-types": ["mime-types@2.1.35", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-2.1.35.tgz", { "dependencies": { "mime-db": "1.52.0" } }, "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw=="],
 
-    "minimatch": ["minimatch@11.0.4", "http://repo.nju.edu.cn/npm/minimatch/-/minimatch-11.0.4.tgz", { "dependencies": { "@isaacs/nonrecursive-glob-match": "^1.0.3", "brace-expansion": "^5.0.12" } }, "sha512-/UJ1dEoVQTjPNDh6SGlUo+ueLMmoHTas4q+8yaAR/5t6nLAIiBDJtoYUh20IYleix7ehiQkgczb84PE3uzHkxg=="],
+    "minimatch": ["minimatch@11.0.5", "http://repo.nju.edu.cn/npm/minimatch/-/minimatch-11.0.5.tgz", { "dependencies": { "@isaacs/nonrecursive-glob-match": "^1.1.0", "brace-expansion": "^5.0.12" } }, "sha512-snPlVppFcYWfLLFQGhDxUyBcHNtMlWmn3jtj7pEaO+DP8pqL0IvAzXhMYmn1z9ASNtgmwLBdFxSf4tMUB0OTKA=="],
 
     "minipass": ["minipass@7.1.3", "http://repo.nju.edu.cn/npm/minipass/-/minipass-7.1.3.tgz", {}, "sha512-tEBHqDnIoM/1rXME1zgka9g6Q2lcoCkxHLuc7ODJ5BxbP5d4c2Z5cGgtXAku59200Cx7diuHTOYfSBD8n6mm8A=="],
 
@@ -725,6 +821,8 @@
 
     "nth-check": ["nth-check@3.0.1", "http://repo.nju.edu.cn/npm/nth-check/-/nth-check-3.0.1.tgz", { "dependencies": { "boolbase": "^2.0.0" } }, "sha512-GX0gsdbGVCgnRgbeGaubfjpBXyYRWOOCVeYh08bSQvDZqxz5ndXs1OTfAt/h36G1xvI94YIspsI0sVFqAV9+RQ=="],
 
+    "oauth-sign": ["oauth-sign@0.9.0", "http://repo.nju.edu.cn/npm/oauth-sign/-/oauth-sign-0.9.0.tgz", {}, "sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ=="],
+
     "object-assign": ["object-assign@4.1.1", "http://repo.nju.edu.cn/npm/object-assign/-/object-assign-4.1.1.tgz", {}, "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg=="],
 
     "object-inspect": ["object-inspect@1.13.4", "http://repo.nju.edu.cn/npm/object-inspect/-/object-inspect-1.13.4.tgz", {}, "sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew=="],
@@ -734,8 +832,6 @@
     "once": ["once@1.4.0", "http://repo.nju.edu.cn/npm/once/-/once-1.4.0.tgz", { "dependencies": { "wrappy": "1" } }, "sha512-lNaJgI+2Q5URQBkccEKHTQOPaXdUxnZZElQTZY0MFUAuaEqe1E+Nyvgdz/aIyNi6Z9MzO5dv1H8n58/GELp3+w=="],
 
     "open": ["open@11.0.4", "http://repo.nju.edu.cn/npm/open/-/open-11.0.4.tgz", { "dependencies": { "default-browser": "^5.5.1", "define-lazy-prop": "^3.0.0", "is-in-ssh": "^1.0.0", "is-inside-container": "^1.0.0", "powershell-utils": "^0.2.1", "wsl-utils": "^1.0.0" } }, "sha512-++Zlftm0kVLPmzC06t6epuWmcRMDbI4z5P3NNX979WA/k23+NtSOynEGzsVfZwguKw2mi5umVgnBlJQMwRz4Pg=="],
-
-    "openai": ["openai@5.23.2", "http://repo.nju.edu.cn/npm/openai/-/openai-5.23.2.tgz", { "peerDependencies": { "ws": "^8.18.0", "zod": "^3.23.8" }, "optionalPeers": ["ws", "zod"], "bin": { "openai": "bin/cli" } }, "sha512-MQBzmTulj+MM5O8SKEk/gL8a7s5mktS9zUtAkU257WjvobGc9nKcBuVwjyEEcb9SI8a8Y2G/mzn3vm9n1Jlleg=="],
 
     "p-map": ["p-map@7.1.1", "http://repo.nju.edu.cn/npm/p-map/-/p-map-7.1.1.tgz", {}, "sha512-6Lh3jQPLthYujSrlw6ccWXBGZTkoTCz27Hd92g79LH/kjAbgoEu0t442cCCNbegPSJsA0lwDX8z0bcKtkpA32g=="],
 
@@ -763,11 +859,17 @@
 
     "peberminta": ["peberminta@0.10.0", "http://repo.nju.edu.cn/npm/peberminta/-/peberminta-0.10.0.tgz", {}, "sha512-80B2AsU+I4Qdb0ZAPSfe9UwvGzwkM37IKIFEvdS3D/3Ndgv2bsuJ0bfG1+iEYO+l7Gfd4EUJmuRyq7efLgRMzQ=="],
 
+    "performance-now": ["performance-now@2.1.0", "http://repo.nju.edu.cn/npm/performance-now/-/performance-now-2.1.0.tgz", {}, "sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow=="],
+
     "picomatch": ["picomatch@4.0.7", "http://repo.nju.edu.cn/npm/picomatch/-/picomatch-4.0.7.tgz", {}, "sha512-qcJu88Q2IWqJsDD529JKMdwGm/dvInW4HvQnRwiH9JtihJvzGOscDtHE3x1pBKeUOTysQ8kVmLnJ2kJu7yhcGA=="],
 
     "pkce-challenge": ["pkce-challenge@5.0.1", "http://repo.nju.edu.cn/npm/pkce-challenge/-/pkce-challenge-5.0.1.tgz", {}, "sha512-wQ0b/W4Fr01qtpHlqSqspcj3EhBvimsdh0KlHhH8HRZnMsEa0ea2fTULOXOS9ccQr3om+GcGRk4e+isrZWV8qQ=="],
 
     "postcss-selector-parser": ["postcss-selector-parser@7.1.7", "http://repo.nju.edu.cn/npm/postcss-selector-parser/-/postcss-selector-parser-7.1.7.tgz", { "dependencies": { "cssesc": "^3.0.0", "util-deprecate": "^1.0.2" } }, "sha512-wWBro/7hJ40ye6TPiXkUQoXKCw23xSsjriUvqd7Uls9Sso3oLiON1flc18cCdnjgCRXw4fBVqUJJeOdDTh3P3g=="],
+
+    "postman-request": ["postman-request@2.88.1-postman.8-beta.1", "http://repo.nju.edu.cn/npm/postman-request/-/postman-request-2.88.1-postman.8-beta.1.tgz", { "dependencies": { "aws-sign2": "~0.7.0", "aws4": "^1.8.0", "caseless": "~0.12.0", "combined-stream": "~1.0.6", "extend": "~3.0.2", "forever-agent": "~0.6.1", "form-data": "~2.3.2", "har-validator": "~5.1.3", "http-signature": "~1.2.0", "is-typedarray": "~1.0.0", "isstream": "~0.1.2", "json-stringify-safe": "~5.0.1", "mime-types": "~2.1.19", "oauth-sign": "~0.9.0", "performance-now": "^2.1.0", "postman-url-encoder": "1.0.1", "qs": "~6.5.2", "safe-buffer": "^5.1.2", "stream-length": "^1.0.2", "tough-cookie": "~2.5.0", "tunnel-agent": "^0.6.0", "uuid": "^3.3.2" } }, "sha512-deC5UZlM1VimFhQdPN1NcbQMvLEtpUCTHZHMXWNv6vyNW7H98O3MJGTlk2xTlzB9BOpU2MCCgXNOPeNP2SU6iA=="],
+
+    "postman-url-encoder": ["postman-url-encoder@1.0.1", "http://repo.nju.edu.cn/npm/postman-url-encoder/-/postman-url-encoder-1.0.1.tgz", {}, "sha512-ned2lpcMpEG+n3ce2LEoGqUJeZsKNRYkViqKfJXe7rUQhLxjrrcp/lQ8TLycvX74lQZm52gkNVVgczmcJBOJ8w=="],
 
     "powershell-utils": ["powershell-utils@0.2.1", "http://repo.nju.edu.cn/npm/powershell-utils/-/powershell-utils-0.2.1.tgz", {}, "sha512-C+y9x90UElAddDZmV4qOx9W53B61PO7cIqWz2dQsWlwswuq4mr8NEwytdGKboYbQlGZ3awrkTeNvcZiZNHnQ8A=="],
 
@@ -781,7 +883,13 @@
 
     "proxy-addr": ["proxy-addr@2.0.8", "http://repo.nju.edu.cn/npm/proxy-addr/-/proxy-addr-2.0.8.tgz", { "dependencies": { "forwarded": "0.2.0", "ipaddr.js": "1.9.1" } }, "sha512-5nnx0yGyVUcY6t9RnWcARWtwT9F1D8O9rt08htPvnd49W1IgZtmLkhu9WfMzQj1cFxjHIO6connUNVW5k7AVyQ=="],
 
+    "psl": ["psl@1.15.0", "http://repo.nju.edu.cn/npm/psl/-/psl-1.15.0.tgz", { "dependencies": { "punycode": "^2.3.1" } }, "sha512-JZd3gMVBAVQkSs6HdNZo9Sdo0LNcQeMNP3CozBJb3JYC/QUYZTnKxP+f8oWRX4rHP5EurWxqAHTSwUCjlNKa1w=="],
+
+    "punycode": ["punycode@2.3.1", "http://repo.nju.edu.cn/npm/punycode/-/punycode-2.3.1.tgz", {}, "sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg=="],
+
     "qs": ["qs@6.17.1", "https://repo.nju.edu.cn/repository/npm/qs/-/qs-6.17.1.tgz", { "dependencies": { "es-define-property": "^1.0.1", "side-channel": "^1.1.1" } }, "sha512-jd3COkaKVgGUW+ZHyEHCG9bH7RoaaiWuMgzsIBjUMVjLAaWGWpoUAVwljVvBHxRu/2qEHnadLGZrkutYUBPQJA=="],
+
+    "querystringify": ["querystringify@2.2.0", "http://repo.nju.edu.cn/npm/querystringify/-/querystringify-2.2.0.tgz", {}, "sha512-FIqgj2EUvTa7R50u0rGsyTftzjYmv/a3hO345bZNrqabNqjtgiDMgmo4mkUjd+nzU5oF3dClKqFIPUKybUyqoQ=="],
 
     "range-parser": ["range-parser@1.3.0", "http://repo.nju.edu.cn/npm/range-parser/-/range-parser-1.3.0.tgz", {}, "sha512-hek2mFQpPuI4E1BBKrSto+BU3e3x4xuarsbiwr3+lf7p44juvFMV0XFWQAP3xUyqXA4RrXLIoaSUGbSt056ZMw=="],
 
@@ -792,6 +900,8 @@
     "redis": ["redis@6.3.1", "https://repo.nju.edu.cn/repository/npm/redis/-/redis-6.3.1.tgz", { "dependencies": { "@redis/bloom": "6.3.1", "@redis/client": "6.3.1", "@redis/json": "6.3.1", "@redis/search": "6.3.1", "@redis/time-series": "6.3.1" } }, "sha512-mV96ZKxQ4CGn3SyEGaY0Lb9YA443mdVey3c+mdr0NAUaBxiOZGoYCWX8PoM55kictSOmxlJRtZJxIsmZm3jL+w=="],
 
     "require-from-string": ["require-from-string@2.0.2", "http://repo.nju.edu.cn/npm/require-from-string/-/require-from-string-2.0.2.tgz", {}, "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw=="],
+
+    "requires-port": ["requires-port@1.0.0", "http://repo.nju.edu.cn/npm/requires-port/-/requires-port-1.0.0.tgz", {}, "sha512-KigOCHcocU3XODJxsu8i/j8T9tzT4adHiecwORRQ0ZZFcp7ahwXuRU1m+yuO90C5ZUyGeGfocHDI14M3L3yDAQ=="],
 
     "rimraf": ["rimraf@5.0.10", "http://repo.nju.edu.cn/npm/rimraf/-/rimraf-5.0.10.tgz", { "dependencies": { "glob": "^10.3.7" }, "bin": { "rimraf": "dist/esm/bin.mjs" } }, "sha512-l0OE8wL34P4nJH/H2ffoaniAokM2qSmrtXHmlpvYr5AVVX8msAyW0l8NVJFDxlSK4u3Uh/f41cQheDVdnYijwQ=="],
 
@@ -851,9 +961,15 @@
 
     "spdx-license-ids": ["spdx-license-ids@3.0.24", "http://repo.nju.edu.cn/npm/spdx-license-ids/-/spdx-license-ids-3.0.24.tgz", {}, "sha512-cLS9TtWkIQFyLkJ3/5aFQAOHOSKTlOs/7WDut/XPSdjom1fJhUdkepeJAKXa9Y05+FabHd0sti+Et559vDtkpQ=="],
 
+    "sshpk": ["sshpk@1.18.0", "http://repo.nju.edu.cn/npm/sshpk/-/sshpk-1.18.0.tgz", { "dependencies": { "asn1": "~0.2.3", "assert-plus": "^1.0.0", "bcrypt-pbkdf": "^1.0.0", "dashdash": "^1.12.0", "ecc-jsbn": "~0.1.1", "getpass": "^0.1.1", "jsbn": "~0.1.0", "safer-buffer": "^2.0.2", "tweetnacl": "~0.14.0" }, "bin": { "sshpk-conv": "bin/sshpk-conv", "sshpk-sign": "bin/sshpk-sign", "sshpk-verify": "bin/sshpk-verify" } }, "sha512-2p2KJZTSqQ/I3+HX42EpYOa2l3f8Erv8MWKsy2I9uf4wA7yFIkXRffYdsx86y6z4vHtV8u7g+pPlr8/4ouAxsQ=="],
+
     "ssri": ["ssri@13.0.1", "http://repo.nju.edu.cn/npm/ssri/-/ssri-13.0.1.tgz", { "dependencies": { "minipass": "^7.0.3" } }, "sha512-QUiRf1+u9wPTL/76GTYlKttDEBWV1ga9ZXW8BG6kfdeyyM8LGPix9gROyg9V2+P0xNyF3X2Go526xKFdMZrHSQ=="],
 
     "statuses": ["statuses@2.0.2", "http://repo.nju.edu.cn/npm/statuses/-/statuses-2.0.2.tgz", {}, "sha512-DvEy55V3DB7uknRo+4iOGT5fP1slR8wQohVdknigZPMpMstaKJQWhwiYBACJE3Ul2pTnATihhBYnRhZQHGBiRw=="],
+
+    "stream-length": ["stream-length@1.0.2", "http://repo.nju.edu.cn/npm/stream-length/-/stream-length-1.0.2.tgz", { "dependencies": { "bluebird": "^2.6.2" } }, "sha512-aI+qKFiwoDV4rsXiS7WRoCt+v2RX1nUj17+KJC5r2gfh5xoSJIfP6Y3Do/HtvesFcTSWthIuJ3l1cvKQY/+nZg=="],
+
+    "string-direction": ["string-direction@0.1.2", "http://repo.nju.edu.cn/npm/string-direction/-/string-direction-0.1.2.tgz", {}, "sha512-NJHQRg6GlOEMLA6jEAlSy21KaXvJDNoAid/v6fBAJbqdvOEIiPpCrIPTHnl4636wUF/IGyktX5A9eddmETb1Cw=="],
 
     "string-width": ["string-width@7.2.0", "http://repo.nju.edu.cn/npm/string-width/-/string-width-7.2.0.tgz", { "dependencies": { "emoji-regex": "^10.3.0", "get-east-asian-width": "^1.0.0", "strip-ansi": "^7.1.0" } }, "sha512-tsaTIkKW9b4N+AEj+SVA+WhJzV7/zMhcSu78mLKWSk7cXMOSHsBKFWUs0fWwq8QyK3MgJBQRX6Gbi4kYbdvGkQ=="],
 
@@ -873,7 +989,23 @@
 
     "token-types": ["token-types@6.2.0", "https://repo.nju.edu.cn/repository/npm/token-types/-/token-types-6.2.0.tgz", { "dependencies": { "@borewit/text-codec": "^0.2.3", "@tokenizer/token": "^0.3.0", "ieee754": "^1.2.1" } }, "sha512-s9euYHM//T3loJtbNUYdbAzsMlvKBeRS+XCLFy+UGosMQH19Hwjap5k19i4PPAEJJBsVIpMpVTxl4fIqCuNfUg=="],
 
+    "tough-cookie": ["tough-cookie@4.1.4", "http://repo.nju.edu.cn/npm/tough-cookie/-/tough-cookie-4.1.4.tgz", { "dependencies": { "psl": "^1.1.33", "punycode": "^2.1.1", "universalify": "^0.2.0", "url-parse": "^1.5.3" } }, "sha512-Loo5UUvLD9ScZ6jh8beX1T6sO1w2/MpCRpEP7V280GKMVUQ0Jzar2U3UJPsrdbziLEMMhu3Ujnq//rhiFuIeag=="],
+
     "tr46": ["tr46@0.0.3", "http://repo.nju.edu.cn/npm/tr46/-/tr46-0.0.3.tgz", {}, "sha512-N3WMsuqV66lT30CrXNbEjx4GEwlow3v6rr4mCcv6prnfwhS01rkgyFdjPNBYd9br7LpXV1+Emh01fHnq2Gdgrw=="],
+
+    "trafilatura": ["trafilatura@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura/-/trafilatura-0.2.0.tgz", { "optionalDependencies": { "trafilatura-darwin-arm64": "0.2.0", "trafilatura-darwin-x64": "0.2.0", "trafilatura-linux-arm64-gnu": "0.2.0", "trafilatura-linux-x64-gnu": "0.2.0", "trafilatura-win32-arm64-msvc": "0.2.0", "trafilatura-win32-x64-msvc": "0.2.0" } }, "sha512-xhg3C3tpQvvIBGVLEorL4v4y5+eZNbJmrSO6YfmZy8ScAKI2JQ1dcwqUxvQlGxbGtp7gnktTYStnRSaOJM1KwA=="],
+
+    "trafilatura-darwin-arm64": ["trafilatura-darwin-arm64@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura-darwin-arm64/-/trafilatura-darwin-arm64-0.2.0.tgz", { "os": "darwin", "cpu": "arm64" }, "sha512-nIDsYiqoHlmPKaZ88diA/le6dudwpnf3FT/Z++0oJcFcU0dD8sQg7SqRe6pVl548D+iqOUjibaloFun1OLkZnw=="],
+
+    "trafilatura-darwin-x64": ["trafilatura-darwin-x64@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura-darwin-x64/-/trafilatura-darwin-x64-0.2.0.tgz", { "os": "darwin", "cpu": "x64" }, "sha512-uN5vFYB154kQJiuuMTWtV28fOIB+emqIvxCkWPFZ2yddYr0YxTCuV4QKekDHQf53xI3ZG/RxRnOWxjf9bLVLhA=="],
+
+    "trafilatura-linux-arm64-gnu": ["trafilatura-linux-arm64-gnu@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura-linux-arm64-gnu/-/trafilatura-linux-arm64-gnu-0.2.0.tgz", { "os": "linux", "cpu": "arm64", "libc": "glibc" }, "sha512-UV5VKGCJtWWXpp2HCTQ31AbizccPtm9SPvL5Dn/hYGH0j5QanReuuQouLcjRPmvZJEO6/xfEjaPD7u3a3Ajc9w=="],
+
+    "trafilatura-linux-x64-gnu": ["trafilatura-linux-x64-gnu@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura-linux-x64-gnu/-/trafilatura-linux-x64-gnu-0.2.0.tgz", { "os": "linux", "cpu": "x64", "libc": "glibc" }, "sha512-qXBOCMREI9bQVScLE9CnAGue2r6KGBPJEQPE3xKEyGSMOhb/XbHkhXWVpR30AlK7VFUFwrG5Z7Ux5DC3i8Wn9g=="],
+
+    "trafilatura-win32-arm64-msvc": ["trafilatura-win32-arm64-msvc@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura-win32-arm64-msvc/-/trafilatura-win32-arm64-msvc-0.2.0.tgz", { "os": "win32", "cpu": "arm64" }, "sha512-KInq4MiSnvvdsW8nVV6FHSnyK4WzZq+4ykDyqQ9bNZw5N7Zd+LoDvpfzj74p9ylmZb//KbfaraWxqMpHKeKCHA=="],
+
+    "trafilatura-win32-x64-msvc": ["trafilatura-win32-x64-msvc@0.2.0", "http://repo.nju.edu.cn/npm/trafilatura-win32-x64-msvc/-/trafilatura-win32-x64-msvc-0.2.0.tgz", { "os": "win32", "cpu": "x64" }, "sha512-T8CPXhOOkwn1zD6LJq6fY7Zh1mSZDVeJUOYc6+Ha0uzoEK44p4c14YtQ6w21XwhKWzrA68n43Dm1MpuBplyAfQ=="],
 
     "treeverse": ["treeverse@3.0.0", "http://repo.nju.edu.cn/npm/treeverse/-/treeverse-3.0.0.tgz", {}, "sha512-gcANaAnd2QDZFmHFEOF4k7uc1J/6a6z3DJMd/QwEyxLoKGiptJRwid582r7QIsFlFMIZ3SnxfS52S4hm2DHkuQ=="],
 
@@ -881,7 +1013,11 @@
 
     "tuf-js": ["tuf-js@4.1.0", "http://repo.nju.edu.cn/npm/tuf-js/-/tuf-js-4.1.0.tgz", { "dependencies": { "@tufjs/models": "4.1.0", "debug": "^4.4.3", "make-fetch-happen": "^15.0.1" } }, "sha512-50QV99kCKH5P/Vs4E2Gzp7BopNV+KzTXqWeaxrfu5IQJBOULRsTIS9seSsOVT8ZnGXzCyx55nYWAi4qJzpZKEQ=="],
 
+    "tunnel-agent": ["tunnel-agent@0.6.0", "http://repo.nju.edu.cn/npm/tunnel-agent/-/tunnel-agent-0.6.0.tgz", { "dependencies": { "safe-buffer": "^5.0.1" } }, "sha512-McnNiV1l8RYeY8tBgEpuodCC1mLUdbSN+CYBL7kJsJNInOP8UjDDEwdk6Mw60vdLLrr5NHKZhMAOSrR2NZuQ+w=="],
+
     "turndown": ["turndown@7.2.5", "https://repo.nju.edu.cn/repository/npm/turndown/-/turndown-7.2.5.tgz", { "dependencies": { "@mixmark-io/domino": "^2.2.0" } }, "sha512-EKZvCCFHh8sWttpAMs10U6niZFJ2cpz8LkCPlylxoG4JcHF50J7EHnnBW3AY1qXtUMu7kDjCp7dnggB1sIbqEQ=="],
+
+    "tweetnacl": ["tweetnacl@0.14.5", "http://repo.nju.edu.cn/npm/tweetnacl/-/tweetnacl-0.14.5.tgz", {}, "sha512-KXXFFdAbFXY4geFIwoyNK+f5Z1b7swfXABfL7HXCmoIWMKU3dmS26672A4EeQtDzLKy7SXmfBu51JolvEKwtGA=="],
 
     "type-is": ["type-is@2.1.0", "http://repo.nju.edu.cn/npm/type-is/-/type-is-2.1.0.tgz", { "dependencies": { "content-type": "^2.0.0", "media-typer": "^1.1.0", "mime-types": "^3.0.0" } }, "sha512-faYHw0anBbc/kWF3zFTEnxSFOAGUX9GFbOBthvDdLsIlEoWOFOtS0zgCiQYwIskL9iGXZL3kAXD8OoZ4GmMATA=="],
 
@@ -891,21 +1027,31 @@
 
     "uint8array-extras": ["uint8array-extras@1.6.0", "http://repo.nju.edu.cn/npm/uint8array-extras/-/uint8array-extras-1.6.0.tgz", {}, "sha512-8iAasVS4wUx0gPLjH8Xtz2PeDzTSiy8QiLGu2DT3X5GU+egFEQhpnbtkehbAwjvDcxIERmCYcysiODFmE3Ud0Q=="],
 
-    "undici": ["undici@8.12.4", "https://repo.nju.edu.cn/repository/npm/undici/-/undici-8.12.4.tgz", {}, "sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA=="],
+    "undici": ["undici@7.30.2", "http://repo.nju.edu.cn/npm/undici/-/undici-7.30.2.tgz", {}, "sha512-mLyPQnHwUxaM/rideoK/+KL8DaAJLRl4aBCfmX444aCSLnIaomqPLtNRe2jdCYcsk5wZzXrDIQC8ZeYNRAYyIA=="],
 
     "undici-types": ["undici-types@6.21.0", "http://repo.nju.edu.cn/npm/undici-types/-/undici-types-6.21.0.tgz", {}, "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ=="],
 
+    "universalify": ["universalify@0.2.0", "http://repo.nju.edu.cn/npm/universalify/-/universalify-0.2.0.tgz", {}, "sha512-CJ1QgKmNg3CwvAv/kOFmtnEN05f0D/cn9QntgNOQlQF9dgvVTHj3t+8JPdjqawCHk7V/KA+fbUqzZ9XWhcqPUg=="],
+
     "unpipe": ["unpipe@1.0.0", "http://repo.nju.edu.cn/npm/unpipe/-/unpipe-1.0.0.tgz", {}, "sha512-pjy2bYhSsufwWlKwPc+l3cN7+wuJlK6uz0YdJEOlQDbl6jo/YlPi4mb8agUkVC8BF7V8NuzeyPNqRksA3hztKQ=="],
 
+    "uri-js": ["uri-js@4.4.1", "http://repo.nju.edu.cn/npm/uri-js/-/uri-js-4.4.1.tgz", { "dependencies": { "punycode": "^2.1.0" } }, "sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg=="],
+
+    "url-parse": ["url-parse@1.5.10", "http://repo.nju.edu.cn/npm/url-parse/-/url-parse-1.5.10.tgz", { "dependencies": { "querystringify": "^2.1.1", "requires-port": "^1.0.0" } }, "sha512-WypcfiRhfeUP9vvF0j6rw0J3hrWrw6iZv3+22h6iRMJ/8z1Tj6XfLP4DsUix5MhMPnXpiHDoKyoZ/bdCkwBCiQ=="],
+
     "util-deprecate": ["util-deprecate@1.0.2", "http://repo.nju.edu.cn/npm/util-deprecate/-/util-deprecate-1.0.2.tgz", {}, "sha512-EPD5q1uXyFxJpCrLnCc1nHnq3gOa6DZBocAIiI2TaSCA7VCJ1UJDMagCzIkXNsUYfD1daK//LTEQ8xiIbrHtcw=="],
+
+    "uuid": ["uuid@3.4.0", "http://repo.nju.edu.cn/npm/uuid/-/uuid-3.4.0.tgz", { "bin": { "uuid": "./bin/uuid" } }, "sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A=="],
 
     "validate-npm-package-name": ["validate-npm-package-name@7.0.2", "http://repo.nju.edu.cn/npm/validate-npm-package-name/-/validate-npm-package-name-7.0.2.tgz", {}, "sha512-hVDIBwsRruT73PbK7uP5ebUt+ezEtCmzZz3F59BSr2F6OVFnJ/6h8liuvdLrQ88Xmnk6/+xGGuq+pG9WwTuy3A=="],
 
     "vary": ["vary@1.1.2", "http://repo.nju.edu.cn/npm/vary/-/vary-1.1.2.tgz", {}, "sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg=="],
 
+    "verror": ["verror@1.10.0", "http://repo.nju.edu.cn/npm/verror/-/verror-1.10.0.tgz", { "dependencies": { "assert-plus": "^1.0.0", "core-util-is": "1.0.2", "extsprintf": "^1.2.0" } }, "sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw=="],
+
     "walk-up-path": ["walk-up-path@4.0.0", "http://repo.nju.edu.cn/npm/walk-up-path/-/walk-up-path-4.0.0.tgz", {}, "sha512-3hu+tD8YzSLGuFYtPRb48vdhKMi0KQV5sn+uWr8+7dMEq/2G/dtLrdDinkLjqq5TIbIBjYJ4Ax/n3YiaW7QM8A=="],
 
-    "web-rotate-core": ["web-rotate-core@0.1.0", "http://repo.nju.edu.cn/npm/web-rotate-core/-/web-rotate-core-0.1.0.tgz", { "dependencies": { "@ai-sdk/anthropic": "^4.0.97", "@ai-sdk/google": "^4.0.112", "@ai-sdk/openai": "^4.0.109", "@ai-sdk/xai": "^5.0.39", "@hyperbrowser/sdk": "^1.4.1", "@modelcontextprotocol/sdk": "^1.32.2", "@truto/turndown-plugin-gfm": "^1.0.7", "@types/turndown": "^5.0.6", "ai": "^7.0.163", "defuddle": "~0.19.6", "duck-duck-scrape": "^2.2.7", "es-toolkit": "^1.53.2", "exa-js": "^2.27.0", "fast-xml-parser": "^5.12.0", "file-type": "^22.3.0", "google-sr": "^6.0.0", "html-to-text": "^10.0.1", "keenable": "~0.1.4", "linkedom": "~0.18.15", "marked": "^18.1.3", "p-map": "^7.1.1", "scrapfly-sdk": "~0.12.0", "turndown": "^7.2.5", "zod": "^4.6.7" } }, "sha512-hJO4IrieUex9XLtb0RgmQL0/mFVXm2dMu8DT7AchuEwmiB4STmNZv7amk6HLcQ9vZmsgcA8SRnO7L4MTQEEXrg=="],
+    "web-rotate-core": ["web-rotate-core@0.2.0", "http://repo.nju.edu.cn/npm/web-rotate-core/-/web-rotate-core-0.2.0.tgz", { "dependencies": { "eventsource-parser": "^4.1.3", "lru-cache": "^11.5.3" }, "peerDependencies": { "@ai-sdk/anthropic": "^4.0.97", "@ai-sdk/google": "^4.0.112", "@ai-sdk/openai": "^4.0.109", "@ai-sdk/xai": "^5.0.39", "@extractus/article-extractor": "^9.0.1", "@firecrawl/html-extractor": "^0.1.2", "@hyperbrowser/sdk": "^1.4.1", "@jocmp/mercury-parser": "^3.1.2", "@modelcontextprotocol/sdk": "^1.32.2", "@mozilla/readability": "^0.6.0", "@truto/turndown-plugin-gfm": "^1.0.7", "ai": "^7.0.163", "defuddle": "~0.19.6", "duck-duck-scrape": "^2.2.7", "es-toolkit": "^1.53.2", "exa-js": "^2.27.0", "fast-xml-parser": "^5.12.0", "file-type": "^22.3.0", "google-sr": "^6.0.0", "html-to-text": "^10.0.1", "keenable": "~0.1.4", "linkedom": "~0.18.15", "marked": "^18.1.3", "p-map": "^7.1.1", "scrapfly-sdk": "~0.12.0", "trafilatura": "^0.2.0", "turndown": "^7.2.5", "zod": "^4.6.7" }, "optionalPeers": ["@ai-sdk/anthropic", "@ai-sdk/google", "@ai-sdk/openai", "@ai-sdk/xai", "@extractus/article-extractor", "@firecrawl/html-extractor", "@hyperbrowser/sdk", "@jocmp/mercury-parser", "@modelcontextprotocol/sdk", "@mozilla/readability", "@truto/turndown-plugin-gfm", "ai", "defuddle", "duck-duck-scrape", "es-toolkit", "exa-js", "fast-xml-parser", "file-type", "google-sr", "html-to-text", "keenable", "linkedom", "marked", "p-map", "scrapfly-sdk", "trafilatura", "turndown", "zod"] }, "sha512-64sDdH+3z8m/55KdFsDKDuKbKBoBsn1b9rcJQZt/meSxDzdJPuS4y+FP1BWsFod6AegV6o9FU1t4qjvY3ZxMxg=="],
 
     "web-streams-polyfill": ["web-streams-polyfill@3.3.3", "http://repo.nju.edu.cn/npm/web-streams-polyfill/-/web-streams-polyfill-3.3.3.tgz", {}, "sha512-d2JWLCivmZYTSIoge9MsgFCZrt571BikcWGYkjC1khllbTeDlGqZ2D8vD8E/lJa8WGWbb7Plm8/XJYV7IJHZZw=="],
 
@@ -929,27 +1075,19 @@
 
     "wsl-utils": ["wsl-utils@1.0.1", "http://repo.nju.edu.cn/npm/wsl-utils/-/wsl-utils-1.0.1.tgz", { "dependencies": { "is-wsl": "^3.1.0", "powershell-utils": "^0.2.0" } }, "sha512-c16PKLIRxBYpR3jSWsdS7SFp0COm5SOQdiFjY818dYFHJbMGuLBszpF07LBWmOS1uzrHa9VGdynsEgoeKy0oOQ=="],
 
+    "wuzzy": ["wuzzy@0.1.8", "http://repo.nju.edu.cn/npm/wuzzy/-/wuzzy-0.1.8.tgz", { "dependencies": { "lodash": "^4.17.15" } }, "sha512-FUzKQepFSTnANsDYwxpIzGJ/dIJaqxuMre6tzzbvWwFAiUHPsI1nVQVCLK4Xqr67KO7oYAK0kaCcI/+WYj/7JA=="],
+
     "xml-naming": ["xml-naming@0.3.0", "http://repo.nju.edu.cn/npm/xml-naming/-/xml-naming-0.3.0.tgz", {}, "sha512-ghig2TBE/H11aOVgmahA3MhimvkBr6JIYknH/Dhdk10nXwdbIqBJsbfMxpvFPG8bAw77gN29aQWvKpmVoPlvPQ=="],
 
     "yallist": ["yallist@5.0.0", "http://repo.nju.edu.cn/npm/yallist/-/yallist-5.0.0.tgz", {}, "sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw=="],
+
+    "yargs-parser": ["yargs-parser@22.0.0", "http://repo.nju.edu.cn/npm/yargs-parser/-/yargs-parser-22.0.0.tgz", {}, "sha512-rwu/ClNdSMpkSrUb+d6BRsSkLUq1fmfsY6TOpYzTwvwkg1/NRG85KBy3kq++A8LKQwX6lsu+aWad+2khvuXrqw=="],
 
     "zod": ["zod@4.6.7", "http://repo.nju.edu.cn/npm/zod/-/zod-4.6.7.tgz", {}, "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="],
 
     "zod-to-json-schema": ["zod-to-json-schema@3.25.2", "http://repo.nju.edu.cn/npm/zod-to-json-schema/-/zod-to-json-schema-3.25.2.tgz", { "peerDependencies": { "zod": "^3.25.28 || ^4" } }, "sha512-O/PgfnpT1xKSDeQYSCfRI5Gy3hPf91mKVDuYLUHZJMiDFptvP41MSnWofm8dnCm0256ZNfZIM7DSzuSMAFnjHA=="],
 
-    "@ai-sdk/anthropic/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
-
-    "@ai-sdk/gateway/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
-
-    "@ai-sdk/google/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
-
-    "@ai-sdk/openai/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
-
-    "@ai-sdk/provider-utils/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
-
-    "@ai-sdk/provider-utils/undici": ["undici@7.30.2", "http://repo.nju.edu.cn/npm/undici/-/undici-7.30.2.tgz", {}, "sha512-mLyPQnHwUxaM/rideoK/+KL8DaAJLRl4aBCfmX444aCSLnIaomqPLtNRe2jdCYcsk5wZzXrDIQC8ZeYNRAYyIA=="],
-
-    "@ai-sdk/xai/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
+    "@ai-sdk/provider-utils/eventsource-parser": ["eventsource-parser@3.1.1", "http://repo.nju.edu.cn/npm/eventsource-parser/-/eventsource-parser-3.1.1.tgz", {}, "sha512-EKN1vKAMcZ8MlYMpaNuxN6R9yakzH6uajHcHVTqWJzvu5pWw9DyhbP35HH8MVBQ+dZjAfDxk+A8NiR9KWaXiyQ=="],
 
     "@aws-crypto/sha256-browser/@smithy/util-utf8": ["@smithy/util-utf8@2.3.0", "http://repo.nju.edu.cn/npm/@smithy/util-utf8/-/util-utf8-2.3.0.tgz", { "dependencies": { "@smithy/util-buffer-from": "^2.2.0", "tslib": "^2.6.2" } }, "sha512-R8Rdn8Hy72KKcebgLiv8jQcQkXoLMOGGv5uI1/k0l+snqkOzQ1R0ChUBCxWMlBsFMekWjq0wRudIweFs7sKT5A=="],
 
@@ -957,19 +1095,33 @@
 
     "@deno/shim-deno/which": ["which@4.0.0", "http://repo.nju.edu.cn/npm/which/-/which-4.0.0.tgz", { "dependencies": { "isexe": "^3.1.1" }, "bin": { "node-which": "bin/which.js" } }, "sha512-GlaYyEb07DPxYCKhKzplCWBJtvxZcZMrL+4UkrTSJHHPyZU4mYYTv3qaOe77H7EODLSSopAUFAc6W8U4yqvscg=="],
 
+    "@effect/platform-node/undici": ["undici@8.12.4", "https://repo.nju.edu.cn/repository/npm/undici/-/undici-8.12.4.tgz", {}, "sha512-8Mx+uNKKER2bA4AdtedkqRbwUCIJFr2nJckXRe5yrDqzePqwLP7VNcctN8/XdmDSbF7mS+jJKIszlL+vbam1VA=="],
+
+    "@jocmp/mercury-parser/browser-request": ["browser-request@github:postlight/browser-request#38faa5b", { "dependencies": { "http-headers": "^3.0.1" }, "bundled": true }, "postlight-browser-request-38faa5b", "sha512-FIZ2CpTg1NtOjnwp2Wh1v/C1DqI0VU2lM0L5c+Oz3sBOnlJ9jADQO0alJSKyL3zPWJy747IFtL0Zc2s/WFNGog=="],
+
+    "@jocmp/mercury-parser/http-headers": ["http-headers@3.0.2", "http://repo.nju.edu.cn/npm/http-headers/-/http-headers-3.0.2.tgz", { "dependencies": { "next-line": "^1.1.0" } }, "sha512-87E1I+2Wg4dxxz4rcxElo3dxO/w1ZtgL1yA0Sb6vH3qU16vRKq1NjWQv9SCY3ly2OQROcoxHZOUpmelS+k6wOw=="],
+
+    "@jocmp/mercury-parser/next-line": ["next-line@1.1.0", "http://repo.nju.edu.cn/npm/next-line/-/next-line-1.1.0.tgz", {}, "sha512-+I10J3wKNoKddNxn0CNpoZ3eTZuqxjNM3b1GImVx22+ePI+Y15P8g/j3WsbP0fhzzrFzrtjOAoq5NCCucswXOQ=="],
+
+    "@modelcontextprotocol/sdk/eventsource-parser": ["eventsource-parser@3.1.1", "http://repo.nju.edu.cn/npm/eventsource-parser/-/eventsource-parser-3.1.1.tgz", {}, "sha512-EKN1vKAMcZ8MlYMpaNuxN6R9yakzH6uajHcHVTqWJzvu5pWw9DyhbP35HH8MVBQ+dZjAfDxk+A8NiR9KWaXiyQ=="],
+
     "@npmcli/git/which": ["which@6.0.1", "http://repo.nju.edu.cn/npm/which/-/which-6.0.1.tgz", { "dependencies": { "isexe": "^4.0.0" }, "bin": { "node-which": "bin/which.js" } }, "sha512-oGLe46MIrCRqX7ytPUf66EAYvdeMIZYn3WaocqqKZAxrBpkqHfL/qvTyJ/bTk5+AqHCjXmrv3CEWgy368zhRUg=="],
 
     "@npmcli/promise-spawn/which": ["which@6.0.1", "http://repo.nju.edu.cn/npm/which/-/which-6.0.1.tgz", { "dependencies": { "isexe": "^4.0.0" }, "bin": { "node-which": "bin/which.js" } }, "sha512-oGLe46MIrCRqX7ytPUf66EAYvdeMIZYn3WaocqqKZAxrBpkqHfL/qvTyJ/bTk5+AqHCjXmrv3CEWgy368zhRUg=="],
 
-    "@opencode/theme/@opentui/core": ["@opentui/core@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core/-/core-0.8.0.tgz", { "dependencies": { "bun-ffi-structs": "0.3.1", "diff": "9.0.0", "marked": "17.0.1", "string-width": "7.2.0" }, "optionalDependencies": { "@opentui/core-darwin-arm64": "0.8.0", "@opentui/core-darwin-x64": "0.8.0", "@opentui/core-linux-arm64": "0.8.0", "@opentui/core-linux-arm64-musl": "0.8.0", "@opentui/core-linux-x64": "0.8.0", "@opentui/core-linux-x64-musl": "0.8.0", "@opentui/core-win32-arm64": "0.8.0", "@opentui/core-win32-x64": "0.8.0" }, "peerDependencies": { "web-tree-sitter": "0.25.10" } }, "sha512-LwnIT7k+rGelridv7390enJXZpNuQYKIS3NdttJyoLPjbRFPyHnAKkCHk6X8MRS64vcSjOeVq9sl7XLWII16jQ=="],
+    "@opencode/plugin/@ai-sdk/provider": ["@ai-sdk/provider@3.0.8", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-3.0.8.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-oGMAgGoQdBXbZqNG0Ze56CHjDZ1IDYOwGYxYjO5KLSlz5HiNQ9udIXsPZ61VWaHGZ5XW/jyjmr6t2xz2jGVwbQ=="],
+
+    "@opencode/theme/@opentui/core": ["@opentui/core@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core/-/core-0.8.1.tgz", { "dependencies": { "bun-ffi-structs": "0.3.1", "diff": "9.0.0", "marked": "17.0.1", "string-width": "7.2.0" }, "optionalDependencies": { "@opentui/core-darwin-arm64": "0.8.1", "@opentui/core-darwin-x64": "0.8.1", "@opentui/core-linux-arm64": "0.8.1", "@opentui/core-linux-arm64-musl": "0.8.1", "@opentui/core-linux-x64": "0.8.1", "@opentui/core-linux-x64-musl": "0.8.1", "@opentui/core-win32-arm64": "0.8.1", "@opentui/core-win32-x64": "0.8.1" }, "peerDependencies": { "web-tree-sitter": "0.25.10" } }, "sha512-WmnpnVZn2MdyYNEahQNn4k3OrIkQKfcwPVrX/DjguLtl/S2g5fPeXCqHZjCg2GLMf1N4HJap0LEkTPJEvfrDXw=="],
+
+    "@opencode/util/mime-types": ["mime-types@3.0.2", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-3.0.2.tgz", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A=="],
 
     "@opentelemetry/api-logs/@opentelemetry/api": ["@opentelemetry/api@1.9.1", "http://repo.nju.edu.cn/npm/@opentelemetry/api/-/api-1.9.1.tgz", {}, "sha512-gLyJlPHPZYdAk1JENA9LeHejZe1Ti77/pTeFm/nMXmQH/HFZlcS/O2XJB+L8fkbrNSqhdtlvjBVjxwUYanNH5Q=="],
 
-    "ai/@ai-sdk/provider": ["@ai-sdk/provider@4.0.36", "http://repo.nju.edu.cn/npm/@ai-sdk/provider/-/provider-4.0.36.tgz", { "dependencies": { "json-schema": "^0.4.0" } }, "sha512-GqvWZSZdBelCGughlBdOoupT258rgM3YMbaLAS9WSZJ0vlt8c9vm3My+ZT31mYhiReMCMCF2qF2axnGbILpk1A=="],
+    "@opentui/core/marked": ["marked@17.0.1", "http://repo.nju.edu.cn/npm/marked/-/marked-17.0.1.tgz", { "bin": { "marked": "bin/marked.js" } }, "sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg=="],
+
+    "accepts/mime-types": ["mime-types@3.0.2", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-3.0.2.tgz", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A=="],
 
     "body-parser/content-type": ["content-type@2.1.0", "http://repo.nju.edu.cn/npm/content-type/-/content-type-2.1.0.tgz", {}, "sha512-mj7UPXE0jaqaOsukNZRUEfEi2AcL7C/vwmwcHV0O97eO1E1pxBZuyjlZrx5seTaNBg1U6+o35wpa35Qfcc+7ag=="],
-
-    "cheerio/undici": ["undici@7.30.2", "https://repo.nju.edu.cn/repository/npm/undici/-/undici-7.30.2.tgz", {}, "sha512-mLyPQnHwUxaM/rideoK/+KL8DaAJLRl4aBCfmX444aCSLnIaomqPLtNRe2jdCYcsk5wZzXrDIQC8ZeYNRAYyIA=="],
 
     "cheerio-select/boolbase": ["boolbase@1.0.0", "http://repo.nju.edu.cn/npm/boolbase/-/boolbase-1.0.0.tgz", {}, "sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww=="],
 
@@ -983,15 +1135,21 @@
 
     "encoding-sniffer/iconv-lite": ["iconv-lite@0.6.3", "http://repo.nju.edu.cn/npm/iconv-lite/-/iconv-lite-0.6.3.tgz", { "dependencies": { "safer-buffer": ">= 2.1.2 < 3.0.0" } }, "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw=="],
 
+    "eventsource/eventsource-parser": ["eventsource-parser@3.1.1", "http://repo.nju.edu.cn/npm/eventsource-parser/-/eventsource-parser-3.1.1.tgz", {}, "sha512-EKN1vKAMcZ8MlYMpaNuxN6R9yakzH6uajHcHVTqWJzvu5pWw9DyhbP35HH8MVBQ+dZjAfDxk+A8NiR9KWaXiyQ=="],
+
     "express/content-type": ["content-type@2.1.0", "http://repo.nju.edu.cn/npm/content-type/-/content-type-2.1.0.tgz", {}, "sha512-mj7UPXE0jaqaOsukNZRUEfEi2AcL7C/vwmwcHV0O97eO1E1pxBZuyjlZrx5seTaNBg1U6+o35wpa35Qfcc+7ag=="],
 
-    "form-data/mime-types": ["mime-types@2.1.35", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-2.1.35.tgz", { "dependencies": { "mime-db": "1.52.0" } }, "sha512-ZDY+bPm5zTTF+YpCrAU9nK0UgICYPT0QtT1NZWFv4s++TNkcgVaT0g6+4R2uI4MjQjzysHB1zxuWL50hzaeXiw=="],
+    "express/mime-types": ["mime-types@3.0.2", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-3.0.2.tgz", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A=="],
 
     "gaxios/node-fetch": ["node-fetch@3.3.2", "http://repo.nju.edu.cn/npm/node-fetch/-/node-fetch-3.3.2.tgz", { "dependencies": { "data-uri-to-buffer": "^4.0.0", "fetch-blob": "^3.1.4", "formdata-polyfill": "^4.0.10" } }, "sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA=="],
 
     "gcp-metadata/gaxios": ["gaxios@7.1.3", "http://repo.nju.edu.cn/npm/gaxios/-/gaxios-7.1.3.tgz", { "dependencies": { "extend": "^3.0.2", "https-proxy-agent": "^7.0.1", "node-fetch": "^3.3.2", "rimraf": "^5.0.1" } }, "sha512-YGGyuEdVIjqxkxVH1pUTMY/XtmmsApXrCVv5EU25iX6inEPbV+VakJfLealkBtJN69AQmh1eGOdCl9Sm1UP6XQ=="],
 
     "gcp-metadata/google-logging-utils": ["google-logging-utils@1.1.3", "http://repo.nju.edu.cn/npm/google-logging-utils/-/google-logging-utils-1.1.3.tgz", {}, "sha512-eAmLkjDjAFCVXg7A1unxHsLf961m6y17QFqXqAXGj/gVkKFrEICfStRfwUlGNfeCEjNRa32JEWOUTlYXPyyKvA=="],
+
+    "google-sr/cheerio": ["cheerio@1.1.0", "http://repo.nju.edu.cn/npm/cheerio/-/cheerio-1.1.0.tgz", { "dependencies": { "cheerio-select": "^2.1.0", "dom-serializer": "^2.0.0", "domhandler": "^5.0.3", "domutils": "^3.2.2", "encoding-sniffer": "^0.2.0", "htmlparser2": "^10.0.0", "parse5": "^7.3.0", "parse5-htmlparser2-tree-adapter": "^7.1.0", "parse5-parser-stream": "^7.1.2", "undici": "^7.10.0", "whatwg-mimetype": "^4.0.0" } }, "sha512-+0hMx9eYhJvWbgpKV9hN7jg0JcwydpopZE4hgi+KvQtByZXPp04NiCWU0LzcAbP63abZckIHkTQaXVF52mX3xQ=="],
+
+    "har-validator/ajv": ["ajv@6.15.0", "http://repo.nju.edu.cn/npm/ajv/-/ajv-6.15.0.tgz", { "dependencies": { "fast-deep-equal": "^3.1.1", "fast-json-stable-stringify": "^2.0.0", "json-schema-traverse": "^0.4.1", "uri-js": "^4.2.2" } }, "sha512-fgFx7Hfoq60ytK2c7DhnF8jIvzYgOMxfugjLOSMHjLIPgenqa7S7oaagATUq99mV6IYvN2tRmC0wnTYX6iPbMw=="],
 
     "htmlparser2/entities": ["entities@7.0.1", "http://repo.nju.edu.cn/npm/entities/-/entities-7.0.1.tgz", {}, "sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA=="],
 
@@ -1009,11 +1167,15 @@
 
     "parse5/entities": ["entities@6.0.1", "http://repo.nju.edu.cn/npm/entities/-/entities-6.0.1.tgz", {}, "sha512-aN97NXWF6AWBTahfVOIrB/NShkzi5H7F9r1s9mD3cDj4Ko5f2qhhVoYMibXF7GlLveb/D2ioWay8lxI97Ven3g=="],
 
+    "postman-request/form-data": ["form-data@2.5.6", "http://repo.nju.edu.cn/npm/form-data/-/form-data-2.5.6.tgz", { "dependencies": { "asynckit": "^0.4.0", "combined-stream": "^1.0.8", "es-set-tostringtag": "^2.1.0", "hasown": "^2.0.4", "mime-types": "^2.1.35", "safe-buffer": "^5.2.1" } }, "sha512-Ogz/E85h9tlfJzpI6TuFpGcHZFhLrb9Gw8wq9v40CxSCPnv7ahKr6Xgtkn0KYCDQJ8DNn5VoMO8EXr9V5PadyA=="],
+
     "scrapfly-sdk/cheerio": ["cheerio@1.0.0-rc.12", "http://repo.nju.edu.cn/npm/cheerio/-/cheerio-1.0.0-rc.12.tgz", { "dependencies": { "cheerio-select": "^2.1.0", "dom-serializer": "^2.0.0", "domhandler": "^5.0.3", "domutils": "^3.0.1", "htmlparser2": "^8.0.1", "parse5": "^7.0.0", "parse5-htmlparser2-tree-adapter": "^7.0.0" } }, "sha512-VqR8m68vM46BNnuZ5NtnGBKIE/DfN0cRIzg9n40EIq9NOv90ayxLBXA8fXC5gquFRGJSTRqBq25Jt2ECLR431Q=="],
+
+    "send/mime-types": ["mime-types@3.0.2", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-3.0.2.tgz", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A=="],
 
     "type-is/content-type": ["content-type@2.1.0", "http://repo.nju.edu.cn/npm/content-type/-/content-type-2.1.0.tgz", {}, "sha512-mj7UPXE0jaqaOsukNZRUEfEi2AcL7C/vwmwcHV0O97eO1E1pxBZuyjlZrx5seTaNBg1U6+o35wpa35Qfcc+7ag=="],
 
-    "web-rotate-core/marked": ["marked@18.1.3", "http://repo.nju.edu.cn/npm/marked/-/marked-18.1.3.tgz", { "bin": { "marked": "bin/marked.js" } }, "sha512-9ChMH8EVVgjgID49nsL6IWxWk5c6GtAsq/xw7U1ggkjkU5AGuv68oLTVlFRtvcUYZtpbNyjyvGo3YDu0fGapiw=="],
+    "type-is/mime-types": ["mime-types@3.0.2", "http://repo.nju.edu.cn/npm/mime-types/-/mime-types-3.0.2.tgz", { "dependencies": { "mime-db": "^1.54.0" } }, "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A=="],
 
     "whatwg-encoding/iconv-lite": ["iconv-lite@0.6.3", "http://repo.nju.edu.cn/npm/iconv-lite/-/iconv-lite-0.6.3.tgz", { "dependencies": { "safer-buffer": ">= 2.1.2 < 3.0.0" } }, "sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw=="],
 
@@ -1027,21 +1189,27 @@
 
     "@npmcli/promise-spawn/which/isexe": ["isexe@4.0.0", "http://repo.nju.edu.cn/npm/isexe/-/isexe-4.0.0.tgz", {}, "sha512-FFUtZMpoZ8RqHS3XeXEmHWLA4thH+ZxCv2lOiPIn1Xc7CxrqhWzNSDzD+/chS/zbYezmiwWLdQC09JdQKmthOw=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-darwin-arm64": ["@opentui/core-darwin-arm64@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-arm64/-/core-darwin-arm64-0.8.0.tgz", { "os": "darwin", "cpu": "arm64" }, "sha512-Cp+BL1DsRZhUG56AuyXlH8DA4dsKfZ3Qgh1XMYDGokkC4p9uv8kdNNhyzmURAFa2LK77XqVv1Zhwr/6DqqpMlw=="],
+    "@opencode/theme/@opentui/core/@opentui/core-darwin-arm64": ["@opentui/core-darwin-arm64@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-arm64/-/core-darwin-arm64-0.8.1.tgz", { "os": "darwin", "cpu": "arm64" }, "sha512-22jdbN55W9hCraw6k1y3TklzCvF90UJG7d1wvtUYwsn9LOEvOZn+i3fUyqkpP+kBgL31RBt+sB4RKsUmNzjWaw=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-darwin-x64": ["@opentui/core-darwin-x64@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-x64/-/core-darwin-x64-0.8.0.tgz", { "os": "darwin", "cpu": "x64" }, "sha512-Jp4pzdIuKsS3XYq9xuWuAO52tTj9gnWeeoI3bg456CF6XnY2yQMasWOd/WmjfvYfAaJzGDFa4DNXhByBMPVuTw=="],
+    "@opencode/theme/@opentui/core/@opentui/core-darwin-x64": ["@opentui/core-darwin-x64@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-darwin-x64/-/core-darwin-x64-0.8.1.tgz", { "os": "darwin", "cpu": "x64" }, "sha512-rlqzXisgUl3U7WmrWySFLLZq6x9ZQiSRSGLyyULBFWTZLJY4qrs2a7y/8B0NpIFY7Ngku17qVIKcVwQZZBoLbw=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-linux-arm64": ["@opentui/core-linux-arm64@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64/-/core-linux-arm64-0.8.0.tgz", { "os": "linux", "cpu": "arm64" }, "sha512-b6D/VP9y0Z18tO86GSTp9BBykgR6r5CQM1ol9UMJfUt+PjN5HGksbOCDTMIQufXvt4WIUFHrSBProysJRFzbYw=="],
+    "@opencode/theme/@opentui/core/@opentui/core-linux-arm64": ["@opentui/core-linux-arm64@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64/-/core-linux-arm64-0.8.1.tgz", { "os": "linux", "cpu": "arm64" }, "sha512-UtJzpwvAy67RU60T1IFNBYHH3tUrmcIHsLrNI+8WFFxoOk6btwRp67NKiZd3qoDcztTz2q/yKf9KQI0yr+P6MQ=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-linux-arm64-musl": ["@opentui/core-linux-arm64-musl@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64-musl/-/core-linux-arm64-musl-0.8.0.tgz", { "os": "linux", "cpu": "arm64", "libc": "musl" }, "sha512-8ZPl/2DChcS7XIVRPIazigXaMNyxa2bwvuzPprNbzT0+cVJLIoGC19pjiV3bI3oVXBPVMNqgIcppOrEHBhlouw=="],
+    "@opencode/theme/@opentui/core/@opentui/core-linux-arm64-musl": ["@opentui/core-linux-arm64-musl@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-linux-arm64-musl/-/core-linux-arm64-musl-0.8.1.tgz", { "os": "linux", "cpu": "arm64", "libc": "musl" }, "sha512-BzVCOuG5Vw/nB9ffLwZq82uEg0f0BE4wkd5EvrqOET9qK5D5emT4Zo8tZJFY8NG0/xBuWj6S9xVpazQWjZR17A=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-linux-x64": ["@opentui/core-linux-x64@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64/-/core-linux-x64-0.8.0.tgz", { "os": "linux", "cpu": "x64" }, "sha512-aXBNIdE6iMf58/Tdnd6UzXeFjYfaHzQ6E0nukjLe2ir41/meJJYEAHUQ62EBr/gxvuCNZHTBQB4T9BzF7PdENQ=="],
+    "@opencode/theme/@opentui/core/@opentui/core-linux-x64": ["@opentui/core-linux-x64@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64/-/core-linux-x64-0.8.1.tgz", { "os": "linux", "cpu": "x64" }, "sha512-du4V6YlGvCWs/ggc6Tj7Oc7qaoYdPpzwAeJMKUbjrg+Zv5zweNHFMN4YLbzIutTi6Ukz4KsW/hwEaQIjXHlUcA=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-linux-x64-musl": ["@opentui/core-linux-x64-musl@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64-musl/-/core-linux-x64-musl-0.8.0.tgz", { "os": "linux", "cpu": "x64", "libc": "musl" }, "sha512-xGEYw6wkX0sPwPx6RosQZanuWF0+5cIup2alhHHQQfKJkcLS8r8NBWlcy2LK9CoEWH6SBtNXC+9Y5IrryCOvJQ=="],
+    "@opencode/theme/@opentui/core/@opentui/core-linux-x64-musl": ["@opentui/core-linux-x64-musl@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-linux-x64-musl/-/core-linux-x64-musl-0.8.1.tgz", { "os": "linux", "cpu": "x64", "libc": "musl" }, "sha512-RB/u2G5X4KpW1/rT5iabCLYbmfMWKF3OASj2Z29+RAj38I7caRU3/TTntpX3CpHzjQrDTVWyMYzcnu+WFF8thg=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-win32-arm64": ["@opentui/core-win32-arm64@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-win32-arm64/-/core-win32-arm64-0.8.0.tgz", { "os": "win32", "cpu": "arm64" }, "sha512-XtK0QMyIiqeDmrIyyAXqqp7TKaRGaWnBlbnEsNrkRLrgP+aLwRhRSHdafxi+RMqj3h9qOlb1MgnPal1kx7wP4g=="],
+    "@opencode/theme/@opentui/core/@opentui/core-win32-arm64": ["@opentui/core-win32-arm64@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-win32-arm64/-/core-win32-arm64-0.8.1.tgz", { "os": "win32", "cpu": "arm64" }, "sha512-wF5AZRWDCjkfRHT1cRfyvHkf+RI/Pxjb0oMFVg2h2ayndBu8CSgyQDhtNgZd0ON+xrP4xceikCkHDhDLe5bv1w=="],
 
-    "@opencode/theme/@opentui/core/@opentui/core-win32-x64": ["@opentui/core-win32-x64@0.8.0", "http://repo.nju.edu.cn/npm/@opentui/core-win32-x64/-/core-win32-x64-0.8.0.tgz", { "os": "win32", "cpu": "x64" }, "sha512-P5X2RcDDntIJ4q1WvQawGWCae5BzHrm50PMy7+PZ3Su8GGwnaCQ5xRHvDIQfhki8pZMo2SoTOkpStR0Wj1QoXQ=="],
+    "@opencode/theme/@opentui/core/@opentui/core-win32-x64": ["@opentui/core-win32-x64@0.8.1", "http://repo.nju.edu.cn/npm/@opentui/core-win32-x64/-/core-win32-x64-0.8.1.tgz", { "os": "win32", "cpu": "x64" }, "sha512-+rIrkvwBJMGWdXn4GGQAmM4y+RH1Xvb9nveNyJ58SOsTOBqyWyi+63qMlxe58WVl+sVAJodEjAILcWdwrzMJ3Q=="],
+
+    "@opencode/theme/@opentui/core/marked": ["marked@17.0.1", "http://repo.nju.edu.cn/npm/marked/-/marked-17.0.1.tgz", { "bin": { "marked": "bin/marked.js" } }, "sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg=="],
+
+    "@opencode/util/mime-types/mime-db": ["mime-db@1.54.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.54.0.tgz", {}, "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="],
+
+    "accepts/mime-types/mime-db": ["mime-db@1.54.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.54.0.tgz", {}, "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="],
 
     "cheerio-select/css-select/nth-check": ["nth-check@2.1.1", "http://repo.nju.edu.cn/npm/nth-check/-/nth-check-2.1.1.tgz", { "dependencies": { "boolbase": "^1.0.0" } }, "sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w=="],
 
@@ -1051,9 +1219,11 @@
 
     "css-select/domutils/domelementtype": ["domelementtype@3.0.0", "http://repo.nju.edu.cn/npm/domelementtype/-/domelementtype-3.0.0.tgz", {}, "sha512-umCQid3jKbDmVjx8jGaW7uUykm4DEUeyV21hPxNMo2nV955DhUThwqyOIDtreepP31hl84X7G5U9ZfsWvIB3Pg=="],
 
-    "form-data/mime-types/mime-db": ["mime-db@1.52.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.52.0.tgz", {}, "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="],
+    "express/mime-types/mime-db": ["mime-db@1.54.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.54.0.tgz", {}, "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="],
 
     "gcp-metadata/gaxios/node-fetch": ["node-fetch@3.3.2", "http://repo.nju.edu.cn/npm/node-fetch/-/node-fetch-3.3.2.tgz", { "dependencies": { "data-uri-to-buffer": "^4.0.0", "fetch-blob": "^3.1.4", "formdata-polyfill": "^4.0.10" } }, "sha512-dRB78srN/l6gqWulah9SrxeYnxeddIG30+GOqK/9OlLVyLg3HPnr6SqOWTWOXKRwC2eGYCkZ59NNuSgvSrpgOA=="],
+
+    "har-validator/ajv/json-schema-traverse": ["json-schema-traverse@0.4.1", "http://repo.nju.edu.cn/npm/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz", {}, "sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg=="],
 
     "minipass-flush/minipass/yallist": ["yallist@4.0.0", "http://repo.nju.edu.cn/npm/yallist/-/yallist-4.0.0.tgz", {}, "sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A=="],
 
@@ -1062,6 +1232,10 @@
     "node-gyp/which/isexe": ["isexe@4.0.0", "http://repo.nju.edu.cn/npm/isexe/-/isexe-4.0.0.tgz", {}, "sha512-FFUtZMpoZ8RqHS3XeXEmHWLA4thH+ZxCv2lOiPIn1Xc7CxrqhWzNSDzD+/chS/zbYezmiwWLdQC09JdQKmthOw=="],
 
     "scrapfly-sdk/cheerio/htmlparser2": ["htmlparser2@8.0.2", "http://repo.nju.edu.cn/npm/htmlparser2/-/htmlparser2-8.0.2.tgz", { "dependencies": { "domelementtype": "^2.3.0", "domhandler": "^5.0.3", "domutils": "^3.0.1", "entities": "^4.4.0" } }, "sha512-GYdjWKDkbRLkZ5geuHs5NY1puJ+PXwP7+fHPRz06Eirsb9ugf6d8kkXav6ADhcODhFFPMIXyxkxSuMf3D6NCFA=="],
+
+    "send/mime-types/mime-db": ["mime-db@1.54.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.54.0.tgz", {}, "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="],
+
+    "type-is/mime-types/mime-db": ["mime-db@1.54.0", "http://repo.nju.edu.cn/npm/mime-db/-/mime-db-1.54.0.tgz", {}, "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ=="],
 
     "css-select/domutils/dom-serializer/entities": ["entities@8.1.0", "http://repo.nju.edu.cn/npm/entities/-/entities-8.1.0.tgz", {}, "sha512-kxL7msIffSuh9aaFAMD7rxAIuTRMAHMeBtgHW2yUdWw732ZNh4MehkF2gdjvtdmikkaIP9bFDDJOPlsvm7avrA=="],
   }
