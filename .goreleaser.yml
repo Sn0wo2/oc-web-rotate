@@ -5,12 +5,6 @@ builds:
   - id: app
     skip: true
 
-archives:
-  - id: app
-    meta: true
-    name_template: "{{ .ProjectName }}_{{ .Version }}"
-    formats: [none]
-
 checksum:
   disable: true
 
