@@ -1,6 +1,6 @@
 {
   "name": "oc-web-rotate",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Rotate OpenCode2 web search and fetch providers",
   "keywords": [
     "opencode",
