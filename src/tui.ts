@@ -26,13 +26,20 @@ const isBox = (node: Renderable | null | undefined): node is BoxRenderable =>
 const readText = (node: unknown, cache?: Map<object, string>): string => {
   if (typeof node === "string") return node
   if (!node || typeof node !== "object") return ""
-  const value = node as Renderable & { children?: unknown }
+  const value = node as Renderable & { children?: unknown; content?: unknown }
   const cached = cache?.get(value)
   if (cached !== undefined) return cached
   let text = ""
-  if (Array.isArray(value.children) && !isText(value))
+  if (isText(value)) {
+    const content = value.content as { chunks?: { text?: unknown }[] } | string | undefined
+    text =
+      typeof content === "string"
+        ? content
+        : Array.isArray(content?.chunks)
+          ? content.chunks.map((chunk) => (typeof chunk?.text === "string" ? chunk.text : "")).join("")
+          : (value.getTextChildren() as unknown[]).map((child) => readText(child, cache)).join("")
+  } else if (Array.isArray(value.children))
     text = (value.children as unknown[]).map((child) => readText(child, cache)).join("")
-  else if (isText(value)) text = (value.getTextChildren() as unknown[]).map((child) => readText(child, cache)).join("")
   else if (typeof value.getChildren === "function")
     text = (value.getChildren() as unknown[]).map((child) => readText(child, cache)).join("")
   cache?.set(value, text)
