@@ -1,92 +1,30 @@
 import { Plugin } from "@opencode/plugin"
 import { type ToolContext, Error as ToolError } from "@opencode/plugin/promise/tool"
-import type { FetchProviderConfig, ProviderEntry, SearchProviderConfig, URLList } from "web-rotate-core"
-import {
-  DEFAULT_FETCH_PROVIDER_CONFIG,
-  DEFAULT_SEARCH_PROVIDER_CONFIG,
-  fetchWeb,
-  LRUCache,
-  RotateConfigError,
-  searchWeb,
-} from "web-rotate-core"
+import { uniq } from "es-toolkit"
+import type { FetchOutcome, SearchOutcome, URLList } from "web-rotate-core"
+import { DEFAULT_FETCH_PROVIDER_CONFIG, DEFAULT_SEARCH_PROVIDER_CONFIG, fetchWeb, searchWeb } from "web-rotate-core"
+import { collectSecrets, mergeProviders, parseOptions } from "./config"
 import { failureReason, rotationMetadata, SEARCH_PROVIDER_ID } from "./diagnostics"
 import { searchResults } from "./output"
 
+const URL_WRAPPER_PATTERN = /^[\s"'<]+|[\s"'>]+$/g
 const URL_SEPARATOR_PATTERN = /[\r\n,;]+/
 const URL_PROTOCOL_PATTERN = /^[a-zA-Z][a-zA-Z\d+.-]*:\/\//
-const KEY_SEPARATOR_PATTERN = /[\s,;]+/
-const URL_WRAPPER_PATTERN = /^[\s"'<]+|[\s"'>]+$/g
 
 export default Plugin.define({
   id: "oc-web-rotate",
   setup: async (ctx) => {
-    const maxOperationMs = Number(ctx.options.maxOperationMs ?? 100_000)
-    const maxUrlsPerRequest = Number(ctx.options.maxUrlsPerRequest ?? 20)
-    if (!Number.isSafeInteger(maxOperationMs) || maxOperationMs < 1000 || maxOperationMs > 2_147_483_647)
-      throw new RotateConfigError("maxOperationMs must be an integer between 1000 and 2147483647")
-    if (!Number.isSafeInteger(maxUrlsPerRequest) || maxUrlsPerRequest < 1)
-      throw new RotateConfigError("maxUrlsPerRequest must be a positive integer")
-    const cacheOptions = (ctx.options.cache ?? {}) as
-      | { enabled?: boolean | undefined; cap?: number | undefined }
-      | false
-    if (cacheOptions !== false && (typeof cacheOptions !== "object" || Array.isArray(cacheOptions)))
-      throw new RotateConfigError("cache must be false or an object with enabled and cap options")
-    if (cacheOptions !== false && cacheOptions.enabled !== undefined && typeof cacheOptions.enabled !== "boolean")
-      throw new RotateConfigError("cache.enabled must be a boolean")
-    const cacheCap = Number(cacheOptions === false ? 256 : (cacheOptions.cap ?? 256))
-    if (!Number.isSafeInteger(cacheCap) || cacheCap < 0)
-      throw new RotateConfigError("cache.cap must be a non-negative integer")
-    const cache =
-      cacheOptions === false || cacheOptions.enabled === false || cacheCap === 0
-        ? undefined
-        : new LRUCache<string, NonNullable<unknown>>({ max: cacheCap })
+    const {
+      maxOperationMs,
+      maxUrlsPerRequest,
+      cache,
+      fetch: fetchOptions,
+      search: searchOptions,
+    } = parseOptions(ctx.options)
+    const fetchConfig = mergeProviders(DEFAULT_FETCH_PROVIDER_CONFIG, fetchOptions, cache)
+    const searchConfig = mergeProviders(DEFAULT_SEARCH_PROVIDER_CONFIG, searchOptions, cache)
+    const secrets = collectSecrets([fetchConfig, searchConfig])
     const lifetime = new AbortController()
-
-    type PluginProviderEntry = ProviderEntry & {
-      enabled?: boolean | undefined
-    }
-
-    function resolveProviderConfig<T extends object>(
-      options: unknown,
-      defaults: T & { providers?: Readonly<Record<string, ProviderEntry | undefined>> | undefined },
-    ): T {
-      const { providers, ...rest } = (options ?? {}) as {
-        providers?: Record<string, PluginProviderEntry>
-      }
-      const merged: Record<string, ProviderEntry> = {}
-      for (const [id, entry] of Object.entries(defaults.providers ?? {})) if (entry) merged[id] = entry
-      for (const [id, raw] of Object.entries(providers ?? {})) {
-        const { enabled, ...entry } = raw
-        if (enabled === false) {
-          delete merged[id]
-          continue
-        }
-        merged[id] = { ...merged[id], ...entry }
-      }
-      return { ...defaults, ...rest, providers: merged, ...(cache ? { cache } : {}) } as T
-    }
-
-    const fetchConfig = resolveProviderConfig<FetchProviderConfig>(ctx.options.fetch, DEFAULT_FETCH_PROVIDER_CONFIG)
-    const searchConfig = resolveProviderConfig<SearchProviderConfig>(ctx.options.search, DEFAULT_SEARCH_PROVIDER_CONFIG)
-    const secrets = [
-      ...new Set(
-        [fetchConfig, searchConfig].flatMap((config) =>
-          Object.values(config.providers ?? {}).flatMap((entry) =>
-            (Array.isArray(entry?.keys) ? entry.keys : [entry?.keys]).flatMap((item) =>
-              typeof item === "string"
-                ? item
-                    .split(KEY_SEPARATOR_PATTERN)
-                    .map((token) => (token.includes("::") ? token.slice(token.indexOf("::") + 2) : token))
-                : item && typeof item.key === "string"
-                  ? [item.key.trim()]
-                  : [],
-            ),
-          ),
-        ),
-      ),
-    ]
-      .filter((key) => key && key !== "keyless")
-      .sort((a, b) => b.length - a.length)
 
     const assertPermission = (action: "webfetch" | "websearch", resources: string[], context: ToolContext) =>
       ctx.permission.assert({
@@ -98,29 +36,28 @@ export default Plugin.define({
         source: { type: "tool", messageID: context.messageID, id: context.id },
       })
 
-    const runSearch = async (query: string, signal: AbortSignal, progress?: ToolContext["progress"]) => {
-      const requestSignal = AbortSignal.any([signal, lifetime.signal, AbortSignal.timeout(maxOperationMs)])
+    const runOperation = async <T extends FetchOutcome | SearchOutcome>(
+      operation: "webfetch" | "websearch",
+      timeoutMs: number,
+      context: { signal: AbortSignal; progress?: ToolContext["progress"] },
+      run: (signal: AbortSignal) => Promise<{ outcome: T; extra?: Record<string, unknown> }>,
+    ) => {
+      const signal = AbortSignal.any([context.signal, lifetime.signal, AbortSignal.timeout(timeoutMs)])
       try {
-        requestSignal.throwIfAborted()
-        const outcome = await searchWeb({
-          queries: [query.trim()] as URLList,
-          signal: requestSignal,
-          config: searchConfig,
-        })
-        requestSignal.throwIfAborted()
-        const metadata = rotationMetadata("websearch", outcome, secrets)
-        if (progress) await progress(metadata).catch(() => {})
+        signal.throwIfAborted()
+        const { outcome, extra } = await run(signal)
+        signal.throwIfAborted()
+        const metadata = { ...rotationMetadata(operation, outcome, secrets), ...extra }
+        await context.progress?.(metadata).catch(() => {})
         return { outcome, metadata }
       } catch (error) {
-        const metadata = rotationMetadata(
-          "websearch",
-          error instanceof Error ? error : new Error(String(error)),
-          secrets,
-        )
-        if (progress) await progress(metadata).catch(() => {})
+        const metadata = rotationMetadata(operation, error instanceof Error ? error : new Error(String(error)), secrets)
+        await context.progress?.(metadata).catch(() => {})
         throw Object.assign(
-          new ToolError({ message: `websearch-rotate: ${failureReason(error, requestSignal)}`, metadata }),
-          { cause: error },
+          new ToolError({ message: `${operation}-rotate: ${failureReason(error, signal)}`, metadata }),
+          {
+            cause: error,
+          },
         )
       }
     }
@@ -129,7 +66,6 @@ export default Plugin.define({
       ctx.tool.transform((tools) => {
         tools.add({
           name: "webfetch",
-
           description: "Read HTTP(S) URLs as Markdown, text, HTML, or image attachments.",
           input: {
             type: "object",
@@ -157,15 +93,9 @@ export default Plugin.define({
             required: ["url"],
             additionalProperties: false,
           } as const,
-
           options: { permission: "webfetch", codemode: false },
           execute: async (input, context) => {
-            const { signal: callerSignal, progress } = context
-            const raw = input as {
-              url?: unknown
-              format?: unknown
-              timeout?: unknown
-            }
+            const raw = input as { url?: unknown; format?: unknown; timeout?: unknown }
             const urlList = (Array.isArray(raw.url) ? raw.url.flat(Infinity) : [raw.url ?? ""])
               .flatMap((value) => {
                 const text = String(value).replace(URL_WRAPPER_PATTERN, "")
@@ -182,104 +112,72 @@ export default Plugin.define({
             if (!urlList.length) throw new Error("webfetch-rotate: url is required")
             if (urlList.length > maxUrlsPerRequest)
               throw new Error(`webfetch-rotate: no more than ${maxUrlsPerRequest} URLs are allowed`)
-            const urls = [
-              ...new Set(
-                urlList.map((value) => {
-                  let parsed: URL
-                  try {
-                    parsed = new URL(
-                      value.startsWith("//")
-                        ? `https:${value}`
-                        : URL_PROTOCOL_PATTERN.test(value)
-                          ? value
-                          : `https://${value}`,
-                    )
-                  } catch (cause) {
-                    throw new Error(`webfetch-rotate: invalid URL: ${value}`, { cause })
-                  }
-                  if (parsed.protocol !== "http:" && parsed.protocol !== "https:")
-                    throw new Error("webfetch-rotate: only HTTP(S) URLs are supported")
-                  return parsed.toString()
-                }),
-              ),
-            ] as URLList
+            const urls = uniq(
+              urlList.map((value) => {
+                let parsed: URL
+                try {
+                  parsed = new URL(
+                    value.startsWith("//")
+                      ? `https:${value}`
+                      : URL_PROTOCOL_PATTERN.test(value)
+                        ? value
+                        : `https://${value}`,
+                  )
+                } catch (cause) {
+                  throw new Error(`webfetch-rotate: invalid URL: ${value}`, { cause })
+                }
+                if (parsed.protocol !== "http:" && parsed.protocol !== "https:")
+                  throw new Error("webfetch-rotate: only HTTP(S) URLs are supported")
+                return parsed.toString()
+              }),
+            ) as URLList
             await assertPermission("webfetch", urls, context)
+            const requested = String(raw.format ?? "")
+              .trim()
+              .toLowerCase()
             const format =
-              (
-                {
-                  text: "text",
-                  txt: "text",
-                  plain: "text",
-                  html: "html",
-                  htm: "html",
-                } as Record<string, "text" | "html" | undefined>
-              )[
-                String(raw.format ?? "")
-                  .trim()
-                  .toLowerCase()
-              ] ?? "markdown"
+              requested === "text" || requested === "txt" || requested === "plain"
+                ? "text"
+                : requested === "html" || requested === "htm"
+                  ? "html"
+                  : "markdown"
             const timeoutMs = raw.timeout === undefined ? 30_000 : Number(raw.timeout) * 1000
             if (!Number.isFinite(timeoutMs) || timeoutMs < 1000)
               throw new Error("webfetch-rotate: timeout must be at least one second")
-            const signal = AbortSignal.any([
-              callerSignal,
-              lifetime.signal,
-              AbortSignal.timeout(Math.min(Math.floor(timeoutMs), maxOperationMs)),
-            ])
-            try {
-              signal.throwIfAborted()
-              const outcome = await fetchWeb({
-                urls,
-                format,
-                signal,
-                config: fetchConfig,
-              })
-              signal.throwIfAborted()
-              const metadata = {
-                ...rotationMetadata("webfetch", outcome, secrets),
-                url: urls.length === 1 ? urls[0] : urls,
-                format,
-              }
-              await progress(metadata).catch(() => {})
-              if (outcome.type === "image")
-                return {
-                  content: [
-                    {
-                      type: "file",
-                      uri: `data:${outcome.mime};base64,${outcome.base64}`,
-                      mime: outcome.mime,
-                    },
-                  ],
-                  metadata: { ...metadata, url: outcome.url, contentType: outcome.mime },
-                }
-              return {
-                content: outcome.pages.map((item) => {
+            const { outcome, metadata } = await runOperation(
+              "webfetch",
+              Math.min(Math.floor(timeoutMs), maxOperationMs),
+              context,
+              (signal) =>
+                fetchWeb({ urls, format, signal, config: fetchConfig }).then((outcome) => {
                   return {
-                    type: "text" as const,
-                    text: item.error
-                      ? `${item.url}: ${failureReason(item.error)}`
-                      : `${item.finalURL ?? item.url}\n\n${item.content?.trim() ?? ""}`,
+                    outcome,
+                    extra: { url: urls.length === 1 ? urls[0] : urls, format },
                   }
                 }),
-                metadata,
+            )
+            if (outcome.type === "image")
+              return {
+                content: [{ type: "file", uri: `data:${outcome.mime};base64,${outcome.base64}`, mime: outcome.mime }],
+                metadata: { ...metadata, url: outcome.url, contentType: outcome.mime },
               }
-            } catch (error) {
-              const metadata = rotationMetadata(
-                "webfetch",
-                error instanceof Error ? error : new Error(String(error)),
-                secrets,
-              )
-              await progress(metadata).catch(() => {})
-              throw Object.assign(
-                new ToolError({ message: `webfetch-rotate: ${failureReason(error, signal)}`, metadata }),
-                { cause: error },
-              )
+            return {
+              content: outcome.pages.map((item) => {
+                return {
+                  type: "text" as const,
+                  text: item.error
+                    ? `${item.url}: ${failureReason(item.error)}`
+                    : `${item.finalURL ?? item.url}\n\n${item.content?.trim() ?? ""}`,
+                }
+              }),
+              metadata,
             }
           },
         })
 
         tools.add({
           name: "websearch",
+          description: "Search the web with a natural-language question or research request. Cite source URLs.",
           input: {
             type: "object",
             properties: {
@@ -288,15 +186,17 @@ export default Plugin.define({
             required: ["query"],
             additionalProperties: true,
           } as const,
-          description: "Search the web with a natural-language question or research request. Cite source URLs.",
           options: { permission: "websearch", codemode: false },
           execute: async (input, context) => {
             const { query } = input as { query: string }
             await assertPermission("websearch", [query], context)
-            const { outcome, metadata } = await runSearch(query, context.signal, context.progress)
+            const { outcome, metadata } = await runOperation("websearch", maxOperationMs, context, (signal) =>
+              searchWeb({ queries: [query.trim()] as URLList, signal, config: searchConfig }).then((outcome) => {
+                return { outcome }
+              }),
+            )
             const results = searchResults(outcome)
             const answers = new Set(outcome.responses.map((response) => response.answer?.trim()).filter(Boolean))
-
             const sources = results
               .map((result, index) =>
                 [
@@ -319,7 +219,20 @@ export default Plugin.define({
         draft.add({
           id: SEARCH_PROVIDER_ID,
           name: "Multi-Key Rotating Web Search",
-          execute: async (input, { signal }) => searchResults((await runSearch(input.query, signal)).outcome),
+          execute: async (input, { signal }) =>
+            searchResults(
+              (
+                await runOperation("websearch", maxOperationMs, { signal }, async (requestSignal) => {
+                  return {
+                    outcome: await searchWeb({
+                      queries: [input.query.trim()] as URLList,
+                      signal: requestSignal,
+                      config: searchConfig,
+                    }),
+                  }
+                })
+              ).outcome,
+            ),
         })
         draft.default.set(SEARCH_PROVIDER_ID)
       }),

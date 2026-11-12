@@ -1,13 +1,14 @@
 import { stripVTControlCharacters } from "node:util"
+import { sumBy, uniq } from "es-toolkit"
 import type { AttemptDiagnostics, FetchOutcome, SearchOutcome } from "web-rotate-core"
 import { RotateConfigError } from "web-rotate-core"
+
+export const SEARCH_PROVIDER_ID = "Websearch Rotate Core"
 
 const HTTP_STATUS_PATTERN = /\bHTTP\s+(\d{3})\b/i
 const WHITESPACE_PATTERN = /\s+/g
 
-export const SEARCH_PROVIDER_ID = "Websearch Rotate Core"
-
-export function failureReason(error: unknown, signal?: AbortSignal): string {
+export const failureReason = (error: unknown, signal?: AbortSignal) => {
   if (signal?.aborted) return signal.reason?.name === "TimeoutError" ? "request timed out" : "request cancelled"
   if (error instanceof Error && error.name === "TimeoutError") return "request timed out"
   if (error instanceof RotateConfigError) return "invalid provider configuration"
@@ -15,11 +16,11 @@ export function failureReason(error: unknown, signal?: AbortSignal): string {
   return status ? `request failed (HTTP ${status})` : "request failed"
 }
 
-export function rotationMetadata(
+export const rotationMetadata = (
   operation: "webfetch" | "websearch",
   outcome: FetchOutcome | SearchOutcome | Error,
   secrets: readonly string[],
-) {
+) => {
   const redact = (value: string) => {
     let text = stripVTControlCharacters(value).replace(WHITESPACE_PATTERN, " ").trim()
     for (const secret of secrets) text = text.replaceAll(secret, "[redacted]")
@@ -54,9 +55,9 @@ export function rotationMetadata(
         : "results" in outcome
           ? [...outcome.results, ...outcome.responses].flatMap((item) => (item.provider ? [item.provider] : []))
           : [outcome.provider]
-  const provider = [
-    ...new Set(providers.length ? providers.map(redact) : attempts.map((attempt) => attempt.provider)),
-  ].join(", ")
+  const provider = uniq(providers.length ? providers.map(redact) : attempts.map((attempt) => attempt.provider)).join(
+    ", ",
+  )
   const usage = ("usage" in outcome ? (outcome.usage ?? []) : []).map((entry) => {
     return {
       provider: redact(entry.provider),
@@ -106,7 +107,7 @@ export function rotationMetadata(
         : "results" in outcome
           ? `${outcome.results.length} results`
           : "image"
-  const summary = `${routes.join(" → ") || "no provider"} · ${count} · ${attempts.reduce((sum, attempt) => sum + attempt.durationMs, 0)}ms`
+  const summary = `${routes.join(" → ") || "no provider"} · ${count} · ${sumBy(attempts, (attempt) => attempt.durationMs)}ms`
   return {
     provider: operation === "websearch" ? `${SEARCH_PROVIDER_ID}${provider ? ` (${provider})` : ""}` : provider,
     attempts,
